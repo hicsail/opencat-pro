@@ -1,7 +1,7 @@
 # BYO-CAT
 BYO-CAT stands for build your own CAT. A fully customizable, open source platforms to create and manage Computer Adaptive Tests, better known as CATs.
 
-We use node for the frontend and backend is javascript along with a user portal API built on top of [framejs](https://github.com/jedireza/frame)
+Our user portal API is built on top of [framejs](https://github.com/jedireza/frame) and node, backed by a MongoDB database.
 
 Installation is a breeze with docker:
        

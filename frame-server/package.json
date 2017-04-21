@@ -1,0 +1,55 @@
+{
+  "name": "frame",
+  "version": "12.0.0",
+  "description": "A user system API starter",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon  --inspect -e js,md,css,ejs,json server.js",
+    "first-time-setup": "node first-time-setup.js",
+    "test": "lab -c -L",
+    "setup": "./setup.js"
+  },
+  "author": "Reza Akhavan <jedireza@gmail.com> (http://reza.akhavan.me/)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "async": "2.x.x",
+    "bcryptjs": "~2.0.2",
+    "boom": "4.x.x",
+    "confidence": "3.x.x",
+    "dotenv": "2.x.x",
+    "glue": "4.x.x",
+    "ejs": "2.x.x",
+    "handlebars": "4.x.x",
+    "hapi": "15.x.x",
+    "hapi-auth-basic": "4.x.x",
+    "hapi-auth-cookie": "6.x.x",
+    "hapi-mongo-models": "6.x.x",
+    "hoek": "4.x.x",
+    "inert": "4.x.x",
+    "jade": "1.x.x",
+    "joi": "9.x.x",
+    "joi-password-complexity": "1.x.x",
+    "lout": "9.x.x",
+    "mongo-models": "1.x.x",
+    "mongodb": "2.x.x",
+    "node-uuid": "1.4.7",
+    "nodemailer": "2.x.x",
+    "nodemailer-markdown": "1.x.x",
+    "object-assign": "4.x.x",
+    "slug": "0.9.x",
+    "vision": "4.x.x",
+    "visionary": "6.x.x"
+  },
+  "devDependencies": {
+    "code": "3.x.x",
+    "lab": "11.x.x",
+    "nodemon": "1.x.x",
+    "promptly": "2.x.x",
+    "proxyquire": "1.x.x",
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3"
+  }
+}

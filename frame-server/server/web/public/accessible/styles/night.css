@@ -1,0 +1,137 @@
+
+/* *************************************** */
+/* *   Style Switcher: bigger font size  * */
+/* *************************************** */
+
+
+.SunMoon i {
+
+    color: white  !important;
+}
+.SunMoon i.active {
+
+    color: yellow !important;
+}
+
+
+
+body, .boxedContainer {
+    background-color: #000 !important;
+    color:#fff !important;
+}
+
+.ui-widget-content {
+     color:#fff !important;
+}
+
+.ui-state-active {
+    background:#333333/*{bgColorActive}; url(images/ui-bg_glass_65_ffffff_1x400.png)/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/;
+    color:#ffffff !important;
+}
+
+.ui-widget-content {
+     background:#444444/*{bgColorActive}; url(images/ui-bg_glass_65_ffffff_1x400.png)/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/;
+    color:#ffffff !important;
+}
+
+.ui-state-default {
+         background:#666666/*{bgColorActive}; url(images/ui-bg_glass_65_ffffff_1x400.png)/*{bgImgUrlActive}*/ 50%/*{bgActiveXPos}*/ 50%/*{bgActiveYPos}*/ repeat-x/*{bgActiveRepeat}*/;
+    color:#eeeeee !important;
+}
+
+.custom-checkbox label {
+    background: none;
+}
+
+.half-panel .half-panel-title, .half-panel .half-panel-body p  {
+    color: #777575 !important;
+}
+
+h1, a, nav.appSell li ul li a  {
+    color: #3567FD !important;
+}
+
+nav.appSell li a {
+    color: white !important;
+}
+
+
+
+a.btn-primary {
+        color: white !important;
+}
+
+.buttonSquare, .ActionBarDiv .btn {
+    color: #fff !important;
+}
+
+.buttonSquare:hover, .buttonSquare:active, .buttonSquare:focus, .ActionBarDiv .btn:hover,.ActionBarDiv .btn:focus,.ActionBarDiv .btn:active {
+    color: #3567FD !important;
+}
+
+.footerSocial li a:hover, .footerSocial li a:focus {
+    color: #FFE82A !important;
+}
+
+
+.alternate {
+    background-color: #333 !important;
+}
+
+.alternate a {
+    color:#7897F1 !important;
+
+}
+
+.topEcommerceBlack
+{
+    color:white !important;
+}
+
+.breadcrumb {
+    background-color: #444 !important;
+}
+
+
+.breadcrumb > .active {
+    color: #fff !important;
+}
+
+
+.borderedTab {
+
+    background-color: #fff !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #bbb !important;
+    font-weight: bold !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #aaa !important;
+    font-weight: bold !important;
+
+}
+
+.custom-dropdown {
+    color:#000 !important;
+}
+
+.accordion-dark.ui-accordion .ui-accordion-content , .accordion-dark.ui-accordion.whiteBack .ui-accordion-content {
+    background-color: #666 !important;
+    color: #fff !important;
+}
+
+.breadcrumb-responsive a {
+    color: #afc3ff !important;
+}
+
+.SearchBox {
+    color:#000 !important;
+}
+
+.modal-content {
+    background-color: black !important;
+    color: white !important;
+}

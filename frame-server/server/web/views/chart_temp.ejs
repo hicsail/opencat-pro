@@ -1,0 +1,13 @@
+<div class="hidden" id="surveyScores"><%= JSON.stringify(surveyScores)%></div>
+<p class="padding-top-5 text-center margin-top-25">To view score for a particular survey, click on one of the buttons below</p><br>
+<div id="parent">
+  <canvas id="myChart2"></canvas>
+</div>
+<div class="alert alert-warning" role="alert" id="surveyBtnAlert">
+  You can only view 3 surveys at a time
+</div>
+<div class="btnWrapper" role="group" aria-label="Change chart time">
+  <% for(var i = 0; i < surveyScores.length; i++) { %>
+  <button class="btn btn-default chartBtn" data-date="<%= new Date(Date.parse(surveyScores[i].lastUpdated)).toLocaleDateString() %>" data-selected="false" id=<%= surveyScores[i].surveyId%>><%= new Date(Date.parse(surveyScores[i].lastUpdated)).toLocaleDateString() %></button>
+  <% } %>
+</div>

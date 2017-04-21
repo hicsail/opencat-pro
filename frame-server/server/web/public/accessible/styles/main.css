@@ -1,0 +1,16 @@
+/*Core stylesheets*/
+@import url("../../js/accessible/bootstrap/3.3.1/css/bootstrap.css");
+@import url("../../js/accessible/font-awesome/font-awesome.css");
+@import url("../../js/accessible/globalassets/styles/adobeBlank/adobe-blank.css");
+@import url("../../js/accessible/jqueryui/themes/base/jquery-ui.css");
+/*External library stylesheets*/
+@import url("../../js/accessible/chart/1.0.1/css/charts.css");
+@import url("../../js/accessible/rwdTable/1.0/css/rwdtable-core.css");
+@import url("../../js/accessible/share/4.0/styles/sharewidget-4.0.css");
+/*Global Assets stylesheets*/
+@import url("../../js/accessible/globalassets/styles/widgets/alerts.css");
+@import url("../../js/accessible/globalassets/styles/widgets/buttons.css");
+@import url("../../js/accessible/globalassets/styles/widgets/tooltips.css");
+@import url("../../js/accessible/globalassets/styles/widgets/carousel.css");
+@import url("../../js/accessible/globalassets/styles/widgets/modalstyles.css");
+@import url("../../js/accessible/globalassets/styles/breadcrumb.css");

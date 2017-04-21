@@ -1,0 +1,73 @@
+<%- include('./layout', {title: title, favicon: favicon}); %>
+</head>
+<body>
+<header role="banner">
+  <%- include('./partials/navbar_accessible', {configUrl: configUrl, logoname: logoname}); %>
+</header>
+
+<main role="main" aria-label="main section" id="main-content" action="#" data-validationgroup>
+  <div class="login-container" id="resetForm">
+    <h4 class="center">Reset Password</h4>
+    <div class="reset">
+      <form id="formID">
+        <div class="form-group required">
+          <label for="key">Code address for your account:<sup>*</sup></label>
+          <input id="key" class="form-control" name="key"
+                 data-validate="notBlank key"
+                 placeholder="Key from email" size="20" type="text">
+        </div>
+        <div class="form-group required">
+          <label for="username">Username/Email: <sup>*</sup></label>
+          <input id="username" class="form-control" name="email"
+                 data-validate="notBlank email"
+                 placeholder="Email" size="20" type="text">
+        </div>
+        <div class="form-group required">
+          <label for="password">Password <sup>*</sup></label> <br>
+          Please ensure your new password is different from your old one
+          <input id="password" class="form-control"
+                 data-validate="notBlank validPassword"
+                 type="password"
+                 placeholder="Type Password" size="20">
+        </div>
+          <ul>
+            <li id="passReq1">Lowercase</li>
+            <li id="passReq2">Uppercase</li>
+            <li id="passReq3">Numbers</li>
+            <li id="passReq4">Special Characters</li>
+            <li id="passReq5">Length >= 10</li>
+          </ul>
+        <div class="form-group required">
+          <label for="confpass">Confirm Password <sup>*</sup></label>
+          <input id="confpass" class="form-control"
+                 data-validate="notBlank confirmPass"
+                 type="password"
+                 placeholder="Retype password" size="20">
+        </div>
+        <button id="changePass" data-validationtrigger class="btn btn-primary">Update Password</button>
+      </form>
+    </div>
+  </div>
+
+</main>
+
+<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
+<%- include('./partials/footer_accessible'); %>
+<!-- end footer -->
+
+<script>
+  $(document).ready(function(){
+    $("#changePass").click(function(){
+      resetPassword("<%= configUrl %>");
+    });
+    $('#password').blur(checkPasswordRequirements);
+  });
+
+</script>
+<script src="/public/js/formvalidatorconfig.js"></script>
+<script src="/public/js/formvalidator.js"></script>
+<script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
+<script src="/public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
+<script type="text/javascript" src="/public/js/accessible/slick-1.5.7/slick.min.js"></script>
+</body>
+</html>

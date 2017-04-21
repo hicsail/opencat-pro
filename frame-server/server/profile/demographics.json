@@ -1,0 +1,49 @@
+[
+
+  {
+    "group": "one",
+    "type": "radio-only",
+    "questionText": "Have you kept pets before?",
+    "responseOptions": [
+      {
+        "name": "pets",
+        "id": "kept_pets_1",
+        "value" : 1,
+        "displayText": "Yes"
+      },
+      {
+        "name": "pets",
+        "id": "kept_pets_2",
+        "value" : 2,
+        "displayText": "No"
+      }
+
+    ]
+  },
+  {
+    "group": "two",
+    "type": "radio-other",
+    "questionText": "Do you like cats in general?",
+    "responseOptions": [
+      {
+        "name": "likeCat",
+        "id": "like_cats_1",
+        "value" :0,
+        "displayText": "Yes"
+      },
+      {
+        "name": "likeCat",
+        "id": "like_cats_2",
+        "value" : 1,
+        "displayText": "No"
+      },
+      {
+        "name": "likeCat",
+        "id": "like_cats_3",
+        "value" : 2,
+        "displayText": "Other"
+      }
+
+    ]
+  }
+]

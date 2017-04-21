@@ -1,0 +1,127 @@
+Original Template: https://github.com/jedireza/frame
+
+Adding in a new custom user registration field (let's call it "birthyear")...
+	Change the following files:
+	/server/models/user.js
+		- Under "User.schema = Joi.object().keys({..."
+			- Add "birthyear: Joi.number().integer().min(1900).max(2016).required()," as one of the keys,
+				customizing the requirements/formatting according to the https://github.com/hapijs/joi schema definition rules
+		- In the function header "User.create = function (username, password, email, ...", insert birthyear
+			as another passed-in argument
+			- Under "const document = {" in the same User.create function,
+				- Add another key "birthyear: birthyear,", tokenizing and formatting the string or number as necessary
+	/server/api/signup.js
+		- Under "server.route({ method: 'POST', path: '/signup', config: { validate: { payload: {..."
+			- Add "birthyear: Joi.number().integer().min(1900).max(2016).required()" as one of they keys, again
+				customizing the requirements/formatting according to Joi schema definition rules
+		- In that same "server.route", under the "handler: function (request, reply) {... Async.auto({ user: function (done) {..."
+			- Add in "const birthyear = request.payload.birthyear;"
+			- Change the function call of "User.create(username, password, email, done);" to include a new argument, "birthyear"
+		- In that same "handler: function", in the final "reply({ user: {...",
+			- Add in "birthyear: user.birthyear"
+	/server/api/login.js (OPTIONAL -- depending on what user details you want returned as a JSON-reply object when you login)
+		- Under "server.route({ method: 'POST', path: '/login', ... handler: function (request, reply) { ... reply({ user: { ..."
+			- Add in "birthyear: request.pre.user.birthyear"
+	/server/api/users.js (OPTIONAL -- depending on what user details you want returned as a JSON-reply object when you access these paths/pages)
+		- Under "server.route({ method: 'GET', path: '/users/my', ... handler: function (request, reply) { ..."
+			- Change "const fields = User.fieldsAdapter('username email roles');" to include "birthyear", presumably in the same order 
+				you added the field into the User.schema
+		- Under "server.route({ method: 'POST', path: '/users', config: { validate: { payload: {..."
+			- Add in again "birthyear: Joi.number().integer().min(1900).max(2016).required()", customizing as required
+			- In that same route, under the "handler: function", in the final "reply({ user: {...",
+				- Again add in "const birthyear = request.payload.birthyear;"
+				- Change the function call of "User.create(username, password, email, done);" to include a new argument, "birthyear"
+		- Under "server.route({ method: 'PUT', path: '/users/my', ... handler: function (request, reply) { ..."
+			- Change "const fields = User.fieldsAdapter('username email roles');" to include "birthyear", presumably in the same order 
+				you added the field into the User.schema
+	/setup.js
+		- Under "Async.auto({...", after "rootEmail: [...{...}]", 
+			- Add in a prompt requesting you to enter in a birthyear, storing it in a variable (let's call it rootBirthYear), like so:
+				rootBirthYear: ['rootEmail', (done, results) => {
+					Promptly.prompt('Root user birth year', done);	//Some prompt of your choosing
+				}],
+			- Next, change the "rootPassword: ['rootEmail', ..." prompt occurring right after your rootBirthYear prompt to require the
+				'rootBirthYear' prompt-task to finish executing before initiating on the command-line, instead of 'rootEmail'
+		- Then, under "setupRootUser: ['createConfig', (done, results) => { ... Async.auto({ ... user: [ ... { ..."
+			- Change "User.create('root', results.rootPassword, results.rootEmail, done);" to include a new argument "results.rootBirthYear"
+				according to how you changed the original User.create function header in /server/models/user.js
+
+Setting up and installing the Frame Server... (presumably, you'd have already installed MongoDB and Node.js, and opened up a connection to MongoDB
+in the background as another terminal, for your Frame server to have access to a MongoDB database)
+	On the command line:
+		cd into your file directory
+		npm install
+		npm run setup (or "node setup.js" on Windows) --> Follow the prompt and enter in fields accordingly
+		npm start
+	You should now be able to look at all accessible API routes via http://localhost:8000/docs (here you can look at required permissions, parameters,
+		etc. for all API routes)
+
+Useful in interacting with the setup server via API: https://www.getpostman.com/
+	Signing up: http://localhost:8000/api/signup
+		In Postman:
+			- Change method to 'POST'
+			- Add in a Header as key: Content-Type and value: application/json
+			- Under Body, change the option to 'raw' and the dropdown-menu to "JSON(application/json)"
+				- Write a JSON object with corresponding filled form-values according to the requested payload parameters 
+					(you can find out what the specific parameters and details are by going to http://localhost:8000/docs
+					and looking up /api/signup)
+			- Press 'Send', and you should get a response-body JSON-reply with details about the user account you just created
+				in the database
+	Logging in: http://localhost:8000/api/login
+		In Postman:
+			- Change method to 'POST'
+			- Add in a Header as key: Content-Type and value: application/json
+			- Under Body, change the option to 'raw' and the dropdown-menu to "JSON(application/json)"
+				- Write a JSON object with corresponding filled form-values according to
+					{
+						"username": "____",
+						"password": "____"
+					}
+			- Press 'Send', and you should get a response-body JSON-reply with details about the user account you just created
+				in the database, as well as a Session JSON object with details for persisting a "logged-in" state across pages
+	Looking at account details: http://localhost:8000/api/accounts/my
+		In Postman:
+			- Change method to 'GET'
+			- Under Authorization, change the Type to "Basic Auth"
+				- For username, enter in a valid Session JSON object's "_id" field
+				- For password, enter in a valid Session JSON object's "key" field
+			- Press 'Send', and you should get a response-body JSON-reply with details about your account
+	
+	(Note: The first Admin user account you created has a username 'root' and a password you set when running "npm run setup")
+	Looking at all user accounts in database: http://localhost:8000/api/users
+		In Postman:
+			- (first requires permissions from an Admin -- so login as an Admin to receive an Admin Session JSON object)
+			- Steps are the same for "Looking at account details"
+				- (can enter in optional query parameters to find specific users)
+
+Note: "Users" are different from "Accounts" and "Admins" and "Admin-Groups" as objects in Frame; details about that are here: https://github.com/jedireza/frame/wiki/Users%2C-Roles-%26-Groups
+
+
+Hapijs Toolset that Frame Uses:
+https://github.com/hapijs/glue
+	(a streamlined wrapper for creating the Hapi server and registering plugins, as part of the Hapijs toolset)
+https://github.com/hapijs/inert
+	(allows you to write custom handler functions for static files and directories)
+https://github.com/hapijs/confidence
+	(streamlines writing config files)
+https://github.com/hapijs/joi
+	(streamlines the writing/notation and definition of object schemas and limitations to inputted data)
+https://github.com/hapijs/visionary
+	(for loading views manager from a static JSON manifest file, in conjunction with Glue)
+https://github.com/hapijs/vision
+	(helps render templates -- jedireza configured the options of the plugin to work with the Jade templating engine)
+https://github.com/hapijs/lout
+	(was just used for to create Routes documentation in jedireza's demo app -- allows you to see all possible callable routes for the API)
+https://github.com/hapijs/hapi-auth-basic
+	(used for validating a username and password)
+https://github.com/hapijs/hoek
+	(basically a Hapi library of useful functions you can apply)
+https://github.com/hapijs/code + https://github.com/hapijs/lab
+	(assertions library and a node test utility for a javascript testing framework -- probably used in jedireza's test folder)
+https://github.com/hapijs/boom
+	(provides a set of utilities/helper methods for returning HTTP errors as Boom error response objects)
+(jedireza explicitly wrote this tool, not featured in Hapijs, for Hapi:)
+https://github.com/jedireza/hapi-mongo-models
+	(allows for interaction/connections/validations with MongoDB databases and collections, using the Joi object schema)
+
+Other required node-packages: object-assign, proxyquire, path, slug, fs, handlebars, nodemailer, async, node-uuid, bycrypt, promptly

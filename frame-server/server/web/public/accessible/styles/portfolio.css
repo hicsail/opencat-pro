@@ -1,0 +1,71 @@
+.filter {
+    margin-bottom: 30px;   
+}
+
+.thumbnails.span4 li{
+    float: left;
+    height: 170px;
+    list-style: none outside none;
+    margin: 6px;
+    position: relative;
+    width: 250px;
+    list-style-type:none;
+    -moz-box-shadow: 0 0 5px #000;
+    -webkit-box-shadow: 0 0 5px #000;
+    box-shadow: 0 0 5px #000;
+}
+
+.thumbnails.span3 li{
+
+    float: left;
+    height: 200px;
+    list-style: none outside none;
+    margin: 6px;
+    position: relative;
+    width: 300px;
+    list-style-type:none;
+    -moz-box-shadow: 0 0 5px #000;
+    -webkit-box-shadow: 0 0 5px #000;
+    box-shadow: 0 0 5px #000;
+}
+
+.thumbnails.span2 li{
+
+    float: left;
+    height: 335px;
+    list-style: none outside none;
+    margin: 6px;
+    position: relative;
+    width: 500px;
+    list-style-type:none;
+    -moz-box-shadow: 0 0 5px #000;
+    -webkit-box-shadow: 0 0 5px #000;
+    box-shadow: 0 0 5px #000;
+}
+
+.thumbnails{
+    overflow:hidden;
+    list-style-type:none;
+}
+
+
+ul.filter li {
+    background-color: #fff;   
+}
+
+ul.filter li.active {
+    background-color: #333;   
+}
+
+
+div.dialog-contents button span.adobeBlank {
+    display: none;
+}
+
+.alternate ul.filter li.active a {
+    color:#fff !important;
+}   
+
+.alternate ul.filter li {
+    background-color: inherit;
+}

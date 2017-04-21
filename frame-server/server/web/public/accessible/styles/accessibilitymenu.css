@@ -1,0 +1,82 @@
+#slideout {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    -webkit-transition-duration: 0.8s;
+ -moz-transition-duration: 0.8s;
+ -o-transition-duration: 0.8s;
+ transition-duration: 0.8s;
+    z-index: 10000;
+    direction: rtl;
+    font-size: 16px;
+}
+#slideout_inner {
+    position: fixed;
+    top: 40px;
+    left: -250px;
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+    background-color: #fff;
+    border: 1px solid #777;
+    width: 250px;
+    padding: 20px;
+    z-index: 10000;
+}
+.accessibilityMenuButton {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #999;
+    margin-bottom: 3px;
+    cursor: pointer;
+    color: #444;
+    background-color: white;
+    font-weight: bold;
+}
+.accessibilityMenuButton:disabled {
+    border: 1px solid #ccc;
+    color: #ccc !important;
+    cursor: not-allowed;
+}
+.accessibilityMenuButton:focus,
+.accessibilityMenuButton:active {
+    border: 1px solid #3366ff;
+    color: #3366ff;
+}
+#slideout_inner ul {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.transparentButton {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+}
+
+.alignRight {
+    text-align: right !important;
+}
+.alignLeft {
+    text-align: left!important;
+}
+.rtl {
+    direction: rtl;
+}
+
+.ltr {
+    direction: ltr;
+}
+
+.myLogo {
+    width:40px;
+    padding-top: 10px;
+}
+
+@-moz-document url-prefix() {
+    #btnGrayscaleOn,
+    #btnGrayscaleOff {
+        display: none;
+    }
+}

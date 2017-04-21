@@ -1,0 +1,6 @@
+general:
+  build_dir: frame-server
+  
+test:
+  override:
+    - mocha

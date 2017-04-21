@@ -1,0 +1,334 @@
+<%- include('./layout', {title: title, favicon: favicon}); %>
+<body>
+<div class="hidden" id="currentUserId"><%= userid %></div>
+<div class="container">
+  <div id="chart" />
+  </div>
+
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+  <script>
+    var myBarChart2;
+    var totalSurveysSelected = 0;
+    var alertVisible = false;
+
+    $("#chart").on("callsuccess", function (evt, response) {
+      console.log("event has been triggered");
+      createNewChart();
+    });
+
+    $(document).ready(function () {
+      var basil = new window.Basil();
+      var cookie = basil.get('cookie');
+
+      var userId = $("#currentUserId")[0].innerHTML;
+      var dataToSend = {userID: userId.toString()};
+
+      $.ajax({
+        type: 'GET',
+        url: '<%= configUrl %>' + "/survey/getCharts",
+        data: dataToSend,
+        datatype: 'html',
+        success: function (data) {
+          $("#chart")[0].innerHTML = data;
+          //Now trigger event after n seconds
+          $("#chart").trigger("callsuccess");
+
+        },
+        error: function (request, status, error) {
+          var reply = request.responseText;
+          var replyText = (JSON.parse(reply));
+          console.log(replyText.message);
+        }
+      });
+    });
+
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function  createNewChart() {
+      var chartData = JSON.parse($("#surveyScores")[0].innerHTML);
+
+      var canvas = $("#myChart2")[0];
+      var ctx = canvas.getContext("2d");
+
+      var parent = $('#parent')[0];
+
+      //Load first chart
+      var meanScores = [];
+      for (var count = 0; count < chartData[0].sectionNames.length; count++) {
+        meanScores.push(50);
+      }
+
+      var data = {
+        labels: chartData[0].sectionNames,
+        datasets: [
+          {
+            label: "Mean score",
+            backgroundColor: "rgba(172,194,255,0.6)",
+            borderColor: "#ACC2FF",
+            borderWidth: 1,
+            hoverBackgroundColor: "rgba(172,194,255,0.9)",
+            hoverBorderColor: "#ACC2FF",
+            data: meanScores,
+          }
+        ]
+      };
+
+      //Instantiate a new chart object
+      myBarChart2 = new Chart(ctx, {
+        data: data,
+        type: 'horizontalBar',
+        options: {
+          scales: {
+            xAxes: [{
+              ticks: {
+                max: 100,
+                min: 0,
+                stepSize: 5
+              }
+            }]
+          }
+        }
+
+      });
+
+      //Wire up data for rest of them
+      chartData.forEach(function (data, index) {
+        //Wire button click listener that would pass in data at index i
+        var length = myBarChart2.data.datasets[0].data.length - 1;
+        $('#' + data.surveyId).click(function () {
+          var currentBtn = this;
+          if (!$(currentBtn).hasClass('disabled') && $(currentBtn).data("selected")) {
+            $(currentBtn).data("selected", false);
+            $(currentBtn).removeClass("active");
+            totalSurveysSelected--;
+            var result = myBarChart2.data.datasets.filter(function( dataset ) {
+              return dataset.label == "Survey " + $(currentBtn).data("id") + " Score";
+            });
+            myBarChart2.data.datasets.splice(myBarChart2.data.datasets.indexOf(result[0]), 1);
+            myBarChart2.update();
+          } else if (totalSurveysSelected < 3 && !$(currentBtn).hasClass('disabled')) {
+            $(currentBtn).data("selected", true);
+            $(currentBtn).addClass("active");
+            totalSurveysSelected++;
+            var meanScores = [];
+            for (var count = 0; count < data.sectionNames.length; count++) {
+              meanScores.push(50);
+            }
+            // Construct new mean score array based on number of elements
+            var rVal = getRandomInt(50,200);
+            var gVal = getRandomInt(100,240);
+            var bVal = getRandomInt(100,300);
+
+            for (; data.sectionScore.length < 6;) {
+              data.sectionScore.push("0.00");
+            }
+            var sectionDataset = {
+              label: $(currentBtn).data("date"),
+              backgroundColor: "rgba(" + rVal + "," + gVal + "," + bVal + ",0.6)",
+              borderColor: "#ACC26D",
+              borderWidth: 1,
+              hoverBackgroundColor: "rgba(" + rVal + "," + gVal + "," + bVal + ",0.9)",
+              hoverBorderColor: "#ACC26D",
+
+              data: data.sectionScore,
+            }
+            myBarChart2.data.datasets.push(sectionDataset);
+            myBarChart2.data.datasets.sort(dateSort());
+            myBarChart2.data.labels = ["Ambulation SCI-FI/AT", "Basic Mobility SCI-FI/AT", "Fine Motor SCI-FI/AT", "Self Care SCI-FI/AT", "Manual Wheelchair SCI-FI/AT", "Power Wheelchair SCI-FI/AT"];
+            myBarChart2.update();
+          } else if (!$(currentBtn).hasClass('disabled')) {
+            if (!alertVisible) {
+              $("#surveyBtnAlert").fadeIn('fast');
+              alertVisible = true;
+              setTimeout(function(){
+                $("#surveyBtnAlert").fadeOut('fast');
+                alertVisible = false;
+              }, 3000);
+            }
+          }
+        });
+      });
+      $("#surveyBtnAlert").hide();
+      myBarChart2.data.datasets.length = 0;
+      $('.btnWrapper button:first-child').click();
+      if ($('.btnWrapper button').length == 1) {
+        $('.btnWrapper button').addClass('disabled');
+      } else if ($('.btnWrapper button').length > 10) {
+        $('.btnWrapper').slick({
+          infinite: false,
+          slidesToShow: 10,
+          slidesToScroll: 10
+        });
+      }
+    }
+
+  function attachHandlers(myBarChart2, dataArray) {
+    var length = myBarChart2.data.datasets[0].data.length - 1;
+    $('#2014').click(function () {
+      $('#2015').removeClass('btn-primary');
+      $('#2016').removeClass('btn-primary');
+      $(this).addClass('btn-primary');
+
+      for (i = 0; i <= length; i++) {
+        myBarChart2.data.datasets[0].data[i] = dataArray[0][i];
+      }
+      myBarChart2.update();
+    });
+
+    $('#2015').click(function () {
+      $('#2014').removeClass('btn-primary');
+      $('#2016').removeClass('btn-primary');
+      $(this).addClass('btn-primary');
+
+      for (i = 0; i <= length; i++) {
+        myBarChart2.data.datasets[0].data[i] = dataArray[1][i];
+      }
+      myBarChart2.update();
+    });
+
+    $('#2016').click(function () {
+      $('#2015').removeClass('btn-primary');
+      $('#2014').removeClass('btn-primary');
+      $(this).addClass('btn-primary');
+
+      for (i = 0; i <= length; i++) {
+        myBarChart2.data.datasets[0].data[i] = dataArray[2][i];
+      }
+      myBarChart2.update();
+    });
+  }
+
+  function loadMultipleBarChart() {
+    Chart.defaults.global.responsive = false;
+    Chart.defaults.global.maintainAspectRatio = false;
+    var canvas = $('#myChart2')[0];
+    var scores = $('#surveyScores');
+    var dataArray = [[45, 55, 35, 58, 60, 52],
+      [55, 58, 40, 55, 60, 62],
+      [62, 60, 50, 57, 68, 67]];
+    var data = {
+      labels: ["Ambulation FI/AT", "Basic Mobility FI/AT", "Fine Motor FI/AT", "Self Care FI/AT", "Manual Wheelchair FI/AT", "Power wheelchair FI/AT"],
+      datasets: [
+        {
+          label: "My score",
+          backgroundColor: "rgba(172,194,132,0.6)",
+          borderColor: "#ACC26D",
+          borderWidth: 1,
+          hoverBackgroundColor: "rgba(172,194,132,0.7)",
+          hoverBorderColor: "#ACC26D",
+          data: [45, 55, 35, 58, 60, 52],
+        },
+        {
+          label: "Mean score",
+          backgroundColor: "rgba(172,194,255,0.6)",
+          borderColor: "#ACC2FF",
+          borderWidth: 1,
+          hoverBackgroundColor: "rgba(172,194,255,0.7)",
+          hoverBorderColor: "#ACC2FF",
+          data: [50, 50, 50, 50, 50, 50],
+        }
+      ]
+    };
+
+    var myBarChart2 = new Chart(canvas, {
+      data: data,
+      type: 'horizontalBar',
+      options: {
+        scales: {
+          xAxes: [{
+            ticks: {
+              max: 100,
+              min: 0,
+              stepSize: 5
+            }
+          }]
+        }
+      }
+
+    });
+    attachHandlers(myBarChart2, dataArray);
+
+  }
+
+  function loadChartsWithDummyData() {
+    var exData_3 = {
+
+      // labels should be the dates of the surveys (DD-MM)
+      labels: ["2013", "2014", "2015", "2016", "2017", "2018"],
+
+      datasets: [{
+        backgroundColor: "rgba(172,194,132,0.4)",
+        borderColor: "#ACC26D",
+        pointBackgroundColor: "#fff",
+        pointBorderColor: "#9DB86D",
+        data: [47.5, 50, 63, 77, 82, 87], // change data to the survey score data
+        label: "My score"
+      }, {
+        backgroundColor: "rgba(172,194,255,0.4)",
+        borderColor: "#ACC2FF",
+        pointBackgroundColor: "#fff",
+        pointBorderColor: "#9DB86D",
+        data: [50, 50, 50, 50, 50, 50], // all mean scores should be 50 for now
+        label: "Mean score"
+      }]
+    };
+
+    var ex3 = $('#ex3')[0].getContext('2d');
+    console.log(ex2);
+    new Chart(ex3, {
+      type: 'line',
+      data: exData_3
+    });
+
+    var exData_2 = {
+      labels: ["2013", "2014", "2015", "2016", "2017", "2018"],
+      datasets: [{
+        backgroundColor: "rgba(172,194,132,0.4)",
+        borderColor: "#ACC26D",
+        pointBackgroundColor: "#fff",
+        pointBorderColor: "#9DB86D",
+        data: [60, 52, 55, 60, 70, 85],
+        label: "My score"
+      }, {
+        backgroundColor: "rgba(172,194,255,0.4)",
+        borderColor: "#ACC2FF",
+        pointBackgroundColor: "#fff",
+        pointBorderColor: "#9DB86D",
+        data: [50, 55, 61, 65, 72, 80],
+        label: "Mean score"
+      }]
+    }
+
+    var ex2 = $('#ex2')[0].getContext('2d');
+    new Chart(ex2, {
+      type: 'line',
+      data: exData_2,
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              max: 100,
+              min: 0,
+              stepSize: 5
+            }
+          }]
+        }
+      }
+    });
+  }
+
+  function loadChartsWithRealData() {
+    var ex3 = document.getElementById('ex3').getContext('2d');
+    console.log(ex2);
+    new Chart(ex3, {
+      type: 'line',
+      data: exData_3
+    });
+  }
+
+  </script>
+
+</body>
+</html>

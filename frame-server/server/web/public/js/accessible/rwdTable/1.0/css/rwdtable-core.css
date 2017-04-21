@@ -1,0 +1,256 @@
+/*---------------------------------------------------------------------
+ * 508 styles
+ *---------------------------------------------------------------------*/
+.sr-only{
+	position: absolute!important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px,1px,1px,1px);
+}
+
+/*---------------------------------------------------------------------
+ * Accent styles
+ *---------------------------------------------------------------------*/
+.arrow-down {
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid black;
+	position: relative;
+	top: 13px;
+	left: 0;
+	margin: 5px;
+}
+.arrow-up {
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid black;
+	position: relative;
+	top: -10px;
+	left: 0;
+	margin: 5px;
+}
+.IE7 .arrow-up, .IE8 .arrow-up {
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 6px solid black;
+}
+
+
+/*---------------------------------------------------------------------
+ * Table wrapper styles
+ *---------------------------------------------------------------------*/
+.rwdtable-wrapper {
+	overflow-x: auto;
+	overflow-y: hidden;
+	height: auto;
+}
+.rwdtable-wrapper thead th a, 
+.rwdtable-wrapper thead th a:link, 
+.rwdtable-wrapper thead th a:hover,
+.rwdtable-wrapper thead th a:visited {
+	text-decoration: none;
+}
+
+/*---------------------------------------------------------------------
+ * RWD Show/Hide table menu styles
+ *---------------------------------------------------------------------*/
+.rwdtable-wrapper-menu {
+	text-align: center;
+	margin-bottom: 10px;
+}
+.rwdtable-menu {
+	display: inline-block;
+	background-color: #fff;
+	padding: 10px;
+	border: 1px solid #ccc;
+	left: auto;
+	text-align: left;
+	margin-top: 10px;
+}
+.rwdtable-menu-hidden {
+	display: none;
+}
+.rwdtable-menu-btn, .rwdtable-all-btn {
+	text-decoration: none;
+	display: none;
+}
+.rwdtable-menu-btn.rwdtable-menu-active {
+	position: relative;
+	z-index: 999;
+}
+.rwdtable-all-btn {
+	background-image: none;
+	padding-left: 10px;
+}
+.rwdtable-menu li {
+	float: left;
+	width: 46.5123%;
+	margin-right: 5px;
+	border: 1px dotted #CCC;
+	margin-bottom: 5px;
+}
+.rwdtable-menu fieldset ul { padding-top: 10px; }
+
+
+/* Table styles */
+.rwdtable-wrapper table {
+	width: 100%;
+}
+.rwdtable-wrapper thead th {
+	white-space: nowrap;
+}
+.rwdtable-wrapper th, 
+.rwdtable-wrapper td {
+	text-align: center;
+}
+.rwdtable-wrapper th:first-child, 
+.rwdtable-wrapper td:first-child {
+	text-align: left;
+}
+.rwdtable-wrapper tbody th, td {
+
+}
+
+table.rwdtable-showhide th, table.rwdtable-showhide td {
+	display: none;
+}
+
+.legacy-ie table.rwdtable-showhide th.essential, 
+.legacy-ie table.rwdtable-showhide td.essential {
+	display: inline;
+}
+table.rwdtable-showhide th.essential, 
+table.rwdtable-showhide td.essential {
+	display: table-cell;
+}
+
+table.rwdtable-showhide thead th {
+	word-wrap: break-word;
+	white-space: pre-line;
+}
+
+.input-toggle {
+	width: 15%;
+	float: left;
+}
+
+.input-toggle input {
+	margin-right: 5%;
+}
+
+.label-toggle {
+	width: 80%;
+	float: right;
+}
+
+.label-toggle label { 
+	display: block; 
+	height: 30px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+.clear { clear: both; }
+
+/*---------------------------------------------------------------------
+ * Responsive styles
+ *---------------------------------------------------------------------*/
+/* Show/Hide */
+@media screen and (min-width: 500px) {
+	.legacy-ie table.rwdtable-showhide th.optional, 
+	.legacy-ie table.rwdtable-showhide td.optional {
+		display: inline;
+	}
+	table.rwdtable-showhide th.optional, 
+	table.rwdtable-showhide td.optional {
+		display: table-cell;
+	}
+}
+
+@media screen and (min-width: 800px) {
+	.legacy-ie table.rwdtable-showhide th, 
+	.legacy-ie table.rwdtable-showhide td {
+		display: inline;
+	}
+	table.rwdtable-showhide th, 
+	table.rwdtable-showhide td {
+		display: table-cell;
+	}
+	.rwdtable-wrapper-menu { display: none; }
+}
+
+@media screen and (max-width: 800px) {
+	.rwdtable-menu-btn, 
+	.rwdtable-all-btn {
+		display: inline-block;
+		margin: 0 0 0 5px;
+	}
+}
+
+/* Stack */
+@media only screen and (max-width: 500px) {
+	/* Force table to not be like tables anymore */
+	table.rwdtable-stack, table.rwdtable-stack thead, table.rwdtable-stack tbody, table.rwdtable-stack th, table.rwdtable-stack td, table.rwdtable-stack tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	table.rwdtable-stack thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	table.rwdtable-stack td {
+		/* Behave  like a "row" */
+		border: none;
+		position: relative;
+		padding-left: 50%;
+		white-space: normal;
+		text-align: left;
+	}
+
+	.IE7 table.rwdtable-stack,
+	.lt-ie9 table.rwdtable-stack,
+	.ie9 table.rwdtable-stack {
+		width: 100%;
+	}
+	
+	.IE7 table.rwdtable-stack td, 
+	.lt-ie9 table.rwdtable-stack td, 
+	.ie9 table.rwdtable-stack td{
+		float: left;
+		clear: both;
+	}
+		
+	table.rwdtable-stack td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 0px;
+		left: 0%;
+		width: 4%;
+		padding-right: 10px;
+		white-space: nowrap;
+		padding-left: 0;
+		font-weight: bold;
+	}
+
+	/*
+	 Label the data
+	 */
+	table.rwdtable-stack td:before {
+		content: attr(data-title);
+	}
+	/*added to fix rwd table in ie9*/
+	.lt-ie9 table.rwdtable-stack, 
+	.ie9 table.rwdtable-stack{
+		width: 100%;
+	}
+	
+}
+

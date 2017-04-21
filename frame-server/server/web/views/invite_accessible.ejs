@@ -1,0 +1,69 @@
+<%- include('./layout', {title: title, favicon: favicon}); %>
+</head>
+<body>
+<header role="banner">
+    <%- include('./partials/navbar_accessible', {configUrl: configUrl, logoname: logoname}); %>
+</header>
+
+<!-- begin Main -->
+<main role="main" aria-label="main section" id="main-content">
+  <!--Your custom code goes here-->
+  <div class="addressBox login-container" id="contactForm">
+    <h4 class="center">Invite Patients to Survey</h4>
+    <div class="clearfix feedbackMSG1"></div>
+    <div class="contact">
+      <form id="formID">
+        <div class="form-group">
+          <label class="form_label required" for="emailID">Patient Email:</label>
+          <input id="emailID" class="form-control" type="email" name="email" required>
+        </div>
+        <button id="submitButton" class="btn btn-primary">Invite</button>
+      </form>
+    </div>
+    <div id="confirmation"></div>
+   </div>
+
+</main>
+
+<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
+<%- include('./partials/footer_accessible'); %>
+<!-- end footer -->
+<script>
+  $(function () {
+    var basil = new window.Basil();
+    var form = $('#submitButton').bind('click', submitHandler);
+
+    function submitHandler(e) {
+      e.preventDefault();
+
+      var form = $("#emailID")[0];
+
+      //look at jquery for form handling and change the way value is obtained
+      var email = form.value;
+
+      $.ajax({
+        type: 'POST',
+        url: '<%= configUrl %>' + "/api/invite",
+        data: {
+          email: email
+        },
+        dataType: "text",
+        success: function (data) {
+          $('#confirmation').html(data);
+        },
+        error: function (request, status, error) {
+          var reply = request.responseText;
+          var replyText = (JSON.parse(reply));
+          alert(replyText.message);
+        }
+      });
+    }
+  });
+
+</script>
+<script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
+<script src="/public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
+<script type="text/javascript" src="/public/js/accessible/slick-1.5.7/slick.min.js"></script>
+</body>
+
+</html>

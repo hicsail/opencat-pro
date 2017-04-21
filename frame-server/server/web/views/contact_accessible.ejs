@@ -1,0 +1,75 @@
+<%- include('./layout', {title: title, favicon: favicon}); %>
+<body>
+<header role="banner">
+  <%- include('./partials/navbar_accessible', {configUrl: configUrl, logoname: logoname}); %>
+</header>
+
+
+<!-- begin Main -->
+<main role="main" aria-label="main section" id="main-content">
+  <div class="container">
+    <section role="contact form">
+      <div class="row ">
+        <div>
+          <div class="contactUs">
+            <h4>Contact Us</h4>
+            <div class="contact">
+              <ul class="list-no-style">
+
+                <% if(locals.name) { %>
+                <li class="address">
+                  <%-name%>
+                </li>
+                <% } %>
+
+                <% if(locals.officePhone) { %>
+                <li class="phone">
+                  <span aria-hidden="true"><i class="fa fa-mobile">&nbsp;&nbsp;</i></span><span
+                    class="sr-only">mobile:</span><span class="addressText"><%= locals.officePhone%></span>
+                </li>
+                <% } %>
+
+
+                <% if(locals.directPhone) { %>
+                  <li class="phone">
+                    <span aria-hidden="true"><i class="fa fa-phone">&nbsp;&nbsp;</i></span><span
+                      class="sr-only">fax:</span><span class="addressText"><%= locals.directPhone%></span>
+                  </li>
+
+                <% } %>
+
+
+                <% if(locals.email) { %>
+                  <li class="email">
+                    <span aria-hidden="true"><i class="fa fa-envelope">&nbsp;&nbsp;</i></span><span
+                    class="sr-only">email:</span><span class="addressText"> <a href="mailto:<%=locals.email%>"><%=locals.email%></a></span>
+                  </li>
+                <% } %>
+
+              </ul>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+  <div class="container navContainer google-maps">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.3268138930753!2d-71.07387628422914!3d42.33555514464081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e37a6a9d8cc7e1%3A0x7e53048b1acdb3ea!2sBoston+University+School+of+Public+Health!5e0!3m2!1sen!2sus!4v1484758962152"
+      width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+  </div>
+
+</main>
+
+<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
+<%- include('./partials/footer_accessible'); %>
+<!-- end footer -->
+
+<script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
+<script src="/public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
+<script type="text/javascript" src="/public/js/accessible/slick-1.5.7/slick.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+[
+  {
+  "text": "Which species of cats do you like?<br>Please specify your choice.",
+  "slope": 2.341,
+  "questionID": 1,
+  "sectionID": 0,
+  "ques_id_data": "1_0",
+  "category": 5,
+  "pets": 1,
+  "response_options": [
+    {
+      "item": 1,
+      "scales": 0,
+      "ques_response_data": "1_0",
+      "choice": 4,
+      "text": "American Bobtail",
+      "score": 1
+    },
+    {
+      "item": 1,
+      "scales": 0,
+      "ques_response_data": "1_0",
+      "choice": 5,
+      "text": "American Curl",
+      "score": 1
+    },
+    {
+      "item": 1,
+      "scales": 0,
+      "ques_response_data": "1_0",
+      "choice": 3,
+      "text": "American Shorthair",
+      "score": 2
+    },
+    {
+      "item": 1,
+      "scales": 0,
+      "ques_response_data": "1_0",
+      "choice": 2,
+      "text": "Bengal",
+      "score": 3
+    }
+  ]
+},
+  {
+    "text": "Do you prefer big cats or small cats?",
+    "slope": 2.0,
+    "questionID": 2,
+    "sectionID": 0,
+    "ques_id_data": "2_0",
+    "category": 5,
+    "pets": 1,
+    "response_options": [
+      {
+        "item": 2,
+        "scales": 0,
+        "ques_response_data": "2_0",
+        "choice": 5,
+        "text": "Big Ones",
+        "score": 1
+      },
+      {
+        "item": 2,
+        "scales": 0,
+        "ques_response_data": "2_0",
+        "choice": 4,
+        "text": "Small Ones",
+        "score": 2
+      },
+      {
+        "item": 2,
+        "scales": 0,
+        "ques_response_data": "2_0",
+        "choice": 5,
+        "text": "Really Big Ones",
+        "score": 1
+      },
+      {
+        "item": 2,
+        "scales": 0,
+        "ques_response_data": "2_0",
+        "choice": 4,
+        "text": "Really Small Ones",
+        "score": 2
+      }
+
+    ]
+  },
+  {
+    "text": "What eye-color do you want your cat to have?",
+    "slope": 4.0,
+    "questionID": 1,
+    "sectionID": 1,
+    "ques_id_data": "1_1",
+    "category":5,
+    "pets": 1,
+    "response_options": [
+      {
+        "item": 1,
+        "scales": 1,
+        "ques_response_data": "1_1",
+        "choice": 4,
+        "text": "Green, like Harry Potter!",
+        "score": 1
+      },
+      {
+        "item": 1,
+        "scales": 1,
+        "ques_response_data": "1_1",
+        "choice": 5,
+        "text": "Black",
+        "score": 1
+      },
+      {
+        "item": 1,
+        "scales": 1,
+        "ques_response_data": "1_1",
+        "choice": 3,
+        "text": "Ice Blue",
+        "score": 2
+      },
+      {
+        "item": 1,
+        "scales": 1,
+        "ques_response_data": "1_1",
+        "choice": 2,
+        "text": "Yellow",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "text": "Would you consider keeping dog as a pet in the future?",
+    "slope": 0,
+    "questionID": 2,
+    "sectionID": 1,
+    "ques_id_data": "2_1",
+    "category": 5,
+    "pets":1,
+    "response_options": [
+      {
+        "item": 2,
+        "scales": 1,
+        "ques_response_data": "2_1",
+        "choice": 5,
+        "text": "Yes",
+        "score": 1
+      },
+      {
+        "item": 2,
+        "scales": 1,
+        "ques_response_data": "2_1",
+        "choice": 4,
+        "text": "No",
+        "score": 2
+      },
+      {
+        "item": 2,
+        "scales": 1,
+        "ques_response_data": "2_1",
+        "choice": 3,
+        "text": "Maybe",
+        "score": 3
+      },
+      {
+        "item": 2,
+        "scales": 1,
+        "ques_response_data": "2_1",
+        "choice": 2,
+        "text": "Never",
+        "score": 4
+      }
+    ]
+  }
+]

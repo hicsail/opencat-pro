@@ -1,0 +1,126 @@
+/* Table */
+ .data-table {
+  border: none; /* Turn off all borders */
+  border-top: 1px solid #ccc;
+  width: 540px;
+    margin-bottom: 60px;
+}
+.data-table caption {
+  color: #545454;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  margin: 0 0 20px 0;
+  padding: 0;
+  text-align: center;
+}
+.data-table thead {
+  background: #f0f0f0;
+}
+.data-table th, 
+.data-table td {
+  border: none; /* Turn off all borders */
+  border-bottom: 1px solid #ccc;
+  margin: 0;
+  padding: 10px;
+  text-align: left; 
+}
+#barLegend {
+  margin-top: -26px;
+}
+.bar-legend {
+  list-style: none;
+  margin: -2em 0;
+  border: 1px solid #efefef;
+  display: inline-block;
+  background-color: #e0e0e0;
+}
+.bar-legend li span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0.5em .5em 0 -2em;
+  border-radius: 3px;
+}
+.line-legend {
+ list-style: none;
+  margin: -2em 0;
+  border: 1px solid #efefef;
+  display: inline-block;
+  background-color: #e0e0e0;
+}
+.line-legend li span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0.5em .5em 0 -2em;
+  border-radius: 3px;
+}
+.pie-legend {
+  list-style: none;
+  margin: -3em 0;
+  border: 1px solid #efefef;
+  display: inline-block;
+  background-color: #e0e0e0;
+}
+.pie-legend li span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 0.5em .5em 0 -2em;
+  border-radius: 3px;
+}
+#lineLegend {
+  margin-top: -26px;
+}
+
+@media (max-width: 600px) {
+  .data-table {
+    width: 360px;
+  }
+  .data-table th, .data-table td 
+    {
+        padding:10px 6px;
+        font-size:.95em;
+    }
+}
+@media (max-width: 420px) {
+  .data-table {
+    width: 50%;
+  }
+
+  .data-table {
+    width: 40%;
+  }
+
+    .data-table th, .data-table td 
+    {
+        padding:10px 5px;
+        font-size:.9em;
+    } 
+}
+@media (max-width: 320px) {
+  .data-table {
+    width: 40%;
+  }
+}
+
+.canvas-container {
+    height:320px;
+    margin-bottom: 60px;
+}
+
+.legend {
+  background: #f0f0f0;
+  border-radius: 4px;
+  bottom: 0;
+  position: absolute;
+  text-align: left;
+  width: auto;  
+}
+
+.legend .title {
+    display:inline-block;
+    margin:0.5em;
+    padding:0 0.3em;
+}

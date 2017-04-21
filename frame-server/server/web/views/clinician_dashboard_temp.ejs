@@ -1,0 +1,34 @@
+<%- include('./layout'); %>
+
+</head>
+
+<body>
+<div id="mainContent">
+  <div class="container">
+    <h4>Clinician patient management interface</h4>
+    <p>You are currently administering <%= patients.length %> patients</p>
+    <p>Your patients have taken a total of <%= total %> surveys</p>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Survey Results</th>
+      </tr>
+      </thead>
+      <tbody class="table-hover">
+      <% for(var i = 0; i < patients.length; i++) { %>
+      <tr>
+        <td scope="row"><%= patients[i].firstName %></td>
+        <td scope="row"><%= patients[i].lastName %></td>
+        <td scope="row"><%= patients[i].username %></td>
+        <td scope="row"><a href="http://localhost:8000/surveylist?id=<%= patients[i]._id %>">View Past Survey results</a></td>
+      </tr>
+      <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

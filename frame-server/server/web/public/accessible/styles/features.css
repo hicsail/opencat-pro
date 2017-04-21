@@ -1,0 +1,231 @@
+main .grid-example [class^=col-md] {
+    background: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.push-down-ten {
+    margin-bottom: 10px;
+}
+
+.push-right-ten {
+    margin-right: 10px;   
+}
+
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol {
+    color: #905;
+}
+
+.token.selector, .token.attr-name, .token.string, .token.builtin {
+    color: #537805;
+}
+.token.atrule, .token.attr-value, .token.keyword {
+    color: #0470A2;
+}
+
+main pre .token.comment, main pre .token.prolog, main pre .token.doctype, main pre .token.cdata, main pre .token.punctuation {
+    color: #434a52;
+}
+
+main pre[class*=language-] {
+    margin: 18px 0;
+}
+
+textarea, input[type=text], input[type=password], input[type=datetime], input[type=datetime-local], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], input[type=email], input[type=url], input[type=search], input[type=tel], input[type=color], .uneditable-input {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 3px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.1);
+    -webkit-transition: border linear .2s,box-shadow linear .2s;
+    -moz-transition: border linear .2s,box-shadow linear .2s;
+    -o-transition: border linear .2s,box-shadow linear .2s;
+    transition: border linear .2s,box-shadow linear .2s;
+}
+
+.well {
+    background-color: #fff;   
+}
+
+.colorBox{
+    margin:10px;
+    border:none;
+    min-height: 300px;
+}
+
+.label-primary {
+    background-color: #3366FF;   
+}
+
+.btn-info, .btn-info.disabled, .btn-info[disabled], fieldset[disabled] .btn-info, .btn-info.disabled:hover, .btn-info[disabled]:hover, fieldset[disabled] .btn-info:hover, .btn-info.disabled:focus, .btn-info[disabled]:focus, fieldset[disabled] .btn-info:focus, .btn-info.disabled.focus, .btn-info[disabled].focus, fieldset[disabled] .btn-info.focus, .btn-info.disabled:active, .btn-info[disabled]:active, fieldset[disabled] .btn-info:active, .btn-info.disabled.active, .btn-info[disabled].active, fieldset[disabled] .btn-info.active {
+    background-color: #0080A6;
+}
+
+
+.btn-warning ,.btn-warning.disabled, .btn-warning[disabled], fieldset[disabled] .btn-warning, .btn-warning.disabled:hover, .btn-warning[disabled]:hover, fieldset[disabled] .btn-warning:hover, .btn-warning.disabled:focus, .btn-warning[disabled]:focus, fieldset[disabled] .btn-warning:focus, .btn-warning.disabled.focus, .btn-warning[disabled].focus, fieldset[disabled] .btn-warning.focus, .btn-warning.disabled:active, .btn-warning[disabled]:active, fieldset[disabled] .btn-warning:active, .btn-warning.disabled.active, .btn-warning[disabled].active, fieldset[disabled] .btn-warning.active {
+    background-color: #965801;   
+    border-color: #965801;   
+}
+
+.btn-success ,.btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success, .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled.focus, .btn-success[disabled].focus, fieldset[disabled] .btn-success.focus, .btn-success.disabled:active, .btn-success[disabled]:active, fieldset[disabled] .btn-success:active, .btn-success.disabled.active, .btn-success[disabled].active, fieldset[disabled] .btn-success.active {
+    background-color: #347534;   
+}
+
+.label-success {
+    background-color: #347534;   
+}
+
+.label-warning {
+       background-color: #965801;   
+    border-color: #965801;   
+}
+
+.label-info {
+     background-color: #0080A6;
+}
+
+.bootstrapBlue {
+    background-color: #337AB7 !important;
+}
+
+.blue{
+    background-color: #3366FF !important;
+}
+
+.orange {
+    background-color: #D3451D !important;
+    
+}
+
+.purple{
+    background-color: #9900ff !important;
+}
+
+.brown{
+    background-color: #996600 !important;
+}
+
+.green {
+    background-color: #347534 !important;
+}
+
+
+.red {
+    background-color: #D80606 !important;    
+}
+
+.black {
+    background-color: #000 !important;   
+}
+
+.darkGray {
+    background-color: #444 !important;   
+}
+
+@media (min-width: 768px)
+    .bs-example {
+        margin-right: 0;
+        margin-left: 0;
+        background-color: #fff;
+        border-color: #ddd;
+        border-width: 1px;
+        border-radius: 4px 4px 0 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+.bs-example {
+    position: relative;
+    padding: 45px 15px 15px;
+    margin: 0 0 15px;
+    border-color: #e5e5e5 #eee #eee;
+    border-style: solid;
+    border-width: 1px 0;
+    -webkit-box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+    box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+}
+.bs-example:after {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #959595;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    content: "Example";
+}
+
+footer {
+    background: none !important;   
+}
+
+footer.footer{
+    /*background: #ccd5de;
+    background: -moz-linear-gradient(top, #ccd5de 0%, white 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccd5de), color-stop(100%, white));
+    background: -webkit-linear-gradient(top, #ccd5de 0%, white 100%);
+    background: -o-linear-gradient(top, #ccd5de 0%, white 100%);
+    background: -ms-linear-gradient(top, #ccd5de 0%, white 100%);
+    background: linear-gradient(to bottom, #ccd5de 0%, #ffffff 100%);
+    background-image: linear-gradient(to bottom, #CCD5DE 0%, #FFFFFF 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CCD5DE', endColorstr='#FFFFFF');
+    background-repeat: no-repeat;
+    */
+    background-color: #444 !important;
+    color:#fff;
+    padding-bottom: 20px;
+    padding-top:15px;
+}	
+
+footer.footer h3{
+
+    font-weight:bold;
+}
+footer.footer hr{
+   border-top: 1px dashed #ddd;
+    width:150px;
+}
+
+#myCarousel li {
+    list-style-type: none;     
+}
+
+.carousel-control {
+    font-weight: bolder;
+}
+
+.glyph-example li {
+    margin-bottom: 25px;
+}
+
+@media only screen and (max-width: 500px) {
+    #stacked.table-condensed > tbody > tr > td {
+        padding-left: 50% !important;   
+    }
+}
+
+.bar-legend {
+    list-style-type: none;
+}
+
+@media only screen and (max-width: 500px) {
+    .canvas-container {
+        height: 180px;   
+    }
+}
+
+@media only screen and (min-width: 501px) and  (max-width: 1099px) {
+    .canvas-container {
+        height: 450px;   
+    }
+}
+
+@media only screen and (min-width: 1100px) {
+    .canvas-container {
+        height: 580px;   
+    }
+}
+
+.well.whiteBack {
+    background-color: #fff;   
+}

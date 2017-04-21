@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      {
+        "name": "basil.js",
+        "raw": "basil.js",
+        "rawSpec": "",
+        "scope": null,
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/aditi/sci-fi/frame-server"
+    ]
+  ],
+  "_from": "basil.js@latest",
+  "_id": "basil.js@0.4.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/basil.js",
+  "_nodeVersion": "0.10.16",
+  "_npmUser": {
+    "email": "cobalt2760@gmail.com",
+    "name": "guillaumepotier"
+  },
+  "_npmVersion": "2.8.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "basil.js",
+    "raw": "basil.js",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/basil.js/-/basil.js-0.4.3.tgz",
+  "_shasum": "e4fb5653c7472fdb611a764a16a744ad0e2aee25",
+  "_shrinkwrap": null,
+  "_spec": "basil.js",
+  "_where": "/Users/aditi/sci-fi/frame-server",
+  "dependencies": {},
+  "description": "The missing Javascript smart persistence layer. Unified localstorage, cookie and session storage JavaScript API.",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "karma": "*",
+    "karma-chrome-launcher": "*",
+    "karma-firefox-launcher": "*",
+    "karma-ie-launcher": "*",
+    "karma-mocha": "*",
+    "karma-opera-launcher": "*",
+    "karma-phantomjs-launcher": "*",
+    "karma-safari-launcher": "*",
+    "karma-sinon-expect": "*"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "e4fb5653c7472fdb611a764a16a744ad0e2aee25",
+    "tarball": "https://registry.npmjs.org/basil.js/-/basil.js-0.4.3.tgz"
+  },
+  "gitHead": "ccfeec9d2fb5de9c66053c7d1cdb74b378ba360f",
+  "main": "build/basil.js",
+  "maintainers": [
+    {
+      "email": "cobalt2760@gmail.com",
+      "name": "guillaumepotier"
+    }
+  ],
+  "name": "basil.js",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "build": "node node_modules/gulp/bin/gulp.js",
+    "test": "node node_modules/karma/bin/karma start test/karma.config.js",
+    "test-all": "npm run-script test && npm run-script test-plugins",
+    "test-plugins": "node node_modules/karma/bin/karma start test/karma.plugins.config.js"
+  },
+  "spm": {
+    "main": "src/basil.js"
+  },
+  "version": "0.4.3"
+}

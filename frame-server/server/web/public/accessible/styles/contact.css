@@ -1,0 +1,102 @@
+
+div.contact label.required:after {
+    color: red;
+    content: " *";
+
+}
+
+.error {
+    margin-top: 10px;
+}
+
+.bottomMargin15 {
+    margin-bottom: 15px;
+}
+
+.contactBox, .contactUs h4 {
+    text-align: left;
+    color: #3366FF;
+}
+
+.contactUs i {
+    color: #3366FF;
+}
+
+.addressBox, .contactBox {
+    border: 1px dotted #666;
+    padding: 10px;
+}
+
+.addressBox i, .contactUs i {
+    color: #3366FF;
+    font-size: 40px;
+    margin-left: 40%;
+    margin-top: 20px;
+}
+
+.addressBox h2, .addressBox h4 {
+
+    color: #3366FF;
+}
+
+.addressBox h2 {
+    text-align: center;
+    font-size: 1.5em;
+
+}
+
+.addressBox h4, .contactUs h4 {
+    text-align: left;
+    font-size: 1.2em;
+    margin-left: 15px;
+
+}
+
+.addressBox p {
+    margin-left: 15px;
+}
+
+.contact ul li i {
+    margin-left: 0px;
+    margin-top: 0px;
+    width: 26px;
+    height: 26px;
+    font-size: 16px;
+    line-height: 26px;
+    text-align: left;
+
+}
+
+.contact ul {
+    margin-left: -25px;
+    margin-top: 20px;
+}
+
+.google-maps {
+    position: relative;
+    padding-bottom: 350px;
+    margin-bottom: 0 !important;
+    height: 0;
+    overflow: hidden;
+}
+
+.google-maps.no-bottom-padding {
+    padding-bottom: 300px !important;
+
+}
+
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 300px !important;
+}
+
+.contact-map-frame {
+    padding-left: 1%;
+}
+
+.list-no-style {
+    list-style-type: none;
+}

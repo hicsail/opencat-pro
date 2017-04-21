@@ -1,0 +1,68 @@
+<%- include('./layout', {title: title, favicon: favicon}); %>
+<body>
+<header role="banner">
+  <% if (loggedIn) { %>
+  <%- include('./partials/navbarWelcome_accessible', {name: name, configUrl: configUrl, logoname: logoname}); %>
+  <% } else { %>
+  <%- include('./partials/navbar_accessible', {configUrl: configUrl, logoname:logoname}); %>
+  <% } %>
+</header>
+
+<!-- begin Main -->
+<main role="main" aria-label="main section" id="main-content">
+  <!-- The example code below will create a two column grid with a medium breakpoint -->
+  <div class="container bottomMargin50" role="header and benefits">
+    <section id="page-title">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="center">Welcome to <%= title %></h1>
+          <h2 class="center"><%= minorText%></h2>
+          <hr/>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <div class="container bottomMargin50">
+    <section id="benefits" role="benefits">
+      <div class="row">
+        <div>
+          <p>
+            <%- majorText %>
+          </p>
+
+          <ol>
+            <% for(var i = 0; i < instructions.length; i++) { %>
+              <li><%- instructions[i].text%>
+              </li>
+              <br>
+            <% } %>
+          </ol>
+          </p>
+        </div>
+        <% if (loggedIn) { %>
+        <div>
+          <p>Active Studies:</p>
+          <% for(var i = 0; i < studies.length; i++) { %>
+          <tr>
+            <a href="/survey/start/<%=studies[i]%>">Study ID: <%=studies[i]%></a> <br>
+          </tr>
+          <% } %>
+        </div>
+        <div id="startSurveyBtn" class="btn margin-top20 btn-primary"> <a href="/survey/start"> Start Self-Adminstered Survey</a></div>
+        <% } %>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
+<%- include('./partials/footer_accessible'); %>
+<!-- end footer -->
+<script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
+<script src="/public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
+<script type="text/javascript" src="/public/js/accessible/slick-1.5.7/slick.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<div class="hidden" id="currentQuestionId"><%= questionId %></div>
+<div class="hidden" id="currentSectionId"><%= sectionId %></div>
+<div class="hidden" id="type"><%= type %></div>
+<div id="Page2_" class="container card" >
+
+  <form class="padding-top-5" action="#">
+    <h5 ><%- text %></h5>
+    <br>
+
+    <% for(var i = 0; i < replyOptions.length; i++) { %>
+      <label for=<%= i%> > <input type="radio" name="answer" aria-setsize="2" value= <%= i+1%>
+                              aria-posinset=i id=<%= i%> /> <%= replyOptions[i].text %></label><br>
+      <br>
+    <% } %>
+  </form>
+
+</div>

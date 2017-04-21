@@ -1,0 +1,38 @@
+<!-- NAVIGATION BAR -->
+<div class="container navContainer">
+
+  <a class="skip-navigation sr-only sr-only-focusable" href="#page-title">Skip Navigation</a>
+  <div class="navbar-header active">
+    <a class="brand pull-left" href="index.html">
+      <img src="/public/images/<%=logoname%>" class="mainLogo img-responsive"
+           alt="Accessible+ logo - place for company logo" role="logo">
+      <span class="sr-only"> selected</span></a>
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topNavList"
+            aria-expanded="false">
+      <span class="adobeBlank" aria-hidden="true">Expand Navigation</span>
+      <em class="fa fa-bars fa-lg" style="font-family :'FontAwesome' !important">
+        <span id="expandText" class="sr-only">Expand Navigation</span>
+      </em>
+    </button>
+  </div>
+
+  <nav class="collapse navbar-collapse" aria-label="Main navigation" id="topNavList" aria-expanded="false">
+    <ul class="nav navbar-nav navbar-right marginTop40" aria-expanded="false">
+      <li id="username-greeting">Hello, <%= name %>!</li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/contact">Contact Us</a></li>
+      <li><a href="/invite">Invite</a></li>
+      <li><a id="logout">Logout</a></li>
+    </ul>
+  </nav>
+
+</div>
+
+<script>
+  $(function () {
+    $("#logout").on("click", function () {
+      logoutUser('<%= configUrl %>', '<%= configUrl %>');
+    });
+  });
+
+</script>

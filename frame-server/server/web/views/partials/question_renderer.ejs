@@ -1,0 +1,53 @@
+<% for(var i = 0; i < questions.length; i++) { %>
+  <div class="row bottomMargin25">
+    <div class="demographic col-md-6"><%= questions[i].questionText %></div>
+  </div>
+
+  <% if (questions[i].type == "input-only") { %>
+    <div class="demographic row bottomMargin25">
+      <div class="col-md-6">
+        <input type="text" name=<%= questions[i].responseOptions[0].name %> id=<%= questions[i].responseOptions[0].id %>
+         />
+      </div>
+    </div>
+  <% } %>
+
+  <% if (questions[i].type == "radio-only") { %>
+      <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+      <radiogroup>
+        <div class="demographic row bottomMargin25">
+          <div class="col-md-6">
+            <input type="radio" group=<%= questions[i].group %>
+                   name=<%= questions[i].responseOptions[j].name %> id=<%= questions[i].responseOptions[j].id %>
+                   value= <%= questions[i].responseOptions[j].value %> />
+            <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
+                   class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+          </div>
+        </div>
+      </radiogroup>
+      <% } %>
+  <% } %>
+
+  <% if (questions[i].type == "radio-other") { %>
+    <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+    <radiogroup>
+      <div class="demographic row bottomMargin25">
+        <div class="col-md-6">
+          <input type="radio" group=<%= questions[i].group %>
+          name=<%= questions[i].responseOptions[j].name %> id=<%= questions[i].responseOptions[j].id %>
+                 value= <%= questions[i].responseOptions[j].value %> />
+          <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
+                 class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+        </div>
+      </div>
+    </radiogroup>
+    <% } %>
+    <div class="demographic row bottomMargin25">
+      <div class="col-md-6">
+        <input type="text" name="other_"+ + <%= questions[i].responseOptions[j-1].name %> id="other-input" %> />
+      </div>
+    </div>
+
+  <% } %>
+
+<% } %>

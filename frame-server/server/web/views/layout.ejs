@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--[if lt IE 8]>
+<html class="no-js oldIE" lang="en-US"><![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en-US"><![endif]-->
+<!--[if IE 9]>
+<html class="no-js ie9" lang="en-US"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]>
+<html lang="en-US" class="no-js not-ie"><![endif]-->
+
+<head>
+  <title><%=title%></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Sci-Fi | An adaptive survey for patients with "/>
+  <meta name="keywords" content=""/>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+  <link rel="shortcut icon" href="/public/images/<%=favicon%>"/>
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Catamaran:400,200,700'>
+  <link rel="stylesheet" href="/public/accessible/styles/main.css">
+  <link rel="stylesheet" href="/public/js/accessible/slick-1.5.7/slick.css"/>
+  <link rel="stylesheet" href="/public/js/accessible/slick-1.5.7/slick-theme.css"/>
+  <link rel="stylesheet" href="/public/js/accessible/share/4.0/styles/sharewidget-4.0.css"/>
+  <link rel="stylesheet" href="/public/js/accessible/rwdTable/1.0/css/rwdtable-core.css">
+  <link rel="stylesheet" href="/public/js/accessible/jqueryui/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/public/js/accessible/globalassets/styles/widgets/tooltips.css">
+  <link rel="stylesheet" href="/public/js/accessible/globalassets/styles/widgets/dropdowns.css">
+  <link rel="stylesheet" href="/public/accessible/styles/portfolio.css">
+  <link rel="stylesheet" href="/public/accessible/styles/features.css">
+  <link rel="stylesheet" href="/public/accessible/styles/contact.css">
+  <link rel="stylesheet" href="/public/css/ladda.min.css">
+  <link rel="stylesheet" href="/public/accessible/styles/accessibilitymenu.css"/>
+  <link rel="stylesheet" href="/public/accessible/styles/style.css" title="default">
+  <!-- Accessibility Menu -->
+  <link href="//shakedwebdesign.com/plugins/accessibility-menu/accessibilitymenu.css" type="text/css"
+        rel="stylesheet"/>
+
+  <link href='//fonts.googleapis.com/css?family=Catamaran:400,200,700' rel='stylesheet' type='text/css'>
+  <script src="/public/js/accessible/jquery/jquery.js"></script>
+  <script src="/public/js/accessible/jqueryui/ui/jquery-ui.js"></script>
+  <script src="/public/js/accessible/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="/public/js/accessible/globalassets/scripts/assets.core.js"></script>
+  <script src="/public/basil/build/basil.js"></script>
+  <script src="/public/js/chart.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+  <script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
+  <script src="/public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
+  <script src="/public/js/accessible/slick-1.5.7/slick.min.js"></script>
+  <script src="/public/js/ejs.min.js"></script>
+  <script src="/public/js/utils.js"></script>
+  <script>
+    $(document).ready(function(){
+      var basil = new window.Basil();
+      var cookie = JSON.parse(basil.get('cookie'));
+      if (cookie) {
+        inactivityTime('<%= configUrl %>');
+      }
+    });
+  </script>
+</head>

@@ -1,0 +1,10 @@
+mongo:
+  image: mongo
+byo-cat:
+  build: ..
+  links:
+    - mongo
+  volumes :
+    - ../:/usr/src/byo-cat
+  ports:
+    - "8000:8000"

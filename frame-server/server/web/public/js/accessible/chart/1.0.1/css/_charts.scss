@@ -1,0 +1,130 @@
+/* Table */
+.charts-table {
+    border: none;
+    /* Turn off all borders */
+    border-top: 1px solid #ccc;
+    //width: 540px;
+    //padding-bottom: 60px;
+    caption {
+        color: #545454;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 20px;
+        margin: 0 0 20px 0;
+        padding: 0;
+        text-align: center;
+    }
+    thead {
+        background: #f0f0f0;
+    }
+    th, td {
+        border: none;
+        /* Turn off all borders */
+        border-bottom: 1px solid #ccc;
+        margin: 0;
+        padding: 10px;
+        text-align: left;
+    }
+}
+
+#barLegend, #lineLegend {
+    margin-top: -26px;
+}
+
+.bar-legend, .line-legend, .pie-legend {
+    background-color: $gray-lightest;
+    list-style: none;
+    margin: -2em 0;
+    border: 1px solid $gray-medium-light;
+    display: inline-block;
+    padding-right: 10px;
+    li {
+        span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 0.5em .5em 0 -2em;
+            border-radius: 3px;
+        }
+    }
+}
+
+.canvas-container {
+    height: 320px;
+    margin-bottom: 60px;
+    &.pieChart {
+        @media (min-width: 390px) {
+            margin-bottom: 80px;
+        }
+        @media (min-width: 640px) {
+            height: 380px;
+        }
+        @media (min-width: 768px) {
+            height: 350px;
+        }
+    }
+}
+
+.legend {
+    background: #f0f0f0;
+    border-radius: 4px;
+    bottom: 0;
+    position: absolute;
+    text-align: left;
+    width: auto;
+}
+
+.legend .title {
+    display: inline-block;
+    margin: 0.5em;
+    padding: 0 0.3em;
+}
+
+.responsive-table-mobile-message {
+    background: #F7F4E1;
+    @include background(#f7f4e1, #fdf5b6);
+    border: 1px solid #DDC44E;
+    border-radius: 10px;
+    display: block;
+    color: #630;
+    @include font-size-REM(15);
+    font-weight: 700;
+    padding: 5px;
+    @media (min-width: 460px) {
+        display: none;
+    }
+}
+
+@media (max-width: 1199px) {
+    .table-responsive {
+    padding-top: 0;
+    }
+}
+@media (max-width: 600px) {
+    .data-table {
+        width: 360px;
+    }
+    .data-table th, .data-table td {
+        padding: 10px 6px;
+        font-size: .95em;
+    }
+}
+
+@media (max-width: 420px) {
+    .data-table {
+        width: 50%;
+    }
+    .data-table {
+        width: 40%;
+    }
+    .data-table th, .data-table td {
+        padding: 10px 5px;
+        font-size: .9em;
+    }
+}
+
+@media (max-width: 320px) {
+    .data-table {
+        width: 40%;
+    }
+}

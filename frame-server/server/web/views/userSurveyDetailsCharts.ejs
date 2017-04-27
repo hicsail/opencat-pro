@@ -60,7 +60,10 @@
         meanScores.push(50);
       }
 
+      console.log("CHart labels should be:");
+      console.log(chartData[0].sectionNames);
       var data = {
+
         labels: chartData[0].sectionNames,
         datasets: [
           {
@@ -136,7 +139,6 @@
             }
             myBarChart2.data.datasets.push(sectionDataset);
             myBarChart2.data.datasets.sort(dateSort());
-            myBarChart2.data.labels = ["Ambulation SCI-FI/AT", "Basic Mobility SCI-FI/AT", "Fine Motor SCI-FI/AT", "Self Care SCI-FI/AT", "Manual Wheelchair SCI-FI/AT", "Power Wheelchair SCI-FI/AT"];
             myBarChart2.update();
           } else if (!$(currentBtn).hasClass('disabled')) {
             if (!alertVisible) {

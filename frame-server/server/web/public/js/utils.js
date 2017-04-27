@@ -410,55 +410,5 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
 }
 
 function initializeScorePreviewTable() {
-  var columns = ["Survey ID", "Date Completed", "Ambulation", "Basic Mobility", "Fine Motor", "Self Care", "Manual Wheelchair", "Power Wheelchair"];
-  var rows = [];
-  var tbl = $('<table></table>').attr({class: ["table", "table-bordered", "table-hover"].join(' ')});
-  tbl.append('<thead><tr><th scope="col" id="table-header" class="table-title text-left">Survey ID</th><th scope="col" id="table-header" class="table-title text-left">Date Completed</th><th scope="col" id="table-header" class="table-title text-left">Ambulation</th><th scope="col" id="table-header" class="table-title text-left">Basic Mobility</th><th scope="col" id="table-header" class="table-title text-left">Fine Motor</th><th scope="col" id="table-header" class="table-title text-left">Self Care</th><th scope="col" id="table-header" class="table-title text-left">Manual Wheelchair</th><th scope="col" id="table-header" class="table-title text-left">Power Wheelchair</th></tr></thead>');
-  var text = "";
-  for (var i = 0; i < surveyScores.length; i++) {
-    var ambulationScore = '-';
-    var basicScore = '-';
-    var fineScore = '-';
-    var selfScore = '-';
-    var manualScore = '-';
-    var powerScore = '-';
-    for (var j = 0; j < surveyScores[i].sectionNames.length; j++) {
-      switch (surveyScores[i].sectionNames[j][0]) {
-        case 'A':
-          ambulationScore = surveyScores[i].sectionScore[j];
-          break;
-        case 'B':
-          basicScore = surveyScores[i].sectionScore[j];
-          break;
-        case 'F':
-          fineScore = surveyScores[i].sectionScore[j];
-          break;
-        case 'S':
-          selfScore = surveyScores[i].sectionScore[j];
-          break;
-        case 'M':
-          manualScore = surveyScores[i].sectionScore[j];
-          break;
-        case 'P':
-          powerScore = surveyScores[i].sectionScore[j];
-          break;
-        default:
-          console.error("Section Name doesn't exist");
-      }
-    }
-    text += '<tr><td scope="row" class="table-data text-left">' + surveyScores[i].surveyId + '</td><td scope="row" class="table-data text-left">' + new Date(Date.parse(surveyScores[i].lastUpdated)).toLocaleDateString() + '</td><td scope="row" class="table-data text-left">' + ambulationScore + '</td><td scope="row" class="table-data text-left">' + basicScore + '</td><td scope="row" class="table-data text-left">' + fineScore + '</td><td scope="row" class="table-data text-left">' + selfScore + '</td><td scope="row" class="table-data text-left">' + manualScore + '</td><td scope="row" class="table-data text-left">' + powerScore + '</td></tr>';
-    rows.push([surveyScores[i].surveyId, new Date(Date.parse(surveyScores[i].lastUpdated)).toLocaleDateString(), ambulationScore, basicScore, fineScore, selfScore, manualScore, powerScore]);
-  }
-  tbl.append($('<tbody>' + text + '</tbody>'));
-  $("#downloadModal .modal-body").append(tbl);
-  $("#downloadCSV").click(function () {
-    $("#downloadModal table").tableToCSV();
-  });
-  $("#downloadPDF").click(function () {
-    var doc = new jsPDF({
-      orientation: 'landscape'
-    });
-    doc.autoTable(columns, rows);
-    doc.save(("survey_scores_" + (new Date().toLocaleDateString())).replaceAll("/", "-") + ".pdf");
-  });
+  //TODO to add-in when fixed
 }

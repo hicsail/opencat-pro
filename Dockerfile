@@ -44,6 +44,6 @@ RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN node -v
 RUN npm run setup --docker
 
-EXPOSE 8000
+EXPOSE 9000
 CMD sh docker-run.sh
 

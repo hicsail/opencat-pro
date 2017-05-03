@@ -21,16 +21,16 @@ Installation is a breeze with docker:
        
 5. The db setup can be verified using the following steps:
        
-  - Enter mongo shell by typing *mongo* on the command prompt
-  - Check databases using show dbs
-  - Switch to frame by *use frame*
-  - Type *show collections* to see the tables
+ 	 - Enter mongo shell by typing *mongo* on the command prompt
+	 - Check databases using show dbs
+	 - Switch to frame by *use frame*
+	 - Type *show collections* to see the tables
               
 6. To get up and running on Windows, there are some prerequisites before above steps:
  
- 	-Firstly, you'll need to have either Windows Professional, Enterprise, or Education edition. This is because Docker for Windows require Hyper-V support, and as of yet this project has not run on Docker Toolbox. 
+ 	- Firstly, you'll need to have either Windows Professional, Enterprise, or Education edition. This is because Docker for Windows require Hyper-V support, and as of yet this project has not run on Docker Toolbox. 
        
- 	-Next you'll need [dos2unix](https://sourceforge.net/projects/dos2unix/ "dos2unix"), a program that converts text files with DOS or MAC line breaks to Unix line breaks and vice versa.  
+ 	- Next you'll need [dos2unix](https://sourceforge.net/projects/dos2unix/ "dos2unix"), a program that converts text files with DOS or MAC line breaks to Unix line breaks and vice versa.  
 
 7. We are almost done! Navigate your browser to *localhost:8000* and you should be able to see the BYO-CAT home page. Explore around!
 In case we want to change the server url to something else, change the **SERVER_URL** variable in config.js file under frame-server/server/config.

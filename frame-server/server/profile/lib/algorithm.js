@@ -5,7 +5,7 @@ var algorithm = {};
 
 (function () {
   /**
-   * Calculates and returns score
+   * Calculates and returns score. This should be enhanced and custom defined for each project.
    */
 
   algorithm.calculateScore = function (callback) {

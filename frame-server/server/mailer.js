@@ -1,3 +1,9 @@
+/**
+ * This utility describes various templates and
+ * methods to send out emails. Uses the email
+ * credentials supplied during setup.
+ */
+
 'use strict';
 
 const Hoek = require('hoek');

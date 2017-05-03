@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * This model holds a reference between created studies and patientIds/clinicianIDs associated with those studies.
+ */
+
 const Joi = require('joi');
 const ObjectID = require('mongodb').ObjectID;
 const MongoModels = require('mongo-models');

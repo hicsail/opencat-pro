@@ -1,4 +1,8 @@
 'use strict';
+/**
+ * This model holds a user demographic data.
+ */
+
 
 const Joi = require('joi');
 const MongoModels = require('mongo-models');
@@ -9,7 +13,8 @@ class UserData extends MongoModels {
     const document = {
       userId: userId,
       profileData: profileData,
-      userData: userData
+      userData: userData,
+      surveyId: userData["surveyId"]
     };
 
     this.insertOne(document, function (err, docs) {
@@ -41,34 +46,9 @@ UserData.collection = 'userdata';
 UserData.schema = Joi.object().keys({
   _id: Joi.object(),
   userId: Joi.string().required(),
-  surveyId: Joi.string().required(),
-  doesWalk: Joi.boolean().default(true).required(),
-  married: Joi.boolean().default(true).required(),
-  usesMWC: Joi.boolean().default(true).required(),
-  usesPWC: Joi.boolean().default(true).required(),
-  liveCondo: Joi.boolean().default(true).required(),
-  bladder: Joi.boolean().default(true).required(),
-  disabilityPara: Joi.boolean().default(true).required(),
-  g1_1: Joi.number().integer().required(),
-  g1_2: Joi.number().integer().required(),
-  g2_1: Joi.number().integer().required(),
-  g2_2: Joi.number().integer().required(),
-  g4_1: Joi.number().integer().required(),
-  g4_2: Joi.number().integer().required(),
-  g6_1: Joi.number().integer().required(),
-  g6_2: Joi.number().integer().required(),
-  g7_1: Joi.number().integer().required(),
-  g7_2: Joi.number().integer().required(),
-  g8_1: Joi.number().integer().required(),
-  g8_2: Joi.number().integer().required(),
-  g9_1: Joi.number().integer().required(),
-  g9_2: Joi.number().integer().required(),
-  g11_1: Joi.number().integer().required(),
-  g11_2: Joi.number().integer().required(),
-  g12_1: Joi.number().integer().required(),
-  g12_2: Joi.number().integer().required(),
-  g13_1: Joi.number().integer().required(),
-  g13_2: Joi.number().integer().required()
+  userData: Joi.object(),
+  profileData: Joi.object(),
+  surveyId:Joi.string().required()
 
 });
 

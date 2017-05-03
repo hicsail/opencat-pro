@@ -7,7 +7,8 @@
     "start": "nodemon  --inspect -e js,md,css,ejs,json server.js",
     "first-time-setup": "node first-time-setup.js",
     "test": "lab -c -L",
-    "setup": "./setup.js"
+    "setup": "./setup.js",
+    "docs": "documentation build server/helperMethods.js -f md > docs/helperMethodsDocumentation.md"
   },
   "author": "Reza Akhavan <jedireza@gmail.com> (http://reza.akhavan.me/)",
   "license": "MIT",
@@ -19,9 +20,10 @@
     "bcryptjs": "~2.0.2",
     "boom": "4.x.x",
     "confidence": "3.x.x",
+    "documentation": "^4.0.0-rc.0",
     "dotenv": "2.x.x",
-    "glue": "4.x.x",
     "ejs": "2.x.x",
+    "glue": "4.x.x",
     "handlebars": "4.x.x",
     "hapi": "15.x.x",
     "hapi-auth-basic": "4.x.x",

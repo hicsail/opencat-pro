@@ -28,7 +28,7 @@ Installation is a breeze with docker:
        
 > In case we want to change the server url to something else, change the **SERVER_URL** variable in config.js file under frame-server/server/config.
        
-6.*Note*: To get up and running on Windows, there are some prerequisites before above steps:
+6.To get up and running on Windows, there are some prerequisites before above steps:
  
  1. Firstly, you'll need to have either Windows Professional, Enterprise, or Education edition. This is because Docker for Windows require Hyper-V support, and as of yet this project has not run on Docker Toolbox. 
        
@@ -36,7 +36,7 @@ Installation is a breeze with docker:
 
 7.We are almost done! Navigate your browser to *localhost:8000* and you should be able to see the BYO-CAT Home Page. Explore around!
 
-
+### Making your own CAT
 
 - This project allows you to add the following custom options:
 	- questions
@@ -48,3 +48,7 @@ Installation is a breeze with docker:
 - The Algorithm logic and business rules for your CAT can be defined in algorithms.js and businessRules.js under profile/lib. These include custom logic for your CAT.
 
 - The routes combined wih helpmerMethods.js works like a controller layer between the Model and Views. Helpermethods is a general purpose collection of logic and methods that retrieve, process and massage data to and fro between the models and views.
+
+### Open source
+
+This is project is open source under the MIT License and undergoing continuous enhancements. Feel free to improve the platform's many functionalities. The best way to request changes is to Open an Issue describing your changes first.

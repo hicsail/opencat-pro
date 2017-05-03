@@ -8,7 +8,7 @@
     "first-time-setup": "node first-time-setup.js",
     "test": "lab -c -L",
     "setup": "./setup.js",
-    "docs": "documentation build server/helperMethods.js -f md > docs/helperMethodsDocumentation.md"
+    "docs": "documentation build server/helperMethods.js server/mailer.js -f md > docs/helperMethodsDocumentation.md mailerDocumentation.md"
   },
   "author": "Reza Akhavan <jedireza@gmail.com> (http://reza.akhavan.me/)",
   "license": "MIT",

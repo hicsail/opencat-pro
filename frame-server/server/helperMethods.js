@@ -1,7 +1,7 @@
 'use strict';
 
 const Config = require('./config/config.js');
-const Algorithm = require('./profile/algorithm/algorithm.js');
+const Algorithm = require('./profile/lib/algorithm.js');
 const Calibrations = require('./profile/responseCalibrations.json');
 var helperMethods = {};
 

@@ -9,13 +9,13 @@ var businessRules = {};
 
 (function () {
 
-
   /**
    * This function constructs a json object which consists of profile data.
    * Must be custom defined for each project.
    * @params {Object} server The current server instance.
    * @params {string} userid The desired user ID.
    * @params {function} callback The callback function to pass the profile data to.
+   * @returns {Object} The profile data object.
    */
 
   businessRules.setProfileVariables = function (server, userid, callback) {
@@ -55,6 +55,7 @@ var businessRules = {};
    * @params {string} userid The desired user ID.
    * @params {string} surveyId The desired survey ID.
    * @params {function} callback The callback function to pass the query to.
+   * @returns {Object} The demographic filter query.
    */
 
   businessRules.getDemographicFilterQuery = function (server, userid, surveyId, callback) {
@@ -89,6 +90,7 @@ var businessRules = {};
    * @params {Object} server The current server instance.
    * @params {Object} userData A json hash of the users demographic choices
    * @params {function} callback The callback function to pass the section array to.
+   * @returns {Object[]} The array of sections for that user.
    */
 
   businessRules.constructAvailableSectionArray = function (server, userData, callback) {

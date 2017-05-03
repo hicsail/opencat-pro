@@ -1,5 +1,5 @@
 # BYO-CAT
-BYO-CAT stands for build your own CAT. A fully customizable, open source platforms to create and manage Computer Adaptive Tests, better known as CATs.
+BYO-CAT stands for build your own CAT. A fully customizable, open source web-based platform to create and manage Computer Adaptive Tests, better known as CATs.
 
 Our user portal API is built on top of [framejs](https://github.com/jedireza/frame) and node, backed by a MongoDB database.
 
@@ -13,7 +13,7 @@ Installation is a breeze with docker:
        
 3.Run the command below which downloads and installs necessary dependencies. This also runs our setup script. (If you are on Windows, run `dos2unix setup.js` and `dos2unix docker-run.sh` prior to the command below)
        
-       docker-compose build
+  	docker-compose build
        
 4.Now run the byo-cat image built by docker by following the command below. This will spin up all the docker containers and links images, as well as starts byo-cat on port 8000. It automatically listens to changes made in your code and restarts server whenever that is done. Smooth, right? :)
        

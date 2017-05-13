@@ -2,19 +2,13 @@
 
 const Config = require('./config/config.js');
 const Algorithm = require('./profile/lib/algorithm.js');
+const RuleEngine = require('./profile/lib/businessRules.js');
 const Calibrations = require('./profile/responseCalibrations.json');
+
 var helperMethods = {};
 
 (function () {
 
-  /**
-   * This function returns answered questions for a particular section of a survey.
-   * @param {Object} server The current server instance.
-   * @param {string} sectionId The ID of the desired section.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {function} callback The callback function to pass the answered questions to.
-   * @returns {Object[]} An array of the answered questions, each one represented as a JS Object. This is passed to the callback parameter.
-   */
   helperMethods.getAnsweredQuestions = function (server, sectionId, surveyId, callback) {
 
     const Response = server.plugins['hapi-mongo-models'].Response;
@@ -40,15 +34,6 @@ var helperMethods = {};
     });
   };
 
-  /**
-   * This function returns the question set to a survey in progess
-   * @param {Object} server The current server instance.
-   * @param {string} sectionId The ID of the desired section.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {function} callbacktoExecute ???
-   * @param {function} callback The callback function to pass the question set to.
-   * @returns {Object[]} An array of question objects, which represents the question set. This is passed to the callback parameter.
-   */
   helperMethods.getVisitedQuestionSet = function (server, sectionId, surveyId, callbacktoExecute, callback) {
 
     //Visited Questionare those that have either been answered or skipped
@@ -91,55 +76,18 @@ var helperMethods = {};
     });
   };
 
-  /**
-   * This function calculates the scores for any available survey sections and saves them.
-   * @param {Object} server The current server instance.
-   * @param {string} sectionId The ID of the desired section.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {function} callback The callback function to pass the saved scores to.
-   * @returns {Object[]} An array of question objects with calculated scores. This is passed to the callback parameter.
-   */
-  helperMethods.calculateAndSaveAvailableSections = function (server, sectionId, surveyId, callback) {
-
-    //itemCalibration, itemSlope,  matched with itemCategory
-    var answeredQuestions = [];
-
-    //STEP1 Get all answered Questions for this section of the survey
-    const filter = {
-      survey_id: surveyId,
-      domain_id: sectionId,
-      choice_id: {$ne: ""}
-    };
-
-    const Response = server.plugins['hapi-mongo-models'].Response;
-    Response.find(filter, {question_id: 1}, (err, response) => {
-      if (err) {
-        console.log("error in Response find");
-        console.log(err);
-        return reply(err);
-      }
-      answeredQuestions = response;
-      callback(answeredQuestions);
-    });
-  };
-
-  /**
-   * This function returns the unanswered questions of a survey in progress.
-   * @param {Object} server The current server instance.
-   * @param {string} sectionId The ID of the desired section.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {function} callback The callback function to pass the questions to.
-   * @returns {Object[]} An array of question objects, all of which are unanswered. This is passed to the callback parameter.
-   */
-  helperMethods.getUnAnsweredQuestions = function (userid, server, sectionId, surveyId, callback) {
+  helperMethods.getUnAnsweredQuestions = function (userid, server, sectionId, surveyId, callbackToExecute) {
 
     const Response = server.plugins['hapi-mongo-models'].Response;
     const Question = server.plugins['hapi-mongo-models'].Question;
     const UserData = server.plugins['hapi-mongo-models'].UserData;
+
     //itemCalibration, itemSlope,  matched with itemCategory
     var answeredQuestions = [];
 
     Response.findBySurveyIDAndSectionID(surveyId, sectionId, function (result) {
+
+
       answeredQuestions = result;
 
       var unAnsweredQuestions = [];
@@ -148,7 +96,8 @@ var helperMethods = {};
       });
 
       // STEP1 Get all questions NOT IN answered Questions and that match this survey's demographic criteria
-      UserData.getDemographicFilterQuery(userid, surveyId, function (result) {
+
+      RuleEngine.getDemographicFilterQuery(server, userid, surveyId, function (result) {
         if (result) {
 
           var filter = result;
@@ -163,7 +112,7 @@ var helperMethods = {};
             }
 
             unAnsweredQuestions = response;
-            callback(unAnsweredQuestions);
+            callbackToExecute(unAnsweredQuestions);
           });
 
         }
@@ -173,17 +122,8 @@ var helperMethods = {};
 
   };
 
-  /**
-   * This function checks whether the survey can move on to the next section.
-   * @param {string} userId The ID of the current user.
-   * @param {Object} server The current server instance.
-   * @param {string} sectionId The ID of the desired section.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {function} callback The callback function to pass the result to.
-   * @returns {boolean} Represents whether the survey can move on. This is passed to the callback parameter.
-   */
+  /*Method to check if the survey can move to the next section or not */
   helperMethods.canMoveToNextSection = function (userId, server, sectionId, surveyId, callback) {
-    console.log("canmove");
     const Score = server.plugins['hapi-mongo-models'].Score;
 
     //If unanswered for this section returns [], means this section is completely answered, return true straightaway
@@ -197,11 +137,11 @@ var helperMethods = {};
           numAnswered = result;
 
           Score.findBySurveyID(surveyId, function (result) {
-            if ((numAnswered.length  > 14) || (numAnswered.length >= 8 && (result && result.score[sectionId].stdError < 0.32) )) {
+            if ((numAnswered.length > Config.sectionSkipUpperLimit) || (numAnswered.length >= Config.sectionSkipLowerLimit && (result && result.score[sectionId].stdError < Config.sectionSkipScoreThreshold) )) {
               console.log("CAN MOVE");
               return callback(true);
             }
-            else{
+            else {
               console.log("CANNOT MOVE");
               return callback(false);
 
@@ -213,24 +153,17 @@ var helperMethods = {};
     })
   };
 
-  /**
-   * This function returns the next eligible question, or an empty JSON object if none is found.
-   * @param {string} userid The ID of the current user.
-   * @param {Object} server The current server instance.
-   * @param {string} sectionId The ID of the desired section.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {function} callback The callback function to pass the question to.
-   * @returns {Object} A question object. This is passed to the callback parameter.
-   */
+  /*Returns json having next eligible question, or an empty json if none is found*/
+
   helperMethods.getNextQuestionWithMaxInfo = function (userid, server, sectionId, surveyId, callback) {
     var numUnAnswered = [], itemCalibration = [];
-    var maxInfo = -100;
+    var maxInfo = Config.maxInfoParameter;
     var nextQuestion = {};
     //for all unanswered questions, store slope.
     //store map of <category,calibration> of each in a 2-D array
     //itemCalibration, itemSlope,  matched with itemCategory
 
-    console.log("get next question..........");
+    console.log("fetching next question");
 
     //STEP1 Get all answered Questions for this section of the survey
     helperMethods.getUnAnsweredQuestions(userid, server, sectionId, surveyId, function (result) {
@@ -258,17 +191,9 @@ var helperMethods = {};
 
           }
         }
-        for (var j = 0; j < numUnAnswered.length; j++) {
-          //Now calculate info for each
-          var info = -1* Algorithm.L21(parseFloat(result.score[sectionId].currentScore), [itemCalibration[j]], [itemSlope[j]], [itemCategory[j]]);
-          if (maxInfo < info) {
 
-            maxInfo = info;
-            //This is next eligible question
-            nextQuestion = numUnAnswered[j];
-          }
-
-        }
+        //get next unanswered question, can modify for different algorithm
+        nextQuestion = numUnAnswered[0];
 
         //return the next eligible chosen question
         callback(nextQuestion);
@@ -278,31 +203,6 @@ var helperMethods = {};
     });
   };
 
-  /**
-   * This function returns all patients and the number of existing surveys.
-   * @param {Object} server The current server instance.
-   * @param {function} callback The callback function to pass the result to.
-   * @returns {Object[]} An array of user objects. This is passed to the callback parameter.
-   * @returns {number} A count of all existing surveys. This is passed to the callback parameter.
-   */
-  helperMethods.getPatientData = function (server,callback) {
-    const User = server.plugins['hapi-mongo-models'].User;
-    const Survey = server.plugins['hapi-mongo-models'].Survey;
-    User.find({}, function(err, result){
-      Survey.count(function (err,count) {
-        callback(result,count);
-
-      })
-    });
-  };
-
-  /**
-   * This function calls helperMethods.updateScores after checking if a score exists for a survey section. If one doesn't exist, it will create one, and still call helperMethods.updateScores.
-   * @param {Object} server The current server instance.
-   * @param {string} sectionId The ID of the desired section.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {function} callback The callback function that is passed to helperMethods.updateScores.
-   */
   helperMethods.load_response = function (server, sectionId, surveyId, callback) {
     const Score = server.plugins['hapi-mongo-models'].Score;
     //itemCalibration, itemSlope,  matched with itemCategory
@@ -310,6 +210,7 @@ var helperMethods = {};
 
     Score.findBySurveyID(surveyId, function (result) {
       if (!result) {
+        console.log("No Score tuple found, making a new one.....");
         Score.create(surveyId, sectionId, {}, function () {
           //Now update based on condition
           helperMethods.updateScores(server, surveyId, sectionId, callback);
@@ -321,13 +222,6 @@ var helperMethods = {};
     });
   };
 
-  /**
-   * This function updates the scores of a survey section and runs a callback function.
-   * @param {Object} server The current server instance.
-   * @param {string} sectionId The ID of the desired section.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {function} callback The callback function that is run.
-   */
   helperMethods.updateScores = function (server, surveyId, sectionId, callback) {
     const Response = server.plugins['hapi-mongo-models'].Response;
     const Score = server.plugins['hapi-mongo-models'].Score;
@@ -335,6 +229,8 @@ var helperMethods = {};
     Response.fetchQuestionAndAnswerData(surveyId, sectionId, function (results) {
 
       //Questions here can be all answered, some skipped some answered and all skipped.
+      //                           result >=1 result >=1                  result =0
+
       if (results && results.length == 0) {
         //All skipped till here, add a default score for moving ahead
         //VB code follows same pattern
@@ -360,7 +256,7 @@ var helperMethods = {};
           //find that qid and sid in response json and store all weights
 
           for (var i = 0; i < Calibrations.length; i++) {
-            if( (Calibrations[i].item == qId) && (Calibrations[i].scales == sectionId)) {
+            if ((Calibrations[i].item == qId) && (Calibrations[i].scales == sectionId)) {
               //we found the current question, now store calibration
               itemCalibration[itemCalibration.length - 1][Calibrations[i].category] = Calibrations[i].calibration;
             }
@@ -370,12 +266,14 @@ var helperMethods = {};
           itemSlope.push(element.question_data[0].slope);
           itemCategory.push(element.question_data[0].category);
 
+
+
         });
 
         //Now update Score Tuple and call back
 
-        Algorithm.wmlGrm(itemCalibration, itemSlope, itemCategory, itemAnswer, function (out) {
-
+        //TODO needs to be customized as per need
+        Algorithm.calculateScore(function (out) {
           //do later for display
           var score = {currentScore: out[0], stdError: out[1]};
           console.log("Score at this step is:");
@@ -390,13 +288,6 @@ var helperMethods = {};
     });
   };
 
-  /**
-   * This function contructs an array of scores for all sections of a particular survey.
-   * @param {Object} server The current server instance.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {function} callback The callback function to pass the score array to.
-   * @returns {Object[]} An array of score objects. This is passed to the callback parameter.
-   */
   helperMethods.constructScoreArray = function (server, surveyId, callback) {
     const Score = server.plugins['hapi-mongo-models'].Score;
     var temp = [], stdErr, currentScore;
@@ -406,7 +297,7 @@ var helperMethods = {};
         //If database has scores, populate the same into an object that the client can use to render
         Object.keys(result.score).forEach(function (key) {
           var scoreObj = {};
-          scoreObj["section"] = Config.findDescriptionBySection(Config.descriptionList, key).title;
+          scoreObj["section"] = Config.findDescriptionBySection(key).title;
           scoreObj["stdErr"] = (result.score[key].stdError * 10).toFixed(2);
           scoreObj["currentScore"] = (result.score[key].currentScore * 10 + 50).toFixed(2);
           temp.push(scoreObj);
@@ -419,97 +310,28 @@ var helperMethods = {};
     })
   };
 
-  /**
-   * This function updates a survey with available sections.
-   * @param {Object} server The current server instance.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {string} doesWalk Whether the user walks.
-   * @param {string} usesMWC Whether the user has a manual wheelchair.
-   * @param {string} usesPWC Whether the user has a powered wheelchair.
-   * @param {function} callback The callback function to pass the result to.
-   * @returns {Object} The specified survey with available sections. This is passed to the callback parameter.
-   */
-  helperMethods.constructAvailableSectionArray = function (server, surveyId, doesWalk, usesMWC, usesPWC, callback) {
-    var Survey = server.plugins['hapi-mongo-models'].Survey;
-    var temp = [];
-    if (doesWalk === "true") {
-      temp.push(4);
-    }
-    //common sections to be displayed in all cases
-    temp.push(5, 6, 7);
-    if (usesMWC === "true") {
-      temp.push(8);
-    }
-    if (usesPWC === "true") {
-      temp.push(9);
-    }
+  helperMethods.constructAvailableSectionArray = function (server, userData, callback) {
 
-    console.log("Available Sections are:");
-    console.log(temp);
-
-    Survey.updateAvailableSections(surveyId, temp, function (result) {
-      //return only after db operation is successful
+    RuleEngine.constructAvailableSectionArray(server, userData, function(result){
       callback(result);
     })
   };
 
-  /**
-   * This function creates property tags for a user and stores them in a UserData record.
-   * @param {Object} server The current server instance.
-   * @param {string} surveyId The ID of the desired survey.
-   * @param {string} userid The ID of the current user.
-   * @param {string} canWalk Whether the user walks.
-   * @param {string} married Whether the user is married.
-   * @param {string} usesMWC Whether the user has a manual wheelchair.
-   * @param {string} usesPWC Whether the user has a powered wheelchair.
-   * @param {string} bladder Whether the user ???
-   * @param {string} living Whether the user ???
-   * @param {string} para Whether the user ???
-   */
-  helperMethods.constructAndStoreUserTags = function (server, surveyid, userid, canWalk, married, usesMWC, usesPWC, bladder, living, para) {
+  helperMethods.constructAndStoreUserTags = function (server, userid, userData) {
     const UserData = server.plugins['hapi-mongo-models'].UserData;
-    const User = server.plugins['hapi-mongo-models'].User;
 
-    //Prepare tags
-    User.findByUserId(userid, function (user) {
-      var g1_1, g1_2, g2_1, g2_2, g4_1, g4_2, g6_1, g6_2, g7_1, g7_2, g8_1, g8_2, g9_1, g9_2, g11_1, g11_2, g12_1, g12_2, g13_1, g13_2;
-      console.log(user.gender);
-
-      g1_1 = user.gender === "male" ? 1 : 0;
-      g1_2 = user.gender === "male" ? 0 : 1;
-
-      g2_1 = user.gender === "male" ? 0 : 1;
-      g2_2 = user.gender === "male" ? 1 : 0;
-
-      g4_1 = canWalk === "true" ? 1 : 0;
-      g4_2 = canWalk === "true" ? 0 : 1;
-
-      g6_1 = usesMWC === "true" ? 1 : 0;
-      g6_2 = usesMWC === "true" ? 0 : 1;
-
-      g7_1 = usesPWC === "true" ? 1 : 0;
-      g7_2 = usesPWC === "true" ? 0 : 1;
-
-      g8_1 = married === "true" ? 1 : 0;
-      g8_2 = married === "true" ? 0 : 1;
-
-      g9_1 = bladder === "true" ? 1 : 0;
-      g9_2 = bladder === "true" ? 0 : 1;
-
-      g11_1 = living === "true" ? 1 : 0;
-      g11_2 = living === "true" ? 0 : 1;
-
-      g12_1 = para === "true" ? 1 : 0;
-      g12_2 = para === "true" ? 0 : 1;
-
-      g13_1 = para === "true" ? 1 : 0;
-      g13_2 = para === "true" ? 0 : 1;
-
+    //Custom project-defined rule engine calculation, to be saved as part of user data
+    RuleEngine.setProfileVariables(server, userid,   function (profileData) {
       //Also create the userdata record in background.
-      UserData.create(surveyid, canWalk, userid, married, usesMWC, usesPWC, living, bladder, para, g1_1, g1_2, g2_1, g2_2, g4_1, g4_2, g6_1, g6_2, g7_1, g7_2, g8_1, g8_2, g9_1, g9_2, g11_1, g11_2, g12_1, g12_2, g13_1, g13_2, function (err, userData) {
+
+      console.log("profile data found is:");
+      console.log(profileData);
+
+      UserData.create(userid, userData, profileData, function (err, data) {
         if (err) {
           return reply(err);
         }
+        console.log("UserData saved sucessfully as"+ data);
         //do nothing else
       });
 
@@ -518,41 +340,37 @@ var helperMethods = {};
   };
 
   /**
-   * This function retrieves all scores for the surveys specified.
-   * @params {Object} server The current server instance.
-   * @params {Object} obj An object containing the surveys to retrieve scores for.
-   * @params {function} callback The callback function, should return data to the web view.
-   * @params {Object} replyObj ???
+   * This function returns all scores for the user to the webpage to construct the
+   * chart through the passed in callback function
    */
-  helperMethods.getAllScores = function(server, obj, callback, replyObj) {
+  helperMethods.getAllScores = function (server, obj, callback, replyObj) {
     const Score = server.plugins['hapi-mongo-models'].Score;
 
-    Config.initDescriptionList(Config.descriptionList);
     var surveyIdArr = obj['score_arr'];
     var surveyUpdateArr = obj['update_arr'];
     var r = [];
-    Score.findBySurveyIDs( surveyIdArr, function(result) {
+    Score.findBySurveyIDs(surveyIdArr, function (result) {
       if (result && result.length != 0) {
         //If database has scores, populate the same into an object that the client can use to render
         // construct the object here before returning to the page
 
-        for(var i = 0; i < result.length; i++){
+        for (var i = 0; i < result.length; i++) {
           var obj = {};
           var id = result[i]['_id'];
 
           var sectionNames = [];
           var sectionScores = [];
-          var p= result[i].score;
+          var p = result[i].score;
           for (var key in p) {
             if (p.hasOwnProperty(key)) {
               console.log(key + " -> " + p[key]);
-              sectionNames.push(Config.findDescriptionBySection(Config.descriptionList,key).title);
-              sectionScores.push((parseFloat(p[key].currentScore)* 10 + 50).toFixed(2));
+              sectionNames.push(Config.findDescriptionBySection(key).title);
+              sectionScores.push((parseFloat(p[key].currentScore) * 10 + 50).toFixed(2));
             }
           }
           obj["sectionNames"] = sectionNames;
           obj["sectionScore"] = sectionScores;
-          var timestamp = parseInt(id.toString().substr(0,8), 16)*1000
+          var timestamp = parseInt(id.toString().substr(0, 8), 16) * 1000
           var date = new Date(timestamp);
           obj["lastUpdated"] = surveyUpdateArr[i];
           obj["surveyId"] = result[i].surveyId;
@@ -564,20 +382,21 @@ var helperMethods = {};
         callback(r, replyObj);
       }
     });
-  }
+  };
 
   /**
-   * This function retrieves all surveys for the specified user.
-   * @params {Object} server The current server instance.
-   * @params {string} userId The desired user ID.
-   * @params {function} callback1 The first callback, should be to helperMethods.getAllScores.
-   * @params {function} callback2 The second callback, should be to return data to the web view.
-   * @params {Object} replyObj ???
+   *   Create a function to get all of surveys by querying the scores by user ID.
+   *   Model after the function above.
+   *   This function calls getAllScoresForUser above and passes in the callback that
+   *   renders the survey and the array of surveyIds for the particular user.
+   *
+   *   callback1 is the call to getAllScores function. callback2 is the return to the webpage function.
+   *
    */
-  helperMethods.constructSurveyIdArray = function(server, userId, callback1,  callback2, replyObj) {
+  helperMethods.constructSurveyIdArray = function (server, userId, callback1, callback2, replyObj) {
     const Survey = server.plugins['hapi-mongo-models'].Survey;
 
-    Survey.findByUserID(userId, function(result) {
+    Survey.findByUserID(userId, function (result) {
       if (result && result.length != 0) {
         //If database has scores, populate the same into an object that the client can use to render
         console.log("The resulting database call to get user's surveys contains " + result.length + " values.");
@@ -585,7 +404,7 @@ var helperMethods = {};
         var arrWithUpdates = [];
         var obj = {};
         obj['user_id'] = userId;
-        for(var i = 0; i< result.length; i++){
+        for (var i = 0; i < result.length; i++) {
           var surveyId = result[i]['_id'];
           var surveyUpdated = result[i]["lastUpdated"];
           arrWithScores.push(surveyId.toString());
@@ -600,11 +419,6 @@ var helperMethods = {};
     })
   }
 
-  /**
-   * This function generates a Score object.
-   * @params {Object} dbModel ???
-   * @params {Date} time The current time.
-   */
   helperMethods.generateScoreObject = function (dbModel, time) {
     var obj = {};
     var sectionNames = [];
@@ -612,8 +426,8 @@ var helperMethods = {};
     var p = dbModel.score;
     for (var key in p) {
       if (p.hasOwnProperty(key)) {
-        sectionNames.push(Config.findDescriptionBySection(Config.descriptionList,key).title);
-        sectionScores.push((parseFloat(p[key].currentScore)* 10 + 50).toFixed(2));
+        sectionNames.push(Config.findDescriptionBySection(key).title);
+        sectionScores.push((parseFloat(p[key].currentScore) * 10 + 50).toFixed(2));
       }
     }
     obj["sectionNames"] = sectionNames;
@@ -621,14 +435,8 @@ var helperMethods = {};
     obj["lastUpdated"] = time;
     obj["surveyId"] = dbModel.surveyId;
     return obj;
-  };
+  }
 
-  /**
-   * This function retrieves all the active studies a user is part of.
-   * @params {Object} server The current server instance.
-   * @params {string} userId The desired user ID.
-   * @params {function} callback The callback function to pass the active studies to.
-   */
   helperMethods.getActiveStudies = function (server, userId, callback) {
     const Study = server.plugins['hapi-mongo-models'].Study;
     const StudySignup = server.plugins['hapi-mongo-models'].StudySignup;

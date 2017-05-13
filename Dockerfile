@@ -38,6 +38,8 @@ RUN npm install nodemon --save
 # list directories
 RUN ls -la /usr/src/byo-cat2/frame-server/node_modules
 
+ENV NODE_ENV 'docker'
+
 # Setup app
 RUN nodejs -v
 RUN ln -s /usr/bin/nodejs /usr/bin/node
@@ -45,5 +47,6 @@ RUN node -v
 RUN npm run setup --docker
 
 EXPOSE 9000
+EXPOSE 8000
 CMD sh docker-run.sh
 

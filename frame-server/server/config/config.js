@@ -5,7 +5,7 @@ const descriptionList = require('../profile/sectionDescription.json');
 var Config = {
 
   descriptionList: new Map(),
-  SERVER_URL: "http://localhost:8000",
+  SERVER_URL: "http://localhost:9000",
   sectionSkipLowerLimit: 8,
   sectionSkipUpperLimit: 14,
   sectionSkipScoreThreshold: 0.22,

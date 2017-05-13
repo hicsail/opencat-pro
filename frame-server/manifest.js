@@ -69,7 +69,6 @@ const manifest = {
             Survey: './server/models/survey',
             User: './server/models/user',
             UserData: './server/models/userdata',
-            OngoingSurvey: './server/models/ongoingsurvey',
             Question: './server/models/question',
             Score: './server/models/score',
             StudySignup: './server/models/studySignupDetails'

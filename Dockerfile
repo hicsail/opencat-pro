@@ -1,12 +1,12 @@
 FROM ubuntu:latest
 
-# Create app directory 
+# Create app directory
 RUN mkdir -p /usr/src/byo-cat2
 WORKDIR /usr/src/byo-cat2/frame-server
 
 #Install npm
 RUN apt-get update
-RUN apt-get install -y nodejs 
+RUN apt-get install -y nodejs
 RUN apt-get install -y npm
 RUN npm cache clean -f
 RUN apt-get install -y curl                     #Needed for the 'n' package to be installed successfully.
@@ -38,12 +38,13 @@ RUN npm install nodemon --save
 # list directories
 RUN ls -la /usr/src/byo-cat2/frame-server/node_modules
 
+ENV NODE_ENV 'docker'
+
 # Setup app
 RUN nodejs -v
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN node -v
-RUN npm run setup --docker
 
 EXPOSE 9000
+EXPOSE 8000
 CMD sh docker-run.sh
-

@@ -6,28 +6,53 @@ const Path = require('path');
 const Async = require('async');
 const Handlebars = require('handlebars');
 const MongoModels = require('mongo-models');
-const adminOptions = require('./server/config/admin-options.js');
 
 const configTemplatePath = Path.resolve(__dirname, 'config.example');
 const configPath = Path.resolve(__dirname, 'config.js');
 
+console.log("Env: " + process.env.NODE_ENV);
 
 if (process.env.NODE_ENV === 'test') {
   const options = {encoding: 'utf-8'};
   const source = Fs.readFileSync(configTemplatePath, options);
   const configTemplateTest = Handlebars.compile(source);
-  const context = adminOptions.options;
-
+  const context = {
+    projectName: 'Frame',
+    rootEmail: 'root@root',
+    rootPassword: 'rootroot',
+    rootFirst: 'root',
+    rootLast: 'root',
+    rootBirthday: '2016-07-22T19:18:18.403Z',
+    rootGender: 'male',
+    rootSiteNum: '12345',
+    systemEmail: 'sys@tem',
+    smtpHost: 'smtp.gmail.com',
+    smtpPort: 465,
+    smtpUsername: '',
+    smtpPassword: ''
+  };
   Fs.writeFileSync(configPath, configTemplateTest(context));
-  console.log('Setup complete.');
-  process.exit(0);
 }
+
 //Need to change this file for production! Later, ideally these values should come in using a form
-if (process.env.NODE_ENV === 'docker') {
   const options = {encoding: 'utf-8'};
   const source = Fs.readFileSync(configTemplatePath, options);
   const configTemplateTest = Handlebars.compile(source);
-  const context = adminOptions.options;
+  const context = {
+    projectName: 'Frame',
+    rootEmail: 'root@root',
+    rootPassword: 'rootroot',
+    rootFirst: 'root',
+    rootLast: 'root',
+    rootBirthday: '2016-07-22T19:18:18.403Z',
+    rootGender: 'male',
+    rootSiteNum: '12345',
+    systemEmail: 'sys@tem',
+    smtpHost: 'smtp.gmail.com',
+    smtpPort: 465,
+    smtpUsername: '',
+    smtpPassword: ''
+  };
 
   Fs.writeFileSync(configPath, configTemplateTest(context));
 
@@ -49,7 +74,6 @@ if (process.env.NODE_ENV === 'docker') {
       MongoModels.connect('mongodb://mongo:27017/frame', {}, done);
     },
     clean: ['connect', (dbResults, done) => {
-
       Async.parallel([
       Account.deleteMany.bind(Account, {}),
       Study.deleteMany.bind(Study, {}),
@@ -65,11 +89,22 @@ if (process.env.NODE_ENV === 'docker') {
     ], done);
 }],
   adminGroup: ['clean', function (dbResults, done) {
-    AdminGroup.create('Root', done);
-    AdminGroup.create('Clinician', done);
+    Async.auto({
+      createRootGroup: function(done) {
+        AdminGroup.create('Root', done);
+      },
+      createClinicianGroup: function(done) {
+        AdminGroup.create('Clinician', done);
+      }
+    }, (err) => {
+      if (err) {
+        return done(err);
+      }
+
+      done();
+  });
   }],
     admin: ['clean', function (dbResults, done) {
-
     const document = {
       _id: Admin.ObjectId('111111111111111111111111'),
       name: {
@@ -81,16 +116,19 @@ if (process.env.NODE_ENV === 'docker') {
     };
 
     Admin.insertOne(document, (err, docs) => {
+      if (err) {
+        console.error(err);
+      }
 
       done(err, docs && docs[0]);
   });
   }],
     user: ['clean', function (dbResults, done) {
-
     Async.auto({
-      passwordHash: User.generatePasswordHash.bind(this, results.rootPassword)
+      passwordHash: function(done) {
+        User.generatePasswordHash(context.rootPassword, done);
+      }
     }, (err, passResults) => {
-
       if (err) {
         return done(err);
       }
@@ -98,7 +136,7 @@ if (process.env.NODE_ENV === 'docker') {
       const document = {
         _id: Admin.ObjectId('000000000000000000000000'),
         isActive: true,
-        username: results.rootEmail.toLowerCase(),
+        username: context.rootEmail.toLowerCase(),
         password: passResults.passwordHash.hash,
         timeCreated: new Date()
       };
@@ -110,7 +148,6 @@ if (process.env.NODE_ENV === 'docker') {
   });
   }],
     adminMembership: ['admin', function (dbResults, done) {
-
     const id = dbResults.admin._id.toString();
     const update = {
       $set: {
@@ -123,7 +160,6 @@ if (process.env.NODE_ENV === 'docker') {
     Admin.findByIdAndUpdate(id, update, done);
   }],
     linkUser: ['admin', 'user', function (dbResults, done) {
-
     const id = dbResults.user._id.toString();
     const update = {
       $set: {
@@ -137,13 +173,12 @@ if (process.env.NODE_ENV === 'docker') {
     User.findByIdAndUpdate(id, update, done);
   }],
     linkAdmin: ['admin', 'user', function (dbResults, done) {
-
     const id = dbResults.admin._id.toString();
     const update = {
       $set: {
         user: {
           id: dbResults.user._id.toString(),
-          name: results.rootEmail
+          name: context.rootEmail
         }
       }
     };
@@ -154,9 +189,10 @@ if (process.env.NODE_ENV === 'docker') {
 
     if (err) {
       console.error('Failed to setup root user.');
-      return done(err);
+      console.error(err);
     }
 
-    done(null, true);
+    console.log("Root user setup complete");
+    process.exit(0);
   });
-}
+

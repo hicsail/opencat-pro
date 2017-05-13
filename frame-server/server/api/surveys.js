@@ -61,7 +61,6 @@ internals.applyRoutes = function (server, next) {
         if (err) {
           return reply(err);
         }
-        //TODO save an ongoing survey object and return initial questions list to user
         return reply.view('surveyuserinfo_accessible', {
           title: Config.getAppTitle(),
           configUrl: Config.SERVER_URL,

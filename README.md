@@ -15,7 +15,7 @@ Installation is a breeze with docker:
        
   	docker-compose build
        
-4. Now run the byo-cat image built by docker by following the command below. This will spin up all the docker containers and links images, as well as starts byo-cat on port 8000. It automatically listens to changes made in your code and restarts server whenever that is done. Smooth, right? :)
+4. Now run the byo-cat image built by docker by following the command below. This will spin up all the docker containers and links images, as well as starts byo-cat on port 9000. It automatically listens to changes made in your code and restarts server whenever that is done. Smooth, right? :)
        
 	docker-compose up
        
@@ -32,7 +32,7 @@ Installation is a breeze with docker:
        
  	- Next you'll need [dos2unix](https://sourceforge.net/projects/dos2unix/ "dos2unix"), a program that converts text files with DOS or MAC line breaks to Unix line breaks and vice versa.  
 
-7. We are almost done! Navigate your browser to *localhost:8000* and you should be able to see the BYO-CAT home page. Explore around!
+7. We are almost done! Navigate your browser to *localhost:9000* and you should be able to see the BYO-CAT home page. Explore around!
 In case we want to change the server url to something else, change the **SERVER_URL** variable in config.js file under frame-server/server/config.
 
 ### Making your own CAT

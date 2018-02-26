@@ -35,7 +35,6 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 //Need to change this file for production! Later, ideally these values should come in using a form
-// if (process.env.NODE_ENV === 'docker') {
   const options = {encoding: 'utf-8'};
   const source = Fs.readFileSync(configTemplatePath, options);
   const configTemplateTest = Handlebars.compile(source);
@@ -75,7 +74,6 @@ if (process.env.NODE_ENV === 'test') {
       MongoModels.connect('mongodb://mongo:27017/frame', {}, done);
     },
     clean: ['connect', (dbResults, done) => {
-
       Async.parallel([
       Account.deleteMany.bind(Account, {}),
       Study.deleteMany.bind(Study, {}),
@@ -197,4 +195,4 @@ if (process.env.NODE_ENV === 'test') {
     console.log("Root user setup complete");
     process.exit(0);
   });
-// }
+

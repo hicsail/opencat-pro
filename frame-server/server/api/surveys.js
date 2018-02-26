@@ -6,6 +6,7 @@ const Joi = require('joi');
 const Config = require('../config/config.js');
 const demographicJSON = require('../profile/demographics.json');
 const helperMethods = require('../helperMethods.js'); //http://stackoverflow.com/questions/5726729/how-to-parse-json-using-node-js
+const businessRules = require('../profile/lib/businessRules.js'); //http://stackoverflow.com/questions/5726729/how-to-parse-json-using-node-js
 
 const internals = {};
 var questionNum;
@@ -61,7 +62,6 @@ internals.applyRoutes = function (server, next) {
         if (err) {
           return reply(err);
         }
-        //TODO save an ongoing survey object and return initial questions list to user
         return reply.view('surveyuserinfo_accessible', {
           title: Config.getAppTitle(),
           configUrl: Config.SERVER_URL,
@@ -99,7 +99,7 @@ internals.applyRoutes = function (server, next) {
 
       //Construct Available score Array based on questions answered in the demographics section in the background
 
-      helperMethods.constructAvailableSectionArray(server, userData, function (result) {
+      businessRules.constructAvailableSectionArray(server, userData, function (result) {
 
         //Send back description of first available section
         console.log("available section array is");

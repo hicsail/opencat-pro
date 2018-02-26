@@ -51,14 +51,14 @@ class Response extends MongoModels {
     //Aggregate all unskipped, actually answered questions with ques data attach to construct arrays and calculate scope
     Response.aggregate([
         {
-          $lookup: {from: "questions", localField: "ques_id_data", foreignField: "ques_id_data", as: "question_data"},
+          $lookup: {from: "questions", localField: "ques_id_data", foreignField: "ques_id_data", as: "question_data"}
         },
         {$match: {survey_id: surveyId}},
         {$match: {domain_id: sectionId}},
         {$match: {skip:false}},
         {$unwind: "$ques_id_data"}
 
-      ], {},
+      ],
       function (err, response) {
         if (err) {
           console.log("error in Response find");

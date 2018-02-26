@@ -8,7 +8,7 @@ if [ -L "/usr/src/byo-cat/frame-server/node_modules" ]; then
     echo "npm-modules symlink is removed"
 fi
 
-mongoimport --host mongo --port 27017 --db frame --collection questions --drop --file  server/profile/full_question_data_set.json --jsonArray
+mongoimport --host mongo --port 27017 --db frame-byocat --collection questions --drop --file  server/profile/full_question_data_set.json --jsonArray
 ln -s /usr/src/byo-cat2/frame-server/node_modules /usr/src/byo-cat/frame-server/node_modules
 
 npm run setup

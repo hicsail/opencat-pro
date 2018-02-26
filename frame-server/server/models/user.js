@@ -183,7 +183,7 @@ class User extends MongoModels {
       self._roles = results;
 
       callback(null, self._roles);
-    });
+  })
   }
 }
 
@@ -197,15 +197,14 @@ User.schema = Joi.object().keys({
   password: Joi.string().min(7),
   roles: Joi.object().keys({
     admin: Joi.object().keys({id: Joi.string().required(), name: Joi.string().required()}),
-    account: Joi.object().keys({id: Joi.string().required(), name: Joi.string().required()}),
+    account: Joi.object().keys({id: Joi.string().required(), name: Joi.string().required()})
   }),
   timeCreated: Joi.date()
 });
 
 
 User.indexes = [
-  {key: {username: 1, unique: true}},
-  {key: {email: 1, unique: true}}
+  {key: {username: 1, unique: 1}}
 ];
 
 

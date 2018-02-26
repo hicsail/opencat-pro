@@ -1,0 +1,101 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "code@3.x.x",
+        "scope": null,
+        "escapedName": "code",
+        "name": "code",
+        "rawSpec": "3.x.x",
+        "spec": ">=3.0.0 <4.0.0",
+        "type": "range"
+      },
+      "/Users/shreya/Projects/BU/byo-cat/frame-server"
+    ]
+  ],
+  "_from": "code@>=3.0.0 <4.0.0",
+  "_id": "code@3.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/code",
+  "_nodeVersion": "6.3.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/code-3.0.2.tgz_1469647048434_0.13639473705552518"
+  },
+  "_npmUser": {
+    "name": "hueniverse",
+    "email": "eran@hammer.io"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "code@3.x.x",
+    "scope": null,
+    "escapedName": "code",
+    "name": "code",
+    "rawSpec": "3.x.x",
+    "spec": ">=3.0.0 <4.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/code/-/code-3.0.2.tgz",
+  "_shasum": "73265c70159dbce2b023c8fb6863e7b76704a4fc",
+  "_shrinkwrap": null,
+  "_spec": "code@3.x.x",
+  "_where": "/Users/shreya/Projects/BU/byo-cat/frame-server",
+  "bugs": {
+    "url": "https://github.com/hapijs/code/issues"
+  },
+  "dependencies": {
+    "hoek": "4.x.x"
+  },
+  "description": "assertion library",
+  "devDependencies": {
+    "lab": "10.x.x",
+    "markdown-toc": "0.12.x"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "73265c70159dbce2b023c8fb6863e7b76704a4fc",
+    "tarball": "https://registry.npmjs.org/code/-/code-3.0.2.tgz"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "gitHead": "890e7b3272d736850bed8bcec27fe612bc20ba6e",
+  "homepage": "https://github.com/hapijs/code#readme",
+  "keywords": [
+    "test",
+    "expect",
+    "assertion"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "lib/index.js",
+  "maintainers": [
+    {
+      "name": "hueniverse",
+      "email": "eran@hueniverse.com"
+    },
+    {
+      "name": "cjihrig",
+      "email": "cjihrig@gmail.com"
+    }
+  ],
+  "name": "code",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hapijs/code.git"
+  },
+  "scripts": {
+    "test": "lab -v -t 100 -L",
+    "test-cov-html": "lab -L -r html -o coverage.html",
+    "toc": "node generate-api-toc.js",
+    "version": "npm run toc && git add API.md"
+  },
+  "version": "3.0.2"
+}

@@ -1,0 +1,94 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "alce@1.x.x",
+        "scope": null,
+        "escapedName": "alce",
+        "name": "alce",
+        "rawSpec": "1.x.x",
+        "spec": ">=1.0.0 <2.0.0",
+        "type": "range"
+      },
+      "/Users/shreya/Projects/BU/byo-cat/frame-server/node_modules/confidence"
+    ]
+  ],
+  "_from": "alce@>=1.0.0 <2.0.0",
+  "_id": "alce@1.2.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/alce",
+  "_nodeVersion": "5.1.1",
+  "_npmUser": {
+    "name": "kpdecker",
+    "email": "kpdecker@gmail.com"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "alce@1.x.x",
+    "scope": null,
+    "escapedName": "alce",
+    "name": "alce",
+    "rawSpec": "1.x.x",
+    "spec": ">=1.0.0 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/confidence"
+  ],
+  "_resolved": "https://registry.npmjs.org/alce/-/alce-1.2.0.tgz",
+  "_shasum": "a8be2dacaac42494612f18dc09db691f3dea4aab",
+  "_shrinkwrap": null,
+  "_spec": "alce@1.x.x",
+  "_where": "/Users/shreya/Projects/BU/byo-cat/frame-server/node_modules/confidence",
+  "bugs": {
+    "url": "https://github.com/kpdecker/alce/issues"
+  },
+  "dependencies": {
+    "esprima": "^1.2.0",
+    "estraverse": "^1.5.0"
+  },
+  "description": "Accepting Language Config Environment",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "0.x.x",
+    "grunt-mocha-cov": "0.x.x",
+    "mocha": "^2.0.0",
+    "should": "3.x.x"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dist": {
+    "shasum": "a8be2dacaac42494612f18dc09db691f3dea4aab",
+    "tarball": "https://registry.npmjs.org/alce/-/alce-1.2.0.tgz"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "gitHead": "6c7057029d438e1a639769bc9a5a3e96c6bca766",
+  "homepage": "https://github.com/kpdecker/alce#readme",
+  "keywords": [
+    "json parser whitespace comments configuration"
+  ],
+  "license": "MIT",
+  "main": "lib/alce.js",
+  "maintainers": [
+    {
+      "name": "kpdecker",
+      "email": "kpdecker@gmail.com"
+    }
+  ],
+  "name": "alce",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kpdecker/alce.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "version": "1.2.0"
+}

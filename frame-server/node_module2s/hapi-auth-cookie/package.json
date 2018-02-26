@@ -1,0 +1,111 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "hapi-auth-cookie@6.x.x",
+        "scope": null,
+        "escapedName": "hapi-auth-cookie",
+        "name": "hapi-auth-cookie",
+        "rawSpec": "6.x.x",
+        "spec": ">=6.0.0 <7.0.0",
+        "type": "range"
+      },
+      "/Users/shreya/Projects/BU/byo-cat/frame-server"
+    ]
+  ],
+  "_from": "hapi-auth-cookie@>=6.0.0 <7.0.0",
+  "_id": "hapi-auth-cookie@6.1.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/hapi-auth-cookie",
+  "_nodeVersion": "4.3.1",
+  "_npmOperationalInternal": {
+    "host": "packages-6-west.internal.npmjs.com",
+    "tmp": "tmp/hapi-auth-cookie-6.1.1.tgz_1456457119273_0.9199019065126777"
+  },
+  "_npmUser": {
+    "name": "jaw187",
+    "email": "james@tenseven.org"
+  },
+  "_npmVersion": "2.14.12",
+  "_phantomChildren": {
+    "isemail": "2.2.1",
+    "moment": "2.18.1",
+    "topo": "2.0.2"
+  },
+  "_requested": {
+    "raw": "hapi-auth-cookie@6.x.x",
+    "scope": null,
+    "escapedName": "hapi-auth-cookie",
+    "name": "hapi-auth-cookie",
+    "rawSpec": "6.x.x",
+    "spec": ">=6.0.0 <7.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/hapi-auth-cookie/-/hapi-auth-cookie-6.1.1.tgz",
+  "_shasum": "927db39e434916d81ab870d4181d70d53e745572",
+  "_shrinkwrap": null,
+  "_spec": "hapi-auth-cookie@6.x.x",
+  "_where": "/Users/shreya/Projects/BU/byo-cat/frame-server",
+  "bugs": {
+    "url": "https://github.com/hapijs/hapi-auth-cookie/issues"
+  },
+  "dependencies": {
+    "boom": "3.x.x",
+    "hoek": "3.x.x",
+    "joi": "7.x.x"
+  },
+  "description": "Cookie authentication plugin",
+  "devDependencies": {
+    "code": "2.x.x",
+    "hapi": "13.x.x",
+    "lab": "8.x.x"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "927db39e434916d81ab870d4181d70d53e745572",
+    "tarball": "https://registry.npmjs.org/hapi-auth-cookie/-/hapi-auth-cookie-6.1.1.tgz"
+  },
+  "engines": {
+    "node": ">=4.x.x"
+  },
+  "gitHead": "17e916f92c9db08182af0ad6f2ea882ff98ced06",
+  "homepage": "https://github.com/hapijs/hapi-auth-cookie#readme",
+  "keywords": [
+    "hapi",
+    "plugin",
+    "auth",
+    "cookie",
+    "session"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "lib/index.js",
+  "maintainers": [
+    {
+      "name": "hueniverse",
+      "email": "eran@hueniverse.com"
+    },
+    {
+      "name": "jaw187",
+      "email": "james@tenseven.org"
+    }
+  ],
+  "name": "hapi-auth-cookie",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "hapi": ">=11.x.x"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hapijs/hapi-auth-cookie.git"
+  },
+  "scripts": {
+    "test": "lab -a code -t 100 -L",
+    "test-cov-html": "lab -a code -r html -o coverage.html"
+  },
+  "version": "6.1.1"
+}

@@ -1,0 +1,99 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "nodemailer-markdown@1.x.x",
+        "scope": null,
+        "escapedName": "nodemailer-markdown",
+        "name": "nodemailer-markdown",
+        "rawSpec": "1.x.x",
+        "spec": ">=1.0.0 <2.0.0",
+        "type": "range"
+      },
+      "/Users/shreya/Projects/BU/byo-cat/frame-server"
+    ]
+  ],
+  "_from": "nodemailer-markdown@>=1.0.0 <2.0.0",
+  "_id": "nodemailer-markdown@1.0.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/nodemailer-markdown",
+  "_nodeVersion": "6.5.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/nodemailer-markdown-1.0.1.tgz_1473749733900_0.5609392346814275"
+  },
+  "_npmUser": {
+    "name": "andris",
+    "email": "andris@kreata.ee"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "nodemailer-markdown@1.x.x",
+    "scope": null,
+    "escapedName": "nodemailer-markdown",
+    "name": "nodemailer-markdown",
+    "rawSpec": "1.x.x",
+    "spec": ">=1.0.0 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/nodemailer-markdown/-/nodemailer-markdown-1.0.1.tgz",
+  "_shasum": "b3b9b420c3ce5a8bfbf09e04cd9a0849d683dc73",
+  "_shrinkwrap": null,
+  "_spec": "nodemailer-markdown@1.x.x",
+  "_where": "/Users/shreya/Projects/BU/byo-cat/frame-server",
+  "author": {
+    "name": "Andris Reinman"
+  },
+  "bugs": {
+    "url": "https://github.com/andris9/nodemailer-markdown/issues"
+  },
+  "dependencies": {
+    "marked": "^0.3.6"
+  },
+  "description": "Markdown content for Nodemailer",
+  "devDependencies": {
+    "chai": "~3.5.0",
+    "grunt": "~1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-mocha-test": "~0.12.7",
+    "mocha": "^3.0.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dist": {
+    "shasum": "b3b9b420c3ce5a8bfbf09e04cd9a0849d683dc73",
+    "tarball": "https://registry.npmjs.org/nodemailer-markdown/-/nodemailer-markdown-1.0.1.tgz"
+  },
+  "gitHead": "3b31a7670ead899cd866a66cb237f4c4d69499b2",
+  "homepage": "https://github.com/andris9/nodemailer-markdown",
+  "keywords": [
+    "Nodemailer",
+    "markdown"
+  ],
+  "license": "MIT",
+  "main": "src/nodemailer-markdown.js",
+  "maintainers": [
+    {
+      "name": "andris",
+      "email": "andris@node.ee"
+    }
+  ],
+  "name": "nodemailer-markdown",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andris9/nodemailer-markdown.git"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "version": "1.0.1"
+}

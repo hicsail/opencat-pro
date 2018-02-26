@@ -1,0 +1,108 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "mongo-models@1.x.x",
+        "scope": null,
+        "escapedName": "mongo-models",
+        "name": "mongo-models",
+        "rawSpec": "1.x.x",
+        "spec": ">=1.0.0 <2.0.0",
+        "type": "range"
+      },
+      "/Users/shreya/Projects/BU/byo-cat/frame-server"
+    ]
+  ],
+  "_from": "mongo-models@>=1.0.0 <2.0.0",
+  "_id": "mongo-models@1.1.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mongo-models",
+  "_nodeVersion": "6.6.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/mongo-models-1.1.0.tgz_1477093871497_0.060470531694591045"
+  },
+  "_npmUser": {
+    "name": "jedireza",
+    "email": "jedireza@gmail.com"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "mongo-models@1.x.x",
+    "scope": null,
+    "escapedName": "mongo-models",
+    "name": "mongo-models",
+    "rawSpec": "1.x.x",
+    "spec": ">=1.0.0 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/mongo-models/-/mongo-models-1.1.0.tgz",
+  "_shasum": "2613e70aa3c28e7246d73d9bbfd0755198ca0b86",
+  "_shrinkwrap": null,
+  "_spec": "mongo-models@1.x.x",
+  "_where": "/Users/shreya/Projects/BU/byo-cat/frame-server",
+  "author": {
+    "name": "Reza Akhavan",
+    "email": "reza@akhavan.me"
+  },
+  "bugs": {
+    "url": "https://github.com/jedireza/mongo-models/issues"
+  },
+  "dependencies": {
+    "async": "2.x.x",
+    "hoek": "4.x.x",
+    "joi": "9.x.x"
+  },
+  "description": "Map JavaScript classes to MongoDB collections",
+  "devDependencies": {
+    "code": "4.x.x",
+    "lab": "11.x.x",
+    "mongodb": "2.x.x",
+    "opn-cli": "3.x.x",
+    "proxyquire": "1.x.x"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "2613e70aa3c28e7246d73d9bbfd0755198ca0b86",
+    "tarball": "https://registry.npmjs.org/mongo-models/-/mongo-models-1.1.0.tgz"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "gitHead": "2954cacdba4f332c243d4be6205a5f7f7ff37199",
+  "homepage": "https://github.com/jedireza/mongo-models",
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "model",
+    "models",
+    "odm"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "jedireza",
+      "email": "jedireza@gmail.com"
+    }
+  ],
+  "name": "mongo-models",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "mongodb": "2.x.x"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jedireza/mongo-models.git"
+  },
+  "scripts": {
+    "test": "lab -c -L"
+  },
+  "version": "1.1.0"
+}

@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "visionary@6.x.x",
+        "scope": null,
+        "escapedName": "visionary",
+        "name": "visionary",
+        "rawSpec": "6.x.x",
+        "spec": ">=6.0.0 <7.0.0",
+        "type": "range"
+      },
+      "/Users/shreya/Projects/BU/byo-cat/frame-server"
+    ]
+  ],
+  "_from": "visionary@>=6.0.0 <7.0.0",
+  "_id": "visionary@6.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/visionary",
+  "_nodeVersion": "6.4.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/visionary-6.0.2.tgz_1473319158271_0.9418338185641915"
+  },
+  "_npmUser": {
+    "name": "jedireza",
+    "email": "jedireza@gmail.com"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "visionary@6.x.x",
+    "scope": null,
+    "escapedName": "visionary",
+    "name": "visionary",
+    "rawSpec": "6.x.x",
+    "spec": ">=6.0.0 <7.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/visionary/-/visionary-6.0.2.tgz",
+  "_shasum": "575260e8d6cb8a7334a05e0cb76b994266195c46",
+  "_shrinkwrap": null,
+  "_spec": "visionary@6.x.x",
+  "_where": "/Users/shreya/Projects/BU/byo-cat/frame-server",
+  "bugs": {
+    "url": "https://github.com/hapijs/visionary/issues"
+  },
+  "dependencies": {
+    "hoek": "4.x.x"
+  },
+  "description": "Views loader plugin for hapi.js",
+  "devDependencies": {
+    "code": "3.x.x",
+    "handlebars": "4.x.x",
+    "hapi": "15.x.x",
+    "lab": "11.x.x",
+    "vision": "4.x.x"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "575260e8d6cb8a7334a05e0cb76b994266195c46",
+    "tarball": "https://registry.npmjs.org/visionary/-/visionary-6.0.2.tgz"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "gitHead": "57638afed0a1c68272e6fe3166068ea57123b8b4",
+  "homepage": "https://github.com/hapijs/visionary#readme",
+  "keywords": [
+    "views",
+    "plugin",
+    "hapi"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "lib/index.js",
+  "maintainers": [
+    {
+      "name": "hueniverse",
+      "email": "eran@hammer.io"
+    },
+    {
+      "name": "jedireza",
+      "email": "jedireza@gmail.com"
+    }
+  ],
+  "name": "visionary",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "hapi": ">=13.x.x",
+    "vision": ">=4.x.x"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hapijs/visionary.git"
+  },
+  "scripts": {
+    "test": "lab -c -L",
+    "test-cov-html": "lab -c -r html -o ./coverage.html"
+  },
+  "version": "6.0.2"
+}

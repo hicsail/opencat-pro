@@ -1,0 +1,118 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "lout@9.x.x",
+        "scope": null,
+        "escapedName": "lout",
+        "name": "lout",
+        "rawSpec": "9.x.x",
+        "spec": ">=9.0.0 <10.0.0",
+        "type": "range"
+      },
+      "/Users/shreya/Projects/BU/byo-cat/frame-server"
+    ]
+  ],
+  "_from": "lout@>=9.0.0 <10.0.0",
+  "_id": "lout@9.2.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/lout",
+  "_nodeVersion": "6.5.0",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/lout-9.2.0.tgz_1474462910388_0.42338732862845063"
+  },
+  "_npmUser": {
+    "name": "marsup",
+    "email": "nicolas@morel.io"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {
+    "hoek": "4.1.1"
+  },
+  "_requested": {
+    "raw": "lout@9.x.x",
+    "scope": null,
+    "escapedName": "lout",
+    "name": "lout",
+    "rawSpec": "9.x.x",
+    "spec": ">=9.0.0 <10.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/lout/-/lout-9.2.0.tgz",
+  "_shasum": "fb0e5f69c09752eef64fc35fccf8809fa42e1eef",
+  "_shrinkwrap": null,
+  "_spec": "lout@9.x.x",
+  "_where": "/Users/shreya/Projects/BU/byo-cat/frame-server",
+  "bugs": {
+    "url": "https://github.com/hapijs/lout/issues"
+  },
+  "dependencies": {
+    "boom": "3.x.x",
+    "handlebars": "4.x.x",
+    "hoek": "4.x.x"
+  },
+  "description": "API documentation generator plugin for hapi",
+  "devDependencies": {
+    "cheerio": "0.x.x",
+    "code": "3.x.x",
+    "hapi": ">= 11",
+    "inert": ">= 3.x.x",
+    "joi": ">= 7.x.x",
+    "lab": "10.x.x",
+    "vision": ">= 4.x.x"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "fb0e5f69c09752eef64fc35fccf8809fa42e1eef",
+    "tarball": "https://registry.npmjs.org/lout/-/lout-9.2.0.tgz"
+  },
+  "engines": {
+    "node": ">= 4.x.x",
+    "npm": ">= 3.x"
+  },
+  "gitHead": "cc6b4485c5cfbf451a891c47f9db2e4a71ea9f10",
+  "homepage": "https://github.com/hapijs/lout#readme",
+  "keywords": [
+    "docs",
+    "hapi"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "lib/index.js",
+  "maintainers": [
+    {
+      "name": "hueniverse",
+      "email": "eran@hueniverse.com"
+    },
+    {
+      "name": "wyatt",
+      "email": "wpreul@gmail.com"
+    },
+    {
+      "name": "marsup",
+      "email": "marsup@gmail.com"
+    }
+  ],
+  "name": "lout",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "hapi": ">= 11",
+    "inert": ">= 3.x.x",
+    "joi": ">= 8.x.x",
+    "vision": ">= 3.x.x"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hapijs/lout.git"
+  },
+  "scripts": {
+    "test": "lab -r console -t 100 -a code -L",
+    "test-cov-html": "lab -r html -o coverage.html -a code -L"
+  },
+  "version": "9.2.0"
+}

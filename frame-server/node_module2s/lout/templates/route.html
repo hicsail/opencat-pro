@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Documentation for {{#if this}}{{this.0.path}}{{/if}}</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href=".{{@cssBaseUrl}}/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="?"><i class="glyphicon glyphicon-home glyphicon-white"></i></a>
+            </div>
+            <ul class="nav navbar-nav">
+                {{#each this}}
+                <li>
+                    <a href="#{{this.method}}" class="anchor-link">
+                        <span class="{{colorFromMethod this}}">{{this.method}}</span>
+                    </a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </nav>
+    <div class="container route-details">
+        {{#each this}}
+        <div class="panel panel-default route">
+            <a name="{{this.method}}" class="anchor"></a>
+            <div class="panel-heading {{this.method}}">
+                <span class="method-title h2">
+                    {{#if this.name}}
+                    <span>{{this.name}}</span>
+                    {{else}}
+                    <span class="{{colorFromMethod this}}">{{this.method}}</span>
+                    <span>{{this.path}}</span>
+                    {{/if}}
+                </span>
+                <span class="pull-right">
+                    {{#each this.tags}}
+                    <div class="badge">{{this}}</div>
+                    {{/each}}
+                </span>
+            </div>
+
+            {{#multipleIf this.description this.notes this.auth this.vhost this.cors this.jsonp}}
+            <div class="panel-body">
+                {{#if this.description}}
+                <h3>Description</h3>
+                <p class="description">{{{this.description}}}</p>
+                {{/if}} {{#if this.notes}}
+                <h3>Notes</h3>
+                <ul class="list-unstyled list-notes">
+                    {{#each this.notes}}
+                        <li>{{{this}}}</li>
+                    {{/each}}
+                </ul>
+                {{/if}} {{#if this.auth}}
+                <h3>Authentication</h3>
+                <p class="auth">
+                    <h4 class="auth-header auth-strategies col-sm-2">Strategies</h4>
+                    <p class="auth-value auth-strategies">{{this.auth.strategies}}</p>
+                    <h4 class="auth-header auth-mode col-sm-2">Mode</h4>
+                    <p class="auth-value auth-mode">{{this.auth.mode}}</p>
+                    {{#if this.auth.payload}}
+                    <h4 class="auth-header auth-payload col-sm-2">Payload</h4>
+                    <p class="auth-value auth-payload">{{this.auth.payload}}</p>
+                    {{/if}}
+                    {{#if this.auth.access}}
+                        <h4 class="auth-header auth-scope col-sm-2">Scopes</h4>
+                        <ul class="auth-access">
+                        {{#each this.auth.access}}
+                            <li>
+                                {{#if this.scope}}
+                                    {{#if this.scope.required}}
+                                        <h5 class="auth-header auth-scope col-sm-2">Required</h5>
+                                        <p class="auth-value auth-scope">{{this.scope.required}}</p>
+                                    {{/if}}
+                                    {{#if this.scope.selection}}
+                                        <h5 class="auth-header auth-scope col-sm-2">Selection</h5>
+                                        <p class="auth-value auth-scope">{{this.scope.selection}}</p>
+                                    {{/if}}
+                                    {{#if this.scope.forbidden}}
+                                        <h5 class="auth-header auth-scope col-sm-2">Forbidden</h5>
+                                        <p class="auth-value auth-scope">{{this.scope.forbidden}}</p>
+                                    {{/if}}
+                                {{/if}}
+                                {{#if this.entity}}
+                                <h4 class="auth-header auth-entity col-sm-2">Entity</h4>
+                                <p class="auth-value auth-entity">{{this.entity}}</p>
+                                {{/if}}
+                            </li>
+                        {{/each}}
+                        </ul>
+                    {{/if}}
+                    {{#if this.auth.tos}}
+                    <h4 class="auth-header auth-tos col-sm-2">Terms of service</h4>
+                    <p class="auth-value auth-tos">{{this.auth.tos}}</p>
+                    {{/if}}
+                </p>
+                {{/if}} {{#if this.vhost}}
+                <h3 class="vhost">Virtual host</h3>
+                <p class="vhost">{{this.vhost}}</p>
+                {{/if}} {{#if this.cors}}
+                <h3 class="cors">CORS</h3>
+                <dl>
+                    <dt class="cors-header cors-origin">Origin</dt>
+                    <dd class="cors-multi-value cors-origin">
+                        <ul>
+                            {{#each this.cors.origin}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    </dd>
+                    <dt class="cors-header cors-maxAge">maxAge</dt>
+                    <dd class="cors-value cors-maxAge">{{this.cors.maxAge}}</dd>
+                    {{#if this.cors.headers}}
+                        <dt class="cors-header cors-headers">headers</dt>
+                        <dd class="cors-multi-value cors-headers">
+                            <ul>
+                                {{#each this.cors.headers}}
+                                <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </dd>
+                    {{/if}} {{#if this.cors.additionalHeaders}}
+                        <dt class="cors-header cors-additionalHeaders">additionalHeaders</dt>
+                        <dd class="cors-multi-value cors-additionalHeaders">
+                            <ul>
+                                {{#each this.cors.additionalHeaders}}
+                                <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </dd>
+                    {{/if}} {{#if this.cors.methods}}
+                        <dt class="cors-header cors-methods">methods</dt>
+                        <dd class="cors-multi-value cors-methods">
+                            <ul>
+                                {{#each this.cors.methods}}
+                                <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </dd>
+                    {{/if}} {{#if this.cors.additionalMethods}}
+                        <dt class="cors-header cors-additionalMethods">additionalMethods</dt>
+                        <dd class="cors-multi-value cors-additionalMethods">
+                            <ul>
+                                {{#each this.cors.additionalMethods}}
+                                <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </dd>
+                    {{/if}} {{#if this.cors.exposedHeaders}}
+                        <dt class="cors-header cors-exposedHeaders">exposedHeaders</dt>
+                        <dd class="cors-multi-value cors-exposedHeaders">
+                            <ul>
+                                {{#each this.cors.exposedHeaders}}
+                                <li>{{this}}</li>
+                                {{/each}}
+                            </ul>
+                        </dd>
+                    {{/if}}
+                    <dt class="cors-header cors-credentials">credentials</dt>
+                    <dd class="cors-value cors-credentials">{{this.cors.credentials}}</dd>
+                    <dt class="cors-header cors-override">override</dt>
+                    <dd class="cors-value cors-override">{{this.cors.override}}</dd>
+                </dl>
+                {{/if}} {{#if this.jsonp}}
+                <h3 class="jsonp">JSONP</h3>
+                <p class="jsonp">{{this.jsonp}}</p>
+                {{/if}}
+            </div>
+            {{/multipleIf}}
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <dl class="parameters">
+                        {{#multipleIf this.queryParams this.payloadParams this.pathParams}}
+                        <h3>Request Parameters</h3>
+                        {{/multipleIf}} {{#if this.pathParams}}
+                        <dt>
+                            <h4>Path Parameters</h4>
+                        </dt>
+                        <dd>
+                            {{#if this.pathParams.isDenied}}
+                            <h5>Denied</h5>
+                            {{else}}
+                            <ul class="list-unstyled">
+                                {{> type this.pathParams}}
+                            </ul>
+                            {{/if}}
+                        </dd>
+                        {{/if}} {{#if this.queryParams}}
+                        <dt>
+                            <h4>Query Parameters</h4>
+                        </dt>
+                        <dd>
+                            {{#if this.queryParams.isDenied}}
+                            <h5>Denied</h5>
+                            {{else}}
+                            <ul class="list-unstyled">
+                                {{> type this.queryParams}}
+                            </ul>
+                            {{/if}}
+                        </dd>
+                        {{/if}} {{#if this.payloadParams}}
+                        <dt>
+                            <h4>Payload Parameters</h4>
+                        </dt>
+                        <dd>
+                            {{#if this.payloadParams.isDenied}}
+                            <h5>Denied</h5>
+                            {{else}}
+                            <ul class="list-unstyled">
+                                {{> type this.payloadParams}}
+                            </ul>
+                            {{/if}}
+                        </dd>
+                        {{/if}} {{#if this.responseParams}}
+                        <dt>
+                            <h3>Response Parameters</h3>
+                        </dt>
+                        <dd>
+                            {{#if this.responseParams.isDenied}}
+                            <h5>Denied</h5>
+                            {{else}}
+                            <ul class="list-unstyled">
+                                {{> type this.responseParams}}
+                            </ul>
+                            {{/if}}
+                        </dd>
+                        {{/if}}
+                        {{#if this.statusSchema}}
+                            <h3>
+                                <a role="button" data-toggle="collapse" href="#statusCode{{this.method}}" aria-expanded="false" aria-controls="statusCode{{this.method}}">
+                                    Status Code Responses
+                                </a>
+                            </h3>
+                            <div class="collapse" id="statusCode{{this.method}}">
+                                {{#each this.statusSchema as |schema code|}}
+                                <dt>
+                                    <h4>{{code}}</h4>
+                                </dt>
+                                <dd>
+                                    {{#if schema.isDenied}}
+                                    <h5>Denied</h5>
+                                    {{else}}
+                                    <ul class="list-unstyled">
+                                        {{> type schema}}
+                                    </ul>
+                                    {{/if}}
+                                </dd>
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        {{/each}}
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

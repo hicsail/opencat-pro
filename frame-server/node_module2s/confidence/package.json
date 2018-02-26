@@ -1,0 +1,121 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "confidence@3.x.x",
+        "scope": null,
+        "escapedName": "confidence",
+        "name": "confidence",
+        "rawSpec": "3.x.x",
+        "spec": ">=3.0.0 <4.0.0",
+        "type": "range"
+      },
+      "/Users/shreya/Projects/BU/byo-cat/frame-server"
+    ]
+  ],
+  "_from": "confidence@>=3.0.0 <4.0.0",
+  "_id": "confidence@3.0.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/confidence",
+  "_nodeVersion": "6.6.0",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/confidence-3.0.2.tgz_1475798679265_0.42620408930815756"
+  },
+  "_npmUser": {
+    "name": "patrickkettner",
+    "email": "patrickkettner@gmail.com"
+  },
+  "_npmVersion": "3.10.8",
+  "_phantomChildren": {
+    "hoek": "4.1.1"
+  },
+  "_requested": {
+    "raw": "confidence@3.x.x",
+    "scope": null,
+    "escapedName": "confidence",
+    "name": "confidence",
+    "rawSpec": "3.x.x",
+    "spec": ">=3.0.0 <4.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/confidence/-/confidence-3.0.2.tgz",
+  "_shasum": "d1cd29994e3b7bc3f69300f87f5bc265c5335e50",
+  "_shrinkwrap": null,
+  "_spec": "confidence@3.x.x",
+  "_where": "/Users/shreya/Projects/BU/byo-cat/frame-server",
+  "bin": {
+    "confidence": "bin/confidence"
+  },
+  "bugs": {
+    "url": "https://github.com/hapijs/confidence/issues"
+  },
+  "dependencies": {
+    "alce": "1.x.x",
+    "boom": "3.x.x",
+    "hoek": "4.x.x",
+    "yargs": "4.x.x"
+  },
+  "description": "Configuration API",
+  "devDependencies": {
+    "code": "3.x.x",
+    "lab": "10.x.x"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "d1cd29994e3b7bc3f69300f87f5bc265c5335e50",
+    "tarball": "https://registry.npmjs.org/confidence/-/confidence-3.0.2.tgz"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "gitHead": "349f34cd4fbf23a1dd2e272df12fa75dcf794cf7",
+  "homepage": "https://github.com/hapijs/confidence#readme",
+  "keywords": [
+    "hapi",
+    "plugin",
+    "configuration",
+    "api"
+  ],
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "http://github.com/hapijs/confidence/raw/master/LICENSE"
+    }
+  ],
+  "main": "lib/index.js",
+  "maintainers": [
+    {
+      "name": "hueniverse",
+      "email": "eran@hueniverse.com"
+    },
+    {
+      "name": "wyatt",
+      "email": "wpreul@gmail.com"
+    },
+    {
+      "name": "kpdecker",
+      "email": "kpdecker@gmail.com"
+    },
+    {
+      "name": "patrickkettner",
+      "email": "patrickkettner@gmail.com"
+    }
+  ],
+  "name": "confidence",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hapijs/confidence.git"
+  },
+  "scripts": {
+    "test": "lab -r console -t 100 -a code -L",
+    "test-cov-html": "lab -r html -o coverage.html -a code -L"
+  },
+  "version": "3.0.2"
+}

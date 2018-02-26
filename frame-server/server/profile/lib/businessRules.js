@@ -33,7 +33,6 @@ var businessRules = {};
         console.log("Account found using account id");
         console.log(account);
         var timeSinceBurn = new Date().getFullYear() - account.yearOfInjury;
-        var timeField = timeSinceBurn > 0 && timeSinceBurn < 7;
         console.log(timeSinceBurn);
 
         profileData = {

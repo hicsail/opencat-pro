@@ -35,8 +35,8 @@ const config = {
             uri: {
                 $filter: 'env',
                 production: process.env.MONGODB_URI,
-                test: 'mongodb://mongo:27017/frame-test',
-                $default: 'mongodb://mongo:27017/frame'
+                test: 'mongodb://mongo-byocat:/frame-test-byocat',
+                $default: 'mongodb://mongo-byocat:/frame-byocat'
             }
         },
         autoIndex: true

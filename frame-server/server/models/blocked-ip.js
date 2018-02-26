@@ -50,7 +50,8 @@ BlockedIp.schema = Joi.object().keys({
 });
 
 BlockedIp.indexes = [
-  { key: { ip: 1, time: 1 } }
+  {key: {ip: 1}},
+  {key: {time: 1}}
 ];
 
 module.exports = BlockedIp;

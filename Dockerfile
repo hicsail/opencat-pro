@@ -18,23 +18,10 @@ RUN apt-get install -y netcat                   #Pings to verify if mongo contai
 # Copy app source and data
 COPY . /usr/src/byo-cat2/
 
-# list directories
-RUN ls -la /usr/src/byo-cat2
-
-# list directories
-RUN ls -la /usr/src/byo-cat2/frame-server
-
-# symlink to node_module is not to be used. This occurs because of we are mounting this folder so that we can work in live environment
-RUN if [ -L "/usr/src/byo-cat2/frame-server/node_modules" ]; then rm /usr/src/byo-cat2/frame-server/node_modules; echo "npm-modules symlink is removed" ; fi;
-# this removes npm_module directory. To install docker compatible modules
-RUN if [ -d "/usr/src/byo-cat2/frame-server/node_modules" ]; then rm -rf /usr/src/byo-cat2/frame-server/node_modules; echo "npm-modules symlink is removed" ; fi;
-
 
 # Install app dependencies
 RUN npm install
 RUN npm install nodemon --save
-# list directories
-RUN ls -la /usr/src/byo-cat2/frame-server/node_modules
 
 ENV NODE_ENV 'docker'
 

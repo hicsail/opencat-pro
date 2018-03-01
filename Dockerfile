@@ -15,8 +15,6 @@ RUN npm install -g n
 RUN n lts
 RUN apt-get install -y netcat                   #Pings to verify if mongo container is up and running, node fails if mongo is down.
 
-RUN apt-get install -y mongodb                    #Needed to seed data to mongo container
-
 # Copy app source and data
 COPY . /usr/src/byo-cat2/
 

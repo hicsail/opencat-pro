@@ -3,6 +3,8 @@ BYO-CAT stands for build your own CAT. A fully customizable, open source web-bas
 
 Our user portal API is built on top of [framejs](https://github.com/jedireza/frame) and node, backed by a MongoDB database.
 
+The platform uses [Accessible+](http://www.accessible-template.com/) to provide section 508 compliant user interface. Please [purchase](http://www.accessible-template.com/purchase.html) a license of the platform suitable to your needs if you wish to use BYO-CAT for development.
+
 ### Installation
 
 Installation is a breeze with docker:

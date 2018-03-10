@@ -63,9 +63,9 @@ In case we want to change the server url to something else, change the **SERVER_
        systemEmail: 'sys@tem',
        smtpHost: 'smtp.gmail.com',
        smtpPort: 465,
-       smtpUsername: '',
-       smtpPassword: 'youremail@gmail.com',
-       emailUrl: 'your password'
+       smtpUsername: 'youremail@gmail.com',
+       smtpPassword: 'your password',
+       emailUrl: 'test url here'
      };
 
 - The config/config folder also holds many customizable variables.

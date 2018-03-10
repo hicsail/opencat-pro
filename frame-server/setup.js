@@ -27,7 +27,8 @@ if (process.env.NODE_ENV === 'test') {
     smtpHost: 'smtp.gmail.com',
     smtpPort: 465,
     smtpUsername: '',
-    smtpPassword: ''
+    smtpPassword: 'youremail@gmail.com',
+    emailUrl: '1231231123'
   };
   Fs.writeFileSync(configPath, configTemplateTest(context));
 }

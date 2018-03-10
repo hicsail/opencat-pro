@@ -65,7 +65,7 @@ internals.applyRoutes = function (server, next) {
           };
 
           const template = 'signup-invitation';
-          const url = {url: 'http://sail.bu.edu:8000/register'};
+          const url = {url: Config.get('emailUrl')};
 
           mailer.sendEmail(emailOptions, template, url, done);
         }

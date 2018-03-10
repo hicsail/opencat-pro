@@ -14,6 +14,7 @@ const criteria = {
 const config = {
     $meta: 'This file configures the plot device.',
     projectName: '{{projectName}}',
+    emailUrl: '{{emailUrl}}'
     port: {
         web: {
             $filter: 'env',

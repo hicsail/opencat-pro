@@ -9,7 +9,6 @@
         "spec": "latest",
         "type": "tag"
       },
-      "/Users/aditi/sci-fi/frame-server"
     ]
   ],
   "_from": "basil.js@latest",
@@ -39,7 +38,7 @@
   "_shasum": "e4fb5653c7472fdb611a764a16a744ad0e2aee25",
   "_shrinkwrap": null,
   "_spec": "basil.js",
-  "_where": "/Users/aditi/sci-fi/frame-server",
+  "_where": "",
   "dependencies": {},
   "description": "The missing Javascript smart persistence layer. Unified localstorage, cookie and session storage JavaScript API.",
   "devDependencies": {

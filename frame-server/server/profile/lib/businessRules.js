@@ -25,15 +25,12 @@ var businessRules = {};
 
     //Prepare tags
     User.findByUserId(userid, function (user) {
-      console.log("****TEST, user id is****");
       console.log(userid);
       console.log(user.roles.account);
 
       Account.findByAccountId(user.roles.account.id, function (account) {
         console.log("Account found using account id");
         console.log(account);
-        var timeSinceBurn = new Date().getFullYear() - account.yearOfInjury;
-        console.log(timeSinceBurn);
 
         profileData = {
           likeCat: 1

@@ -6,4 +6,4 @@
 | Email:   | {{email}}   |
 | Message: | {{message}} |
 
-The Sci-Fi Team
+The BYO-CAT Team

@@ -7,7 +7,7 @@ exports.register = function (server, options, next) {
         path: '/',
         handler: function (request, reply) {
 
-            reply({ message: 'Welcome to sci-fi!' });
+            reply({ message: 'Welcome to BYO-CAT!' });
         }
     });
 

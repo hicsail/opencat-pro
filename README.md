@@ -67,6 +67,7 @@ In case we want to change the server url to something else, change the **SERVER_
        smtpPassword: 'your password',
        emailUrl: 'test url here'
      };
+   You must add your own smtpUsername and smtpPassword otherwise the invite functionality throws an error because of invalid email credentials.
 
 - The config/config folder also holds many customizable variables.
 - The Algorithm logic and business rules for your CAT can be defined in algorithms.js and businessRules.js under profile/lib. These include custom logic for your CAT.

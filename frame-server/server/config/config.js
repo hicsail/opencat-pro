@@ -32,7 +32,15 @@ var Config = {
 
   getProfilePath: function () {
     return "../profile/";
-  }
+  },
+
+  getAppName: function () {
+    return "BYO-CAT";
+  },
+
+  getAppTitle: function () {
+    return "BYO-CAT";
+  },
 
 };
 module.exports = Config;

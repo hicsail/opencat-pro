@@ -37,24 +37,7 @@ internals.applyRoutes = function (server, next) {
       const mailer = request.server.plugins.mailer;
 
       Async.auto({
-        studySignup: function (done) {
 
-          User.findByUsername(request.payload.email, (err, user) => {
-
-            if (err) {
-              return reply(err);
-            }
-
-            if (!user) {
-              return reply(Boom.notFound('User document not found.'));
-            } else {
-              var patientId = user._id.toString();
-              var clinicianId = request.auth.credentials.session.userId;
-
-              StudySignup.create(patientId, clinicianId, "1234", false, done);
-            }
-          });
-        },
         email: function (done) {
 
           const emailOptions = {

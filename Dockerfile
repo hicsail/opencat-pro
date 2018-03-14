@@ -1,4 +1,5 @@
 FROM ubuntu:latest
+FROM mongo:3.4
 
 # Create app directory
 RUN mkdir -p /usr/src/byo-cat2
@@ -18,6 +19,7 @@ RUN apt-get install -y netcat                   #Pings to verify if mongo contai
 # Copy app source and data
 COPY . /usr/src/byo-cat2/
 
+RUN apt-get install -y mongodb                    #Needed to seed data to mongo container
 
 # Install app dependencies
 RUN npm install

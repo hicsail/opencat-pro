@@ -4,7 +4,7 @@
   "description": "A user system API starter",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon  --inspect -e js,md,css,ejs,json server.js",
+    "start": "node server.js",
     "first-time-setup": "node first-time-setup.js",
     "test": "lab -c -L",
     "setup": "./setup.js",

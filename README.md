@@ -16,7 +16,7 @@ Installation is a breeze with docker:
 	```
 		docker build -t byocat .
 
-		docker run -dit --restart always --name mongo-byocat mongo:3.4
+		docker run -dit -p 27017:27017 --restart always --name mongo-byocat mongo:3.4
 
 		sudo docker run -it --restart always -p 8000:8000 --link mongo-byocat:mongo byocat
 	```

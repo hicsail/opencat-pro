@@ -11,14 +11,14 @@ Installation is a breeze with docker:
        
 2. We now use Docker for all deployments! Download and install, then run the docker app. Resources can be found at https://www.docker.com/.
        
-3. Run the commands below which downloads and installs necessary dependencies. This also runs our setup script. (If you are on Windows, run `dos2unix setup.js` and `dos2unix docker-run.sh` prior to the command below)
+3. Run the commands below which downloads and installs necessary dependencies. This also runs our setup script. (If you are on Windows, run `dos2unix setup.js` and `dos2unix docker-run.sh` prior to the command below). The `--restart always` flag ensures that the container is restarted automatically whenever Docker is restarted.
 
 	```
 		docker build -t byocat .
 
-		docker run -d --rm -it --name mongo-byocat mongo:3.4
+		docker run -dit --restart always --name mongo-byocat mongo:3.4
 
-		sudo docker run -it -p 8000:8000 --link mongo-byocat:mongo byocat
+		sudo docker run -it --restart always -p 8000:8000 --link mongo-byocat:mongo byocat
 	```
 
 Smooth, right? :)

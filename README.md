@@ -40,6 +40,71 @@ Smooth, right? :)
 6. We are almost done! Navigate your browser to *localhost:9000* and you should be able to see the BYO-CAT home page. Explore around!
 In case we want to change the server url to something else, change the **SERVER_URL** variable in config.js file under frame-server/server/config.
 
+### Enable SSL
+
+We recommend using Let's Encrypt to handle SSL connections. Below are sample instructions for CentOS 7 and Apache. The steps might be different depending on your distro and required configuration.
+
+* Make sure port 443 is opened (AWS or MOC)
+* Install EPEL
+
+```$ sudo yum install epel-release```
+
+* Install Apache
+
+```
+$ sudo yum install httpd
+$ sudo systemctl start httpd
+$ sudo systemctl enable httpd
+```
+
+* Install mod_ssl
+
+```$ sudo yum install mod_ssl```
+
+* Install [certbot](https://certbot.eff.org/#centosrhel7-apache)
+
+```$ sudo yum install python-certbot-apache```
+
+* Run certbot to generate certificate for Apache
+
+```$ sudo certbot --apache```
+
+* Certificates are only valid for 90 days, so set crontab for [auto renewal](https://certbot.eff.org/docs/using.html#renewal)
+
+```$ sudo crontab -e```
+
+* Add the following line to run certbot every 12 hours:
+
+```0 */12 * * * certbot renew --quiet```
+
+* Forward traffic from Apache to Node.js
+
+```$ sudo vim /etc/httpd/conf.d/ssl.conf```
+
+* Add the following to the bottom of the file, just before `</VirtualHost>`
+
+```
+ProxyRequests Off
+
+<Proxy *>
+    Order deny,allow
+    Allow from all
+</Proxy>
+
+<Location />
+    ProxyPass http://localhost:9000/
+    ProxyPassReverse http://localhost:9000/
+</Location>
+```
+
+* When using Ubuntu, make sure the necessary Apache modules are installed
+
+```
+$ sudo a2enmod proxy
+$ sudo a2enmod proxy_http
+$ sudo a2enmod ssl
+```
+
 ### Making your own CAT
 
 - This project allows you to add the following custom options:

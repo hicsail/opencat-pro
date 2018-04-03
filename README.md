@@ -105,6 +105,21 @@ $ sudo a2enmod proxy_http
 $ sudo a2enmod ssl
 ```
 
+### Enable backups
+
+A sample script `backup.sh` has been provided to create automated backups for MongoDB. Set the required parameters to match your configuration, and add it to your crontab file.
+
+```
+$ chmod +x backup.sh
+$ crontab -e
+```
+
+Add the following to run every night at midnight:
+
+```
+0 0 * * * /path/to/script/backup.sh
+```
+
 ### Making your own CAT
 
 - This project allows you to add the following custom options:

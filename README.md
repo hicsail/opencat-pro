@@ -44,12 +44,11 @@ In case we want to change the server url to something else, change the **SERVER_
 
 We recommend using Let's Encrypt to handle SSL connections. Below are sample instructions for CentOS 7 and Apache. The steps might be different depending on your distro and required configuration.
 
-* Make sure port 443 is opened (AWS or MOC)
-* Install EPEL
+Install EPEL
 
 ```$ sudo yum install epel-release```
 
-* Install Apache
+Install Apache
 
 ```
 $ sudo yum install httpd
@@ -57,31 +56,31 @@ $ sudo systemctl start httpd
 $ sudo systemctl enable httpd
 ```
 
-* Install mod_ssl
+Install mod_ssl
 
 ```$ sudo yum install mod_ssl```
 
-* Install [certbot](https://certbot.eff.org/#centosrhel7-apache)
+Install [certbot](https://certbot.eff.org/#centosrhel7-apache)
 
 ```$ sudo yum install python-certbot-apache```
 
-* Run certbot to generate certificate for Apache
+Run certbot to generate certificate for Apache
 
 ```$ sudo certbot --apache```
 
-* Certificates are only valid for 90 days, so set crontab for [auto renewal](https://certbot.eff.org/docs/using.html#renewal)
+Certificates are only valid for 90 days, so set crontab for [auto renewal](https://certbot.eff.org/docs/using.html#renewal)
 
 ```$ sudo crontab -e```
 
-* Add the following line to run certbot every 12 hours:
+Add the following line to run certbot every 12 hours:
 
 ```0 */12 * * * certbot renew --quiet```
 
-* Forward traffic from Apache to Node.js
+Forward traffic from Apache to Node.js
 
 ```$ sudo vim /etc/httpd/conf.d/ssl.conf```
 
-* Add the following to the bottom of the file, just before `</VirtualHost>`
+Add the following to the bottom of the file, just before `</VirtualHost>`
 
 ```
 ProxyRequests Off
@@ -97,7 +96,7 @@ ProxyRequests Off
 </Location>
 ```
 
-* When using Ubuntu, make sure the necessary Apache modules are installed
+When using Ubuntu, make sure the necessary Apache modules are installed
 
 ```
 $ sudo a2enmod proxy

@@ -24,7 +24,14 @@ Installation is a breeze with docker:
 	```
 
 Smooth, right? :)
-       
+
+ Optionally, you can add logging for your container, simply use:
+    
+  ``` 
+   docker logs -f <container-name> > byo.log & 
+   ```       
+    
+where <container-name> is the docker provided name for your container that can be found by doing docker ps, and using the name given to the container that was spun up for byocat.
        
 4. The db setup can be verified using the following steps:
        

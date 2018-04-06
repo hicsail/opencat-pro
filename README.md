@@ -165,9 +165,10 @@ Add the following to run every night at midnight:
 ### Documentation
 The documentation for various server components can be found inside frame-server/server/docs. We use [documentationjs](https://github.com/documentationjs) to generate documentation. 
 
-### Open source
+### License
 
 This is project is open source under the MIT License and undergoing continuous enhancements. Feel free to improve the platform's many functionalities. The best way to request changes is to Open an Issue describing your changes first.
+The UI framework is based on [Accessible+](http://www.accessible-template.com/). A valid license is required to use this in production.
 
 ### Optional for development purposes - Live reload with Docker!
 We can also add live reload options so that you don't need to rebuild the image each time you make a change in your code. We can do so by mounting the working directory onto the container.

@@ -217,12 +217,12 @@ internals.applyRoutes = function (server, next) {
         payload: {
           username: Joi.string().email().lowercase().required(),
           password: Joi.string().min(10).required(),
-          firstName: Joi.string().lowercase().required(),
-          middleName: Joi.string().lowercase().allow('').optional(),
-          lastName: Joi.string().lowercase().required(),
-          yearOfInjury: Joi.number().integer().min(1000).max(3000).required(),
-          gender: Joi.string().valid('male', 'female').required(),
-          siteNum: Joi.number().integer().required(),
+          firstName: Joi.string().required(),
+          middleName: Joi.string().allow('').optional(),
+          lastName: Joi.string().required(),
+          yearOfInjury: Joi.number().integer().min(1900).max(3000).required(),
+          gender: Joi.string().valid('male', 'female', 'other').required(),
+          preferences: Joi.string().valid('straight', 'bisexual', 'queer', 'prefer-not').required(),
           comments: Joi.string().allow('').optional(),
           tncAgreement: Joi.boolean().required()
         }

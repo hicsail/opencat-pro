@@ -3,6 +3,11 @@
 /* *               header                * */
 /* *************************************** */
 
+main {
+  min-height: calc(100vh - 325px);
+  margin-bottom: 50px;
+}
+
 .fullWidth {
   width: 100%;
 }
@@ -1560,8 +1565,21 @@ footer hr {
   margin: 0 !important;
 }
 
-label{
+#studyData {
+  width: fit-content;
+}
+
+label {
   font-weight: normal;
+}
+
+#questionnaire label,
+#Page2_ label {
+  padding-left: 10px;
+}
+
+#questionnaire h4 {
+  text-align: center;
 }
 
 .demographic {

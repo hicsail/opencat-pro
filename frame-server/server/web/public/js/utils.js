@@ -133,13 +133,18 @@ function pushFooter() {
 
 
 function nextClickHandler(id, serverUrl, questionsLength) {
-  if ($("#Page2_ > form input").length > 0) {
-    if (radioValidator($("#Page2_ > form input"))) {
-      $("#question-error").addClass('hidden');
-    } else {
-      console.log('error');
-      $("#question-error").removeClass('hidden');
-      return;
+
+  var invalids = FMV.validators[0].getInvalids();
+  if (invalids.length == 0) {
+
+    if ($("#Page2_ form input").length > 0) {
+      if (radioValidator($("#Page2_ form input"))) {
+        $("#question-error").addClass('hidden');
+      } else {
+        console.log('error');
+        $("#question-error").removeClass('hidden');
+        return;
+      }
     }
   }
   var l = Ladda.create($(id)[0]);

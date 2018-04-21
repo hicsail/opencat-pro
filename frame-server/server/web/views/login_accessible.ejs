@@ -69,6 +69,7 @@
                     var reply = request.responseText;
                     var replyText = (JSON.parse(reply));
                     alert(replyText.message);
+                    l.stop();
                 }
             });
         }

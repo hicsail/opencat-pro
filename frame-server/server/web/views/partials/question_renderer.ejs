@@ -1,14 +1,29 @@
 <% for(var i = 0; i < questions.length; i++) { %>
-  <div class="row bottomMargin25">
-    <div class="demographic col-md-6"><%= questions[i].questionText %></div>
+<div id=<%= questions[i].group %> class="bottomMargin50 question-box" >
+  <div class="row bottomMargin15">
+    <div class="demographic col-md-6 col-md-offset-1"><%= questions[i].questionText %></div>
   </div>
 
   <% if (questions[i].type == "input-only") { %>
-    <div class="demographic row bottomMargin25">
-      <div class="col-md-6">
-        <input type="text"
-               name="<%= questions[i].responseOptions[0].name %>"
-               id="<%= questions[i].responseOptions[0].id %>" />
+  <div class="demographic row bottomMargin15">
+    <div class="col-md-6 col-md-offset-1">
+      <input type="text"
+             name=<%= questions[i].responseOptions[0].name %> data-validate="<%= questions[i].dataValidate %>"
+             id=<%= questions[i].responseOptions[0].id %> tabindex="<%= questions[i].tabindex %>"/>
+    </div>
+  </div>
+  <% } %>
+
+  <% if (questions[i].type == "radio-only") { %>
+  <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+  <radiogroup>
+    <div class="demographic row bottomMargin15">
+      <div class="col-md-6 col-md-offset-1">
+        <input type="radio" group=<%= questions[i].group %>
+        name=<%= questions[i].responseOptions[j].name %> id=<%= questions[i].responseOptions[j].id %>
+               tabindex="<%= questions[i].tabindex %>" value= <%= questions[i].responseOptions[j].value %> />
+        <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
+               class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
       </div>
     </div>
   <% } %>
@@ -32,82 +47,103 @@
   <% } %>
 
   <% if (questions[i].type == "radio-other") { %>
-    <radiogroup>
-      <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
-        <div class="demographic row bottomMargin25">
-          <div class="col-md-6">
-            <input type="radio"
-                  group="<%= questions[i].group %>"
-                  name="<%= questions[i].responseOptions[j].name %>"
-                  id="<%= questions[i].responseOptions[j].id %>"
-                  value="<%= questions[i].responseOptions[j].value %>" />
-            <label for="<%= questions[i].responseOptions[j].id %>"
-                class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+  <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+  <radiogroup>
+    <div class="demographic row bottomMargin15">
+      <div class="col-md-6 col-md-offset-1">
+        <input type="radio" group=<%= questions[i].group %>
+        name=<%= questions[i].responseOptions[j].name %> id=<%= questions[i].responseOptions[j].id %>
+               value= <%= questions[i].responseOptions[j].value %> tabindex="<%= questions[i].tabindex %>"/>
+        <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
+               class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+      </div>
+    </div>
+  </radiogroup>
+  <% } %>
+  <div class="demographic row bottomMargin15">
+    <div class="col-md-6">
+      <input type="text" name="other_" + + <%= questions[i].responseOptions[j - 1].name %> id="other-input"
+        %>
+      />
+    </div>
+  </div>
+
+  <% } %>
+
+  <% if (questions[i].type == "multi-select-other") { %>
+  <div class="<%= questions[i].type %> bottomMargin50">
+    <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+    <div class="demographic row bottomMargin15">
+      <div class="col-md-6 col-md-offset-1">
+        <input type="checkbox" group=<%= questions[i].group %>
+        name=<%= questions[i].responseOptions[j].name %> id=<%= questions[i].responseOptions[j].id %>
+               tabindex="<%= questions[i].tabindex %>" value= <%= questions[i].responseOptions[j].value %> />
+        <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
+               class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+      </div>
+    </div>
+    <% } %>
+
+  </div>
+  <div class="demographic row bottomMargin15">
+    <div class="col-md-6">
+      <input type="text" name="other_" + <%= questions[i].responseOptions[j - 1].name %> id="other-input" />
+    </div>
+  </div>
+
+  <% } %>
+
+  <% if (questions[i].type == "multi-select") { %>
+  <div class="<%= questions[i].type %> bottomMargin50">
+    <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+    <div class="demographic row bottomMargin15">
+      <div class="col-md-6 col-md-offset-1">
+        <input type="checkbox" group=<%= questions[i].group %>
+        name=<%= questions[i].responseOptions[j].name %> id=<%= questions[i].responseOptions[j].id %>
+               tabindex="<%= questions[i].tabindex %>" value= <%= questions[i].responseOptions[j].value %> />
+        <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
+               class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+      </div>
+    <% } %>
+
+  </div>
+  <% } %>
+
+  <% if (questions[i].type == "simple-select") { %>
+    <div class="wrapper-custom-dropdown">
+      <span>
+        <select id="gender" tabindex="<%= questions[i].tabindex %>" class="custom-dropdown-demographics demographic col-md-6 col-md-offset-1 padding-right-1 margin-bottom-20">
+          <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+          <option name=<%= questions[i].responseOptions[j].name %> value=<%= questions[i].responseOptions[j].value %> ><%= questions[i].responseOptions[j].displayText %> </option>
+          <% } %>
+        </select>
+      </span>
+    </div>
+  <% } %>
+
+  <% if (questions[i].type == "multi-question-radio") { %>
+      <% for(var k = 0; k < questions[i].subQuestions.length; k++) { %>
+        <div class="<%= questions[i].type %> bottomMargin50 row">
+          <div class="marginLeft2">
+            <% for(var k = 0; k < questions[i].subQuestions.length; k++) { %>
+              <div class="demographic col-md-6 col-md-offset-1 bottomMargin15"><%= questions[i].subQuestions[k].questionText %></div>
+              <% for(var j = 0; j < questions[i].subQuestions[k].responseOptions.length; j++) { %>
+                  <radiogroup>
+                    <div class="demographic col-md-6 col-md-offset-1 bottomMargin15">
+                      <div class="">
+                        <input type="radio" group=<%= questions[i].group %>
+                        name=<%= questions[i].subQuestions[k].responseOptions[j].name %> id=<%= questions[i].subQuestions[k].responseOptions[j].id %>
+                               value= <%= questions[i].subQuestions[k].responseOptions[j].value %> tabindex="<%= questions[i].subQuestions[k].tabindex %>"/>
+                        <label for=<%= questions[i].subQuestions[k].responseOptions[j].id %> class="padding-right-1"
+                               class="padding-right-1"><%= questions[i].subQuestions[k].responseOptions[j].displayText %></label>
+                      </div>
+                    </div>
+                  </radiogroup>
+              <% } %>
+            <% } %>
           </div>
         </div>
       <% } %>
-    </radiogroup>
-    <div class="demographic row bottomMargin25">
-      <div class="col-md-6">
-        <input type="text"
-               name="<%= 'other_' + questions[i].responseOptions[j-1].name %>"
-               id="other-input" %> />
-      </div>
-    </div>
-
   <% } %>
-
-  <% if (questions[i].type == "dropdown-only") { %>
-    <div class="demographic row bottomMargin25">
-      <div class="col-md-6">
-        <select name="<%= questions[i].name %>" >
-          <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
-            <option value="<%= questions[i].responseOptions[j].value %>" >
-                <%= questions[i].responseOptions[j].displayText %>
-            </option>
-          <% } %>
-        </select>
-      </div>
-    </div>
-  <% } %>
-
-  <% if (questions[i].type == "checkbox-only" || questions[i].type == "checkbox-none-above") { %>
-    <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
-      <div class="demographic row bottomMargin25">
-        <div class="col-md-6">
-          <input type="checkbox"
-                  name="<%= questions[i].name %>[]"
-                  id="<%= questions[i].name %>-<%= questions[i].responseOptions[j].value %>"
-                  value="<%= questions[i].responseOptions[j].value %>"
-                  class="checkbox-<%= questions[i].name %>" >
-          <label for="<%= questions[i].name %>-<%= questions[i].responseOptions[j].value %>"
-                  class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
-        </div>
-      </div>
-    <% } %>
-    <% if (questions[i].type == "checkbox-none-above") { %>
-      <script>
-        // the selector will match all input controls with the
-        // class "checkbox-'question name'"
-        // and attach a click event handler
-        $("input.checkbox-<%= questions[i].name %>").on('change', function() {
-          // in the handler, 'this' refers to the box clicked on
-          var $box = $(this);
-          var group = "input:checkbox[name='" + $box.attr("name") + "']";
-          var $last = $(group).get(-1);
-          if ($box.is($last) ) {
-            if ($box.is(":checked")) {
-              $(group).prop("checked", false);
-              $box.prop("checked", true);
-            } 
-          }
-          else {
-            $last.checked = false;
-          }
-        });
-      </script>
-    <% } %>
-  <% } %>
-
 
 <% } %>

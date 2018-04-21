@@ -10,10 +10,6 @@
     <div>Survey Id:</div>
     <div id="surveyId"><%= createdSurveyId %></div>
   </div>
-  <div id="question-error" class="hidden error container">
-    <div class="span12 error"><strong><sup>*</sup> Please select one of the options below or press Skip to
-        proceed</strong></div>
-  </div>
   <div id="template_head">
     <div id="questionnaire" class="container">
       <h4>Before we begin the questionnaire, please answer the following questions</h4><br>
@@ -28,20 +24,31 @@
 
   <!--Buttons Section-->
   <div id="button-panel-with-skip" class="hidden container skip-panel">
-    <div class="col-md-2">
-      <button id="skipButton" data-style="slide-left" data-color="blue"
-              class=" btn btn-primary component_center ladda-button"><span class="ladda-label">Skip</span></button>
-    </div>
-    <div class="col-md-6">
-      <button id="nextButtonWithSkip" data-style="slide-left" data-color="blue"
-              class="btn btn-primary component_center ladda-button"><span class="ladda-label">Next</span></button>
+    <div class="col-md-6 col-md-offset-3">
+      <button id="skipButton" data-style="slide-left" data-color="gray"
+                class="btn btn-primary component_center skip pull-left ladda-button"><span class="ladda-label">Skip</span></button>
+
+      <button id="nextButtonWithSkip" data-style="slide-left" data-color="blue" data-validationtrigger tabindex="21"
+              class="btn btn-primary component_center next ladda-button pull-right"><span class="ladda-label">Next</span></button>
     </div>
   </div>
 
   <div id="button-panel-without-skip" class="container skip-panel">
-    <div class="col-md-12">
-      <button id="nextButtonWithoutSkip" data-style="slide-left" data-color="blue"
-              class="btn btn-primary ladda-button"><span class="ladda-label">Next</span></button>
+
+    <div class="col-md-6 col-md-offset-3">
+      <button id="nextButtonWithoutSkip" data-style="slide-left" data-color="blue" data-validationtrigger tabindex="21"
+              class="btn btn-primary next ladda-button pull-right"><span class="ladda-label">Next</span></button>
+    </div>
+  </div>
+
+  <div id="question-error" class="hidden error container">
+    <div class="col-md-6 col-md-offset-3 error"><strong class="pull-right"><sup>*</sup> Please select one of the options above or press Skip to
+        proceed</strong></div>
+  </div>
+
+  <div class="container margin-top20">
+    <div id="answer-error" class="hidden error row-fluid">
+      <div class="span12 error"><strong><sup>*</sup> Questions still unanswered. Please answer all the questions above to proceed.</strong></div>
     </div>
   </div>
 </main>
@@ -168,11 +175,19 @@
   });
 
   $("#nextButtonWithSkip").on("click", function () {
-    nextClickHandler("#nextButtonWithSkip", "<%= configUrl %>",<%= questions.length %>);
+    nextClickHandler("#nextButtonWithSkip", "<%= configUrl %>", <%= questions.length %>);
   });
 
   $("#nextButtonWithoutSkip").on("click", function () {
-    nextClickHandler("#nextButtonWithoutSkip", "<%= configUrl %>",<%= questions.length %>);
+    nextClickHandler("#nextButtonWithoutSkip", "<%= configUrl %>", <%= questions.length %>);
+  });
+
+  $("#skipButton").on("click", function () {
+    var l = Ladda.create($('#skipButton')[0]);
+    l.start();
+    $("#question-error").addClass('hidden');
+    //Skip is only shown for a question
+    getNextQuestion(l, true, "<%= configUrl %>");
   });
 
   $("#skipButton").on("click", function () {

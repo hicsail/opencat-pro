@@ -21,7 +21,7 @@
         <div class="span12 error"><strong><sup>*</sup> Please answer all the questions below to proceed</strong></div>
       </div>
       <br>
-      <%- include('./partials/question_renderer', {questions: questions}); %>
+      <%- include('./partials/question_renderer', {questions: questions, locales: locales, getLocaleResource: getLocaleResource}); %>
 
     </div>
   </div>

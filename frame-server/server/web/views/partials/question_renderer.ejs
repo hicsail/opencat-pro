@@ -1,6 +1,6 @@
 <% for(var i = 0; i < questions.length; i++) { %>
   <div class="row bottomMargin25">
-    <div class="demographic col-md-6"><%= questions[i].questionText %></div>
+    <div class="demographic col-md-6"><%= getLocaleResource(locales, questions[i].questionText) %></div>
   </div>
 
   <% if (questions[i].type == "input-only") { %>
@@ -21,7 +21,7 @@
                    name=<%= questions[i].responseOptions[j].name %> id=<%= questions[i].responseOptions[j].id %>
                    value= <%= questions[i].responseOptions[j].value %> />
             <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
-                   class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+                   class="padding-right-1"><%= getLocaleResource(locales, questions[i].responseOptions[j].displayText) %></label>
           </div>
         </div>
       </radiogroup>
@@ -37,7 +37,7 @@
           name=<%= questions[i].responseOptions[j].name %> id=<%= questions[i].responseOptions[j].id %>
                  value= <%= questions[i].responseOptions[j].value %> />
           <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
-                 class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+                 class="padding-right-1"><%= getLocaleResource(locales, questions[i].responseOptions[j].displayText) %></label>
         </div>
       </div>
     </radiogroup>

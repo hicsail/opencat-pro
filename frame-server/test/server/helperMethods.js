@@ -12,6 +12,7 @@ const enLocale = 'en';
 const enusLocale = 'en_US';
 const esLocale = 'es';
 const frLocale = 'fr';
+const frcaLocale = 'fr_CA';
 const genericTestString = 'Generic Test String';
 const genericArrayString = 'ArrayEntry';
 const genericArrayString0 = genericArrayString + 0;
@@ -79,6 +80,19 @@ lab.experiment('getLocaleResource tests', () => {
         var result = HelperMethods.getLocaleResource (locale, source);
 
         Code.expect(result).to.be.a.string().and.equal('ENUS-'+genericTestString);
+    });
+
+    lab.test('Test country code', (done) => {
+        var locale = new Locale.Locales('fr-ca, fr;q=0.8');
+        const source = {
+            [frcaLocale]: 'FRCA-'+genericTestString,
+            [frLocale]: 'FR-'+genericTestString,
+            [enLocale]: 'EN-'+genericTestString,
+        }
+
+        var result = HelperMethods.getLocaleResource (locale, source);
+
+        Code.expect(result).to.be.a.string().and.equal('FRCA-'+genericTestString);
     });
 
     lab.test('Find secondary language', (done) => {

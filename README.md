@@ -9,7 +9,7 @@ The platform uses [Accessible+](http://www.accessible-template.com/) to provide 
 
 Installation is a breeze with docker:
        
-1. Clone the repo from GitHub and cd into the frame-server directory.
+1. Clone the repo from GitHub and cd into the directory.
        
 2. We now use Docker for all deployments! Download and install, then run the docker app. Resources can be found at https://www.docker.com/.
        

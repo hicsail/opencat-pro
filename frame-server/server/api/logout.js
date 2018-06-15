@@ -37,7 +37,7 @@ internals.applyRoutes = function (server, next) {
         }
 
         if (!sessionDoc) {
-          return reply(Boom.notFound('Document not found.'));
+          return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
         }
 
         request.cookieAuth.clear();

@@ -63,17 +63,17 @@ internals.applyRoutes = function (server, next) {
         if (err) {
           return reply(err);
         }
+        
         return reply.view('surveyuserinfo_accessible', {
           title: Config.getAppTitle(),
           configUrl: Config.SERVER_URL,
           questions: demographicJSON,
-          locales: new locale.Locales(request.headers["accept-language"], 'en'),
+          browserLocales: new locale.Locales(request.headers["accept-language"], 'en'),
           getLocaleResource: helperMethods.getLocaleResource,
           createdSurveyId: createdSurvey._id,
           logoname: "/logo.png",
           favicon: "/logo.png",
           name: isAccount ? request.auth.credentials.user.roles.account.name : request.auth.credentials.user.roles.admin.name
-
         });
 
       });
@@ -111,11 +111,11 @@ internals.applyRoutes = function (server, next) {
         //default to section id 4 if not found.
         var sectionId = result ? result[0] : Config.initialSection;
         var description = Config.findDescriptionBySection(sectionId);
-        var locales = new locale.Locales(request.headers["accept-language"], 'en');
+        var browserLocales = new locale.Locales(request.headers["accept-language"], 'en');
 
         return reply.view('descriptiontemplate_accessible', {
-          title: helperMethods.getLocaleResource(locales, description.title),
-          text: helperMethods.getLocaleResource(locales, description.text),
+          title: helperMethods.getLocaleResource(browserLocales, description.title),
+          text: helperMethods.getLocaleResource(browserLocales, description.text),
           questionId: 0,
           sectionId: sectionId,
           type: "description",
@@ -174,17 +174,17 @@ internals.applyRoutes = function (server, next) {
                   console.log("*******found first question for above sectionID********\n");
                   console.log(question);
 
-                  var locales = new locale.Locales(request.headers["accept-language"], 'en');
+                  var browserLocales = new locale.Locales(request.headers["accept-language"], 'en');
 
                   return reply.view('questiontemplate', {
-                    text: helperMethods.getLocaleResource(locales, question.text),
+                    text: helperMethods.getLocaleResource(browserLocales, question.text),
                     questionId: question.questionID,
                     sectionId: sectionId,
                     surveyId: surveyID,
                     replyOptions: question.response_options,
                     type: "question",
                     isDescription: false,
-                    locales: locales,
+                    browserLocales: browserLocales,
                     getLocaleResource: helperMethods.getLocaleResource
                   });
 
@@ -199,17 +199,17 @@ internals.applyRoutes = function (server, next) {
                   console.log("*******found next! question for above sectionID********\n");
                   console.log(question);
 
-                  var locales = new locale.Locales(request.headers["accept-language"], 'en');
+                  var browserLocales = new locale.Locales(request.headers["accept-language"], 'en');
 
                   return reply.view('questiontemplate', {
-                    text: helperMethods.getLocaleResource(locales, question.text),
+                    text: helperMethods.getLocaleResource(browserLocales, question.text),
                     questionId: question.questionID,
                     sectionId: sectionId,
                     surveyId: surveyID,
                     replyOptions: question.response_options,
                     type: "question",
                     isDescription: false,
-                    locales: locales,
+                    browserLocales: browserLocales,
                     getLocaleResource: helperMethods.getLocaleResource
                   });
 
@@ -260,10 +260,10 @@ internals.applyRoutes = function (server, next) {
                     console.log(" Incrementing actual sectionId, as New section found with this id: " + result);
                     console.log("trying to get description of next section\n");
                     questionNum = 0;
-                    var locales = new locale.Locales(request.headers["accept-language"], 'en');
+                    var browserLocales = new locale.Locales(request.headers["accept-language"], 'en');
                     return reply.view('descriptiontemplate_accessible', {
-                      title: helperMethods.getLocaleResource(locales, Config.findDescriptionBySection(result).title),
-                      text: helperMethods.getLocaleResource(locales, Config.findDescriptionBySection(result).text),
+                      title: helperMethods.getLocaleResource(browserLocales, Config.findDescriptionBySection(result).title),
+                      text: helperMethods.getLocaleResource(browserLocales, Config.findDescriptionBySection(result).text),
                       questionId: questionNum,
                       sectionId: result,
                       type: "description",
@@ -281,17 +281,17 @@ internals.applyRoutes = function (server, next) {
                   console.log("found next! question for above sectionID\n");
                   console.log(question);
 
-                  var locales = new locale.Locales(request.headers["accept-language"], 'en');
+                  var browserLocales = new locale.Locales(request.headers["accept-language"], 'en');
 
                   return reply.view('questiontemplate', {
-                    text: helperMethods.getLocaleResource(locales, question.text),
+                    text: helperMethods.getLocaleResource(browserLocales, question.text),
                     questionId: question.questionID,
                     sectionId: sectionId,
                     surveyId: surveyID,
                     replyOptions: question.response_options,
                     type: "question",
                     isDescription: false,
-                    locales: locales,
+                    browserLocales: browserLocales,
                     getLocaleResource: helperMethods.getLocaleResource
                   });
 

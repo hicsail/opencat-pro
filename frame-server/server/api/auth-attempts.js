@@ -74,7 +74,7 @@ internals.applyRoutes = function (server, next) {
                 }
 
                 if (!authAttempt) {
-                    return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                 }
 
                 reply(authAttempt);
@@ -104,7 +104,7 @@ internals.applyRoutes = function (server, next) {
                 }
 
                 if (!authAttempt) {
-                    return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                 }
 
                 reply({ message: 'Success.' });

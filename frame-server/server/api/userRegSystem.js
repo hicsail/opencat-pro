@@ -37,11 +37,11 @@ internals.applyRoutes = function (server, next) {
     },
     handler: function (request, reply) {
 
-      var locales = new locale.Locales(request.headers["accept-language"], 'en');
+      var browserLocales = new locale.Locales(request.headers["accept-language"], 'en');
 
-      let majorText = helperMethods.getLocaleResource(locales, homeJSON["major_text"]);
-      let instructions = helperMethods.getLocaleResource(locales, homeJSON["instructions"]);
-      let minorText = helperMethods.getLocaleResource(locales, homeJSON["minor_text"]);
+      let majorText = helperMethods.getLocaleResource(browserLocales, homeJSON["major_text"]);
+      let instructions = helperMethods.getLocaleResource(browserLocales, homeJSON["instructions"]);
+      let minorText = helperMethods.getLocaleResource(browserLocales, homeJSON["minor_text"]);
 
       if (request.auth.isAuthenticated) {
         const userID = request.auth.credentials.user._id;

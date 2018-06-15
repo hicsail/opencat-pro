@@ -5,16 +5,16 @@
 <body>
 <div id="mainContent">
   <div class="container">
-    <h4>Clinician patient management interface</h4>
-    <p>You are currently administering <%= patients.length %> patients</p>
-    <p>Your patients have taken a total of <%= total %> surveys</p>
+    <h4><%= gettext("Clinician patient management interface") %></h4>
+    <p><%= getext("You are currently administering %d patients", patients.length) %></p>
+    <p><%= gettext("Your patients have taken a total of %d surveys", total) %></p>
     <table class="table table-striped">
       <thead>
       <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Survey Results</th>
+        <th><%= gettext("First Name") %></th>
+        <th><%= gettext("Last Name") %></th>
+        <th><%= gettext("Email") %></th>
+        <th><%= gettext("Survey Results") %></th>
       </tr>
       </thead>
       <tbody class="table-hover">
@@ -23,7 +23,7 @@
         <td scope="row"><%= patients[i].firstName %></td>
         <td scope="row"><%= patients[i].lastName %></td>
         <td scope="row"><%= patients[i].username %></td>
-        <td scope="row"><a href="http://localhost:8000/surveylist?id=<%= patients[i]._id %>">View Past Survey results</a></td>
+        <td scope="row"><a href="/surveylist?id=<%= patients[i]._id %>"><%= gettext("View Past Survey results") %></a></td>
       </tr>
       <% } %>
       </tbody>

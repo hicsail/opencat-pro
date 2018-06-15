@@ -1,7 +1,7 @@
 <!-- NAVIGATION BAR -->
 <div class="container navContainer">
 
-  <a class="skip-navigation sr-only sr-only-focusable" href="#page-title">Skip Navigation</a>
+  <a class="skip-navigation sr-only sr-only-focusable" href="#page-title"><%= gettext("Skip Navigation") %></a>
   <div class="navbar-header active">
     <a class="brand pull-left" href="/">
       <img src="/public/images/<%=logoname%>" class="mainLogo img-responsive"
@@ -9,24 +9,31 @@
       <span class="sr-only"> selected</span></a>
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#topNavList"
             aria-expanded="false">
-      <span class="adobeBlank" aria-hidden="true">Expand Navigation</span>
+      <span class="adobeBlank" aria-hidden="true"><%= gettext("Expand Navigation") %></span>
       <em class="fa fa-bars fa-lg" style="font-family :'FontAwesome' !important">
-        <span id="expandText" class="sr-only">Expand Navigation</span>
+        <span id="expandText" class="sr-only"><%= gettext("Expand Navigation") %></span>
       </em>
     </button>
   </div>
 
   <nav class="collapse navbar-collapse" aria-label="Main navigation" id="topNavList" aria-expanded="false">
     <ul class="nav navbar-nav navbar-right marginTop40" aria-expanded="false">
-      <li id="username-greeting">Hello, <%= name %>!</li>
-      <li><a href="/">Home</a></li>
-      <li><a href="/contact">Contact Us</a></li>
-      <li><a href="/invite">Invite</a></li>
-      <li><a id="logout">Logout</a></li>
+      <li id="username-greeting"><%= gettext("Hello, %s!", name) %></li>
+      <li><a href="/"><%= gettext("Home") %></a></li>
+      <li><a href="/contact"><%= gettext("Contact Us") %></a></li>
+      <li><a href="/invite"><%= gettext("Invite") %></a></li>
+      <li><a id="logout"><%= gettext("Logout") %></a></li>
     </ul>
   </nav>
-
 </div>
+<noscript>
+  <p id="js-off-message">
+    <%= gettext("The page could not be loaded. The BYO-CAT Project " +
+    "does not fully support browsers with &quot;JavaScript&quot; disabled. Please note " +
+    "that if you choose to continue without enabling &quot;JavaScript&quot; certain functionalities " +
+    "on this website may not be available.") %>
+  </p>
+</noscript>
 
 <script>
   $(function () {

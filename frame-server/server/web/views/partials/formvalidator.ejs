@@ -1,0 +1,29 @@
+<script src="/public/js/formvalidatorconfig.js"></script>
+<script src="/public/js/formvalidator.js"></script>
+<Script>
+FMV.defaultValidatorRules["EIN"][1] = "<%= gettext('EIN not valid') %>";
+FMV.defaultValidatorRules["email"][1] = "<%= gettext('This is not a valid email address') %>";
+FMV.defaultValidatorRules["firstName"][1] = "<%= gettext('Your first name must be between 2 and 30 characters') %>";
+FMV.defaultValidatorRules["lastName"][1] = "<%= gettext('Your last name must be between 2 and 30 characters') %>";
+FMV.defaultValidatorRules["marketType"][1] = "<%= gettext('You must choose between \'individual\', \'SHOP\', or \'both\'') %>";
+FMV.defaultValidatorRules["middleName"][1] = "<%= gettext('Your middle name must be between 2 and 30 characters') %>";
+FMV.defaultValidatorRules["notBlank"][1] = "<%= gettext('You forgot to enter this field') %>";
+FMV.defaultValidatorRules["phoneNumber"][1] = "<%= gettext('This is not a valid phone number') %>";
+FMV.defaultValidatorRules["phoneNumberExtn"][1] = "<%= gettext('This is not a valid phone extension') %>";
+FMV.defaultValidatorRules["productType"][1] = "<%= gettext('This is not a valid product type') %>";
+FMV.defaultValidatorRules["state"][1] = "<%= gettext('This is not a valid state code') %>";
+FMV.defaultValidatorRules["gender"][1] = "<%= gettext('Please choose a gender') %>";
+FMV.defaultValidatorRules["state51"][1] = "<%= gettext('Please choose a state') %>";
+FMV.defaultValidatorRules["statusCode"][1] = "<%= gettext('This is not a valid state') %>";
+FMV.defaultValidatorRules["zipCode"][1] = "<%= gettext('Please enter a 5 digit numeric value in the location field.') %>";
+FMV.defaultValidatorRules["injuryYear"][1] = "<%= gettext('Please enter a 4 digit numeric value in the this field.') %>";
+FMV.defaultValidatorRules["date"][1] = "<%= gettext('This is not valid date') %>";
+FMV.defaultValidatorRules["tncChecked"][1] = "<%= gettext('You must agree to the Terms and Conditions before you can continue') %>";
+FMV.defaultValidatorRules["validPassword"][1] = "<%= gettext('Please ensure password meets complexity requirements') %>";
+FMV.defaultValidatorRules["confirmPass"][1] = "<%= gettext('The passwords do not match.') %>";
+FMV.defaultValidatorRules["confirmNewPass"][1] = "<%= gettext('The passwords do not match.') %>";
+FMV.defaultValidatorRules["checked"][1] = "<%= gettext('You must check this box before you can continue') %>";
+FMV.defaultValidatorRules["checkboxGroupRange"][1] = "<%= gettext('You must select between %s and %s items') %>";
+FMV.defaultValidatorRules["checkboxGroupMinimum"][1] = "<%= gettext('All fields are required') %>";
+FMV.defaultValidatorRules["checkboxGroupMaximum"][1] = "<%= gettext('Please select no more than %s item(s)') %>";
+</Script>

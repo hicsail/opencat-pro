@@ -9,7 +9,7 @@
 
     <% for(var i = 0; i < replyOptions.length; i++) { %>
       <label for=<%= i%> > <input type="radio" name="answer" aria-setsize="2" value= <%= i+1%>
-                              aria-posinset=i id=<%= i%> /> <%= getLocaleResource(locales, replyOptions[i].text) %></label><br>
+                              aria-posinset=i id=<%= i%> /> <%= getLocaleResource(browserLocales, replyOptions[i].text) %></label><br>
       <br>
     <% } %>
   </form>

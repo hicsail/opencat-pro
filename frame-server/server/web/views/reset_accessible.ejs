@@ -7,44 +7,44 @@
 
 <main role="main" aria-label="main section" id="main-content" action="#" data-validationgroup>
   <div class="login-container" id="resetForm">
-    <h4 class="center">Reset Password</h4>
+    <h4 class="center"><%= gettext("Reset Password") %></h4>
     <div class="reset">
       <form id="formID">
         <div class="form-group required">
-          <label for="key">Code address for your account:<sup>*</sup></label>
+          <label for="key"><%= gettext("Code address for your account:") %><sup>*</sup></label>
           <input id="key" class="form-control" name="key"
                  data-validate="notBlank key"
-                 placeholder="Key from email" size="20" type="text">
+                 placeholder="<%= gettext('Key from email') %>" size="20" type="text">
         </div>
         <div class="form-group required">
-          <label for="username">Username/Email: <sup>*</sup></label>
+          <label for="username"><%= gettext("Username/Email:") %>" <sup>*</sup></label>
           <input id="username" class="form-control" name="email"
                  data-validate="notBlank email"
-                 placeholder="Email" size="20" type="text">
+                 placeholder="<%= gettext('Email') %>" size="20" type="text">
         </div>
         <div class="form-group required">
-          <label for="password">Password <sup>*</sup></label> <br>
-          Please ensure your new password is different from your old one
+          <label for="password"><%= gettext("Password") %> <sup>*</sup></label> <br>
+          <%= gettext("Please ensure your new password is different from your old one") %>
           <input id="password" class="form-control"
                  data-validate="notBlank validPassword"
                  type="password"
-                 placeholder="Type Password" size="20">
+                 placeholder="<%= gettext('Type Password') %>" size="20">
         </div>
           <ul>
-            <li id="passReq1">Lowercase</li>
-            <li id="passReq2">Uppercase</li>
-            <li id="passReq3">Numbers</li>
-            <li id="passReq4">Special Characters</li>
-            <li id="passReq5">Length >= 10</li>
+            <li id="passReq1"><%= gettext("Lowercase") $></li>
+            <li id="passReq2"><%= gettext("Uppercase") %></li>
+            <li id="passReq3"><%= gettext("Numbers") %></li>
+            <li id="passReq4"><%= gettext("Special Characters") %></li>
+            <li id="passReq5"><%= gettext("Length >= 10") %></li>
           </ul>
         <div class="form-group required">
-          <label for="confpass">Confirm Password <sup>*</sup></label>
+          <label for="confpass"><%= gettext("Confirm Password") %> <sup>*</sup></label>
           <input id="confpass" class="form-control"
                  data-validate="notBlank confirmPass"
                  type="password"
-                 placeholder="Retype password" size="20">
+                 placeholder="<%= gettext('Retype password') %>" size="20">
         </div>
-        <button id="changePass" data-validationtrigger class="btn btn-primary">Update Password</button>
+        <button id="changePass" data-validationtrigger class="btn btn-primary"><%= gettext("Update Password") %></button>
       </form>
     </div>
   </div>
@@ -64,8 +64,7 @@
   });
 
 </script>
-<script src="/public/js/formvalidatorconfig.js"></script>
-<script src="/public/js/formvalidator.js"></script>
+<%- include('./partials/formvalidator', {}); %>
 <script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
 <script src="/public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
 <script type="text/javascript" src="/public/js/accessible/slick-1.5.7/slick.min.js"></script>

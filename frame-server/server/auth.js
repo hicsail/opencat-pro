@@ -86,7 +86,7 @@ internals.preware = {
         });
 
         if (!groupFound) {
-          return reply(Boom.notFound('Permission denied to this resource.'));
+          return reply(Boom.notFound(request.l10n.gettext("Permission denied to this resource.")));
         }
 
         reply();

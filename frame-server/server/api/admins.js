@@ -76,7 +76,7 @@ internals.applyRoutes = function (server, next) {
                 }
 
                 if (!admin) {
-                    return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                 }
 
                 reply(admin);
@@ -155,7 +155,7 @@ internals.applyRoutes = function (server, next) {
                 }
 
                 if (!admin) {
-                    return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                 }
 
                 reply(admin);
@@ -266,7 +266,7 @@ internals.applyRoutes = function (server, next) {
                             }
 
                             if (!admin) {
-                                return reply(Boom.notFound('Document not found.'));
+                                return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                             }
 
                             reply(admin);
@@ -283,14 +283,14 @@ internals.applyRoutes = function (server, next) {
                             }
 
                             if (!user) {
-                                return reply(Boom.notFound('User document not found.'));
+                                return reply(Boom.notFound(request.l10n.gettext("User document not found.")));
                             }
 
                             if (user.roles &&
                                 user.roles.admin &&
                                 user.roles.admin.id !== request.params.id) {
 
-                                return reply(Boom.conflict('User is already linked to another admin. Unlink first.'));
+                                return reply(Boom.conflict(request.l10n.gettext("User is already linked to another admin. Unlink first.")));
                             }
 
                             reply(user);
@@ -303,7 +303,7 @@ internals.applyRoutes = function (server, next) {
                         if (request.pre.admin.user &&
                             request.pre.admin.user.id !== request.pre.user._id.toString()) {
 
-                            return reply(Boom.conflict('Admin is already linked to another user. Unlink first.'));
+                            return reply(Boom.conflict(request.l10n.gettext("Admin is already linked to another user. Unlink first.")));
                         }
 
                         reply(true);
@@ -375,7 +375,7 @@ internals.applyRoutes = function (server, next) {
                             }
 
                             if (!admin) {
-                                return reply(Boom.notFound('Document not found.'));
+                                return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                             }
 
                             if (!admin.user || !admin.user.id) {
@@ -396,7 +396,7 @@ internals.applyRoutes = function (server, next) {
                             }
 
                             if (!user) {
-                                return reply(Boom.notFound('User document not found.'));
+                                return reply(Boom.notFound(request.l10n.gettext("User document not found.")));
                             }
 
                             reply(user);
@@ -464,7 +464,7 @@ internals.applyRoutes = function (server, next) {
                 }
 
                 if (!admin) {
-                    return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                 }
 
                 reply({ message: 'Success.' });

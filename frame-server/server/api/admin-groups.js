@@ -74,7 +74,7 @@ internals.applyRoutes = function (server, next) {
                 }
 
                 if (!adminGroup) {
-                    return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                 }
 
                 reply(adminGroup);
@@ -149,7 +149,7 @@ internals.applyRoutes = function (server, next) {
                 }
 
                 if (!adminGroup) {
-                    return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                 }
 
                 reply(adminGroup);
@@ -217,7 +217,7 @@ internals.applyRoutes = function (server, next) {
                 }
 
                 if (!adminGroup) {
-                    return reply(Boom.notFound('Document not found.'));
+                    return reply(Boom.notFound(request.l10n.gettext("Document not found.")));
                 }
 
                 reply({ message: 'Success.' });

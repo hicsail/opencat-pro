@@ -7,29 +7,29 @@
 
 <main role="main" aria-label="main section" id="main-content" action="#" data-validationgroup>
   <div class="login-container" id="forgotForm">
-    <h4 class="center">Reset Password</h4>
+    <h4 class="center"><%= gettext("Reset Password") %></h4>
     <div class="forgot">
-      <p class="center"> Please enter the email address for your account. A verification code will be sent to you. Once you have received the verification code, you will be able to choose a new password for your account. </p>
+      <p class="center"><%= gettext("Please enter the email address for your account. A verification code will be sent to you. Once you have received the verification code, you will be able to choose a new password for your account.") %> </p>
       <form id="formID">
         <div class="form-group required">
-          <label for="username">Username/Email: <sup>*</sup></label>
+          <label for="username"><%= gettext("Username/Email: ") %><sup>*</sup></label>
           <input id="emailToReset" class="form-control" name="email"
                  data-validate="notBlank email"
-                 placeholder="Email" size="20" type="text">
+                 placeholder="<%= gettext('Email') %>" size="20" type="text">
         </div>
       </form>
     </div>
     <div class="center link">
-      <button id="submitReset" data-validationtrigger class="btn btn-primary">Reset Password</button>
+      <button id="submitReset" data-validationtrigger class="btn btn-primary"><%= gettext("Reset Password") %></button>
     </div>
     <div class="form-group center marginTop10">
-      <br><a href="/login" class="forgot">Cancel</a>
+      <br><a href="/login" class="forgot"><%g= gettext("Cancel") %></a>
     </div>
   </div>
 
 </main>
 
-<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
+<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only"><%= gettext("Scroll To Top") %></span></a>
 <%- include('./partials/footer_accessible'); %>
 <!-- end footer -->
 
@@ -41,8 +41,7 @@
   });
 
 </script>
-<script src="/public/js/formvalidatorconfig.js"></script>
-<script src="/public/js/formvalidator.js"></script>
+<%- include('./partials/formvalidator', {}); %>
 <script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
 <script src="/public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
 <script type="text/javascript" src="/public/js/accessible/slick-1.5.7/slick.min.js"></script>

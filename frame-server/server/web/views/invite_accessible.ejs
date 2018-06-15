@@ -9,15 +9,15 @@
 <main role="main" aria-label="main section" id="main-content">
   <!--Your custom code goes here-->
   <div class="addressBox login-container" id="contactForm">
-    <h4 class="center">Invite Patients to Survey</h4>
+    <h4 class="center"><%= gettext("Invite Patients to Survey") %></h4>
     <div class="clearfix feedbackMSG1"></div>
     <div class="contact">
       <form id="formID">
         <div class="form-group">
-          <label class="form_label required" for="emailID">Patient Email:</label>
+          <label class="form_label required" for="emailID"><%= gettext("Patient Email:") %></label>
           <input id="emailID" class="form-control" type="email" name="email" required>
         </div>
-        <button id="submitButton" class="btn btn-primary">Invite</button>
+        <button id="submitButton" class="btn btn-primary"><%= gettext("Invite") %></button>
       </form>
     </div>
     <div id="confirmation"></div>
@@ -25,7 +25,7 @@
 
 </main>
 
-<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
+<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only"><%= gettext("Scroll To Top") %></span></a>
 <%- include('./partials/footer_accessible'); %>
 <!-- end footer -->
 <script>

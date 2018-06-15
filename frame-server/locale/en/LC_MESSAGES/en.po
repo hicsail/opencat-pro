@@ -1,0 +1,601 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2018 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# <EMAIL@ADDRESS>, 2018.
+#
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-14 08:50-0700\n"
+"PO-Revision-Date: 2018-06-13 21:38-0700\n"
+"Last-Translator: <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1252\n"
+"Content-Transfer-Encoding: 8bit\n"
+"EN_Project-Id-Version: PACKAGE VERSION\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: server/web/views/chart_temp.ejs:2
+msgid ""
+"To view score for a particular survey, click on one of the buttons below"
+msgstr ""
+"EN_To view score for a particular survey, click on one of the buttons below"
+
+#: server/web/views/chart_temp.ejs:7
+msgid "You can only view 3 surveys at a time"
+msgstr "EN_You can only view 3 surveys at a time"
+
+#: server/web/views/clinician_dashboard_temp.ejs:8
+msgid "Clinician patient management interface"
+msgstr "EN_Clinician patient management interface"
+
+#: server/web/views/clinician_dashboard_temp.ejs:10
+#, php-format
+msgid "Your patients have taken a total of %d surveys"
+msgstr "EN_Your patients have taken a total of %d surveys"
+
+#: server/web/views/clinician_dashboard_temp.ejs:14
+#: server/web/views/register_accessible.ejs:23
+#: server/web/views/register_accessible.ejs:26
+msgid "First Name"
+msgstr "EN_First Name"
+
+#: server/web/views/clinician_dashboard_temp.ejs:15
+#: server/web/views/register_accessible.ejs:29
+#: server/web/views/register_accessible.ejs:31
+msgid "Last Name"
+msgstr "EN_Last Name"
+
+#: server/web/views/clinician_dashboard_temp.ejs:16
+#: server/web/views/forgot_accessible.ejs:18
+#: server/web/views/register_accessible.ejs:37
+#: server/web/views/reset_accessible.ejs:23
+msgid "Email"
+msgstr "EN_Email"
+
+#: server/web/views/clinician_dashboard_temp.ejs:17
+msgid "Survey Results"
+msgstr "EN_Survey Results"
+
+#: server/web/views/clinician_dashboard_temp.ejs:26
+msgid "View Past Survey results"
+msgstr "EN_View Past Survey results"
+
+#: server/web/views/contact_accessible.ejs:15
+#: server/web/views/partials/navbar_accessible.ejs:16
+#: server/web/views/partials/navbar.ejs:11
+#: server/web/views/partials/navbarWelcome_accessible.ejs:23
+#: server/web/views/partials/navbarWelcome.ejs:9
+msgid "Contact Us"
+msgstr "EN_Contact Us"
+
+#: server/web/views/contact_accessible.ejs:28
+msgid "mobile:"
+msgstr "EN_mobile:"
+
+#: server/web/views/contact_accessible.ejs:36
+msgid "fax:"
+msgstr "EN_fax:"
+
+#: server/web/views/contact_accessible.ejs:45
+msgid "email:"
+msgstr "EN_email:"
+
+#: server/web/views/forgot_accessible.ejs:10
+#: server/web/views/forgot_accessible.ejs:23
+#: server/web/views/reset_accessible.ejs:10
+msgid "Reset Password"
+msgstr "EN_Reset Password"
+
+#: server/web/views/forgot_accessible.ejs:12
+msgid ""
+"Please enter the email address for your account. A verification code will be "
+"sent to you. Once you have received the verification code, you will be able "
+"to choose a new password for your account."
+msgstr ""
+"EN_Please enter the email address for your account. A verification code will "
+"be sent to you. Once you have received the verification code, you will be "
+"able to choose a new password for your account."
+
+#: server/web/views/forgot_accessible.ejs:15
+msgid "Username/Email: "
+msgstr "EN_Username/Email: "
+
+#: server/web/views/forgot_accessible.ejs:26
+msgid "Cancel"
+msgstr "EN_Cancel"
+
+#: server/web/views/forgot_accessible.ejs:32
+#: server/web/views/home_accessible.ejs:61
+#: server/web/views/invite_accessible.ejs:28
+#: server/web/views/login_accessible.ejs:35
+#: server/web/views/register_accessible.ejs:127
+#: server/web/views/surveyuserinfo_accessible.ejs:50
+msgid "Scroll To Top"
+msgstr "EN_Scroll To Top"
+
+#: server/web/views/home_accessible.ejs:18
+#, php-format
+msgid "Welcome to %s"
+msgstr "EN_Welcome to %s"
+
+#: server/web/views/home_accessible.ejs:46
+msgid "Active Studies:"
+msgstr "EN_Active Studies:"
+
+#: server/web/views/home_accessible.ejs:49
+#, php-format
+msgid "Study ID: %s"
+msgstr "EN_Study ID: %s"
+
+#: server/web/views/home_accessible.ejs:53
+msgid "Start Self-Adminstered Survey"
+msgstr "EN_Start Self-Adminstered Survey"
+
+#: server/web/views/invite_accessible.ejs:12
+msgid "Invite Patients to Survey"
+msgstr "EN_Invite Patients to Survey"
+
+#: server/web/views/invite_accessible.ejs:17
+msgid "Patient Email:"
+msgstr "EN_Patient Email:"
+
+#: server/web/views/invite_accessible.ejs:20
+#: server/web/views/partials/navbarWelcome_accessible.ejs:24
+msgid "Invite"
+msgstr "EN_Invite"
+
+#: server/web/views/login_accessible.ejs:11
+msgid "Welcome Back!"
+msgstr "EN_Welcome Back!"
+
+#: server/web/views/login_accessible.ejs:16
+msgid "Email:"
+msgstr "EN_Email:"
+
+#: server/web/views/login_accessible.ejs:20
+#: server/web/views/register_accessible.ejs:40
+#: server/web/views/reset_accessible.ejs:26
+msgid "Password"
+msgstr "EN_Password"
+
+#: server/web/views/login_accessible.ejs:23
+#: server/web/views/partials/navbar_accessible.ejs:17
+#: server/web/views/partials/navbar.ejs:10
+msgid "Login"
+msgstr "EN_Login"
+
+#: server/web/views/login_accessible.ejs:28
+msgid "Don't have an account yet?"
+msgstr "EN_Don't have an account yet?"
+
+#: server/web/views/login_accessible.ejs:28
+msgid "Please sign up"
+msgstr "EN_Please sign up"
+
+#: server/web/views/login_accessible.ejs:31
+msgid "Forgot your password?"
+msgstr "EN_Forgot your password?"
+
+#: server/web/views/login_accessible.ejs:31
+msgid "Please click here"
+msgstr "EN_Please click here"
+
+#: server/web/views/login_accessible.ejs:61
+msgid "Your Password Has Expired"
+msgstr "EN_Your Password Has Expired"
+
+#: server/web/views/login_accessible.ejs:61
+msgid ""
+"BYO-CAT users are required to change their password every 90 days. You will "
+"be emailed a code and redirected to the password reset form."
+msgstr ""
+"EN_BYO-CAT users are required to change their password every 90 days. You "
+"will be emailed a code and redirected to the password reset form."
+
+#: server/web/views/partials/footer_accessible.ejs:5
+msgid "Copyright &copy; 2017"
+msgstr "EN_Copyright &copy; 2017"
+
+#: server/web/views/partials/formvalidator.ejs:4
+msgid "EIN not valid"
+msgstr "EN_EIN not valid"
+
+#: server/web/views/partials/formvalidator.ejs:5
+msgid "This is not a valid email address"
+msgstr "EN_This is not a valid email address"
+
+#: server/web/views/partials/formvalidator.ejs:6
+msgid "Your first name must be between 2 and 30 characters"
+msgstr "EN_Your first name must be between 2 and 30 characters"
+
+#: server/web/views/partials/formvalidator.ejs:7
+msgid "Your last name must be between 2 and 30 characters"
+msgstr "EN_Your last name must be between 2 and 30 characters"
+
+#: server/web/views/partials/formvalidator.ejs:8
+msgid "You must choose between 'individual', 'SHOP', or 'both'"
+msgstr "EN_You must choose between 'individual', 'SHOP', or 'both'"
+
+#: server/web/views/partials/formvalidator.ejs:9
+msgid "Your middle name must be between 2 and 30 characters"
+msgstr "EN_Your middle name must be between 2 and 30 characters"
+
+#: server/web/views/partials/formvalidator.ejs:10
+msgid "You forgot to enter this field"
+msgstr "EN_You forgot to enter this field"
+
+#: server/web/views/partials/formvalidator.ejs:11
+msgid "This is not a valid phone number"
+msgstr "EN_This is not a valid phone number"
+
+#: server/web/views/partials/formvalidator.ejs:12
+msgid "This is not a valid phone extension"
+msgstr "EN_This is not a valid phone extension"
+
+#: server/web/views/partials/formvalidator.ejs:13
+msgid "This is not a valid product type"
+msgstr "EN_This is not a valid product type"
+
+#: server/web/views/partials/formvalidator.ejs:14
+msgid "This is not a valid state code"
+msgstr "EN_This is not a valid state code"
+
+#: server/web/views/partials/formvalidator.ejs:15
+msgid "Please choose a gender"
+msgstr "EN_Please choose a gender"
+
+#: server/web/views/partials/formvalidator.ejs:16
+msgid "Please choose a state"
+msgstr "EN_Please choose a state"
+
+#: server/web/views/partials/formvalidator.ejs:17
+msgid "This is not a valid state"
+msgstr "EN_This is not a valid state"
+
+#: server/web/views/partials/formvalidator.ejs:18
+msgid "Please enter a 5 digit numeric value in the location field."
+msgstr "EN_Please enter a 5 digit numeric value in the location field."
+
+#: server/web/views/partials/formvalidator.ejs:19
+msgid "Please enter a 4 digit numeric value in the this field."
+msgstr "EN_Please enter a 4 digit numeric value in the this field."
+
+#: server/web/views/partials/formvalidator.ejs:20
+msgid "This is not valid date"
+msgstr "EN_This is not valid date"
+
+#: server/web/views/partials/formvalidator.ejs:21
+msgid "You must agree to the Terms and Conditions before you can continue"
+msgstr "EN_You must agree to the Terms and Conditions before you can continue"
+
+#: server/web/views/partials/formvalidator.ejs:22
+msgid "Please ensure password meets complexity requirements"
+msgstr "EN_Please ensure password meets complexity requirements"
+
+#: server/web/views/partials/formvalidator.ejs:23
+#: server/web/views/partials/formvalidator.ejs:24
+msgid "The passwords do not match."
+msgstr "EN_The passwords do not match."
+
+#: server/web/views/partials/formvalidator.ejs:25
+msgid "You must check this box before you can continue"
+msgstr "EN_You must check this box before you can continue"
+
+#: server/web/views/partials/formvalidator.ejs:26
+#, php-format
+msgid "You must select between %s and %s items"
+msgstr "EN_You must select between %s and %s items"
+
+#: server/web/views/partials/formvalidator.ejs:27
+msgid "All fields are required"
+msgstr "EN_All fields are required"
+
+#: server/web/views/partials/formvalidator.ejs:28
+#, php-format
+msgid "Please select no more than %s item(s)"
+msgstr "EN_Please select no more than %s item(s)"
+
+#: server/web/views/partials/navbar_accessible.ejs:4
+#: server/web/views/partials/navbarWelcome_accessible.ejs:4
+msgid "Skip Navigation"
+msgstr "EN_Skip Navigation"
+
+#: server/web/views/partials/navbar_accessible.ejs:14
+#: server/web/views/partials/navbar.ejs:8
+#: server/web/views/partials/navbarWelcome_accessible.ejs:22
+#: server/web/views/partials/navbarWelcome.ejs:7
+msgid "Home"
+msgstr "EN_Home"
+
+#: server/web/views/partials/navbar_accessible.ejs:15
+#: server/web/views/partials/navbar.ejs:9
+msgid "Register"
+msgstr "EN_Register"
+
+#: server/web/views/partials/navbar_accessible.ejs:24
+#: server/web/views/partials/navbar.ejs:20
+#: server/web/views/partials/navbarWelcome_accessible.ejs:31
+#: server/web/views/partials/navbarWelcome.ejs:19
+msgid "The page could not be loaded. The BYO-CAT Project "
+msgstr "EN_The page could not be loaded. The BYO-CAT Project "
+
+#: server/web/views/partials/navbarWelcome_accessible.ejs:12
+#: server/web/views/partials/navbarWelcome_accessible.ejs:14
+msgid "Expand Navigation"
+msgstr "EN_Expand Navigation"
+
+#: server/web/views/partials/navbarWelcome_accessible.ejs:21
+#: server/web/views/partials/navbarWelcome.ejs:12
+#, php-format
+msgid "Hello, %s!"
+msgstr "EN_Hello, %s!"
+
+#: server/web/views/partials/navbarWelcome_accessible.ejs:25
+#: server/web/views/partials/navbarWelcome.ejs:10
+msgid "Logout"
+msgstr "EN_Logout"
+
+#: server/web/views/partials/navbarWelcome.ejs:8
+msgid "Start Survey"
+msgstr "EN_Start Survey"
+
+#: server/web/views/register_accessible.ejs:13
+msgid "Please sign up for a new account"
+msgstr "EN_Please sign up for a new account"
+
+#: server/web/views/register_accessible.ejs:35
+msgid "Email (username)"
+msgstr "EN_Email (username)"
+
+#: server/web/views/register_accessible.ejs:44
+#: server/web/views/reset_accessible.ejs:31
+msgid "Type Password"
+msgstr "EN_Type Password"
+
+#: server/web/views/register_accessible.ejs:46
+#: server/web/views/reset_accessible.ejs:34
+msgid "Lowercase"
+msgstr "EN_Lowercase"
+
+#: server/web/views/register_accessible.ejs:47
+#: server/web/views/reset_accessible.ejs:35
+msgid "Uppercase"
+msgstr "EN_Uppercase"
+
+#: server/web/views/register_accessible.ejs:48
+#: server/web/views/reset_accessible.ejs:36
+msgid "Numbers"
+msgstr "EN_Numbers"
+
+#: server/web/views/register_accessible.ejs:49
+#: server/web/views/reset_accessible.ejs:37
+msgid "Special Characters"
+msgstr "EN_Special Characters"
+
+#: server/web/views/register_accessible.ejs:50
+#: server/web/views/reset_accessible.ejs:38
+msgid "Length >= 10"
+msgstr "EN_Length >= 10"
+
+#: server/web/views/register_accessible.ejs:57
+msgid "Middle Name (optional)"
+msgstr "EN_Middle Name (optional)"
+
+#: server/web/views/register_accessible.ejs:60
+msgid "Middle Name"
+msgstr "EN_Middle Name"
+
+#: server/web/views/register_accessible.ejs:65
+msgid "Gender"
+msgstr "EN_Gender"
+
+#: server/web/views/register_accessible.ejs:68
+msgid "Select"
+msgstr "EN_Select"
+
+#: server/web/views/register_accessible.ejs:69
+msgid "Male"
+msgstr "EN_Male"
+
+#: server/web/views/register_accessible.ejs:70
+msgid "Female"
+msgstr "EN_Female"
+
+#: server/web/views/register_accessible.ejs:75
+#: server/web/views/reset_accessible.ejs:41
+msgid "Confirm Password"
+msgstr "EN_Confirm Password"
+
+#: server/web/views/register_accessible.ejs:79
+#: server/web/views/register_accessible.ejs:80
+#: server/web/views/reset_accessible.ejs:45
+msgid "Retype password"
+msgstr "EN_Retype password"
+
+#: server/web/views/register_accessible.ejs:84
+msgid "Year Of Injury"
+msgstr "EN_Year Of Injury"
+
+#: server/web/views/register_accessible.ejs:86
+msgid "YYYY"
+msgstr "EN_YYYY"
+
+#: server/web/views/register_accessible.ejs:93
+msgid "Comments (optional)"
+msgstr "EN_Comments (optional)"
+
+#: server/web/views/register_accessible.ejs:94
+#: server/web/views/register_accessible.ejs:96
+msgid "Special Instructions"
+msgstr "EN_Special Instructions"
+
+#: server/web/views/register_accessible.ejs:100
+#: server/web/views/register_accessible.ejs:114
+msgid "Terms and Conditions"
+msgstr "EN_Terms and Conditions"
+
+#: server/web/views/register_accessible.ejs:104
+msgid "Register as Clinician"
+msgstr "EN_Register as Clinician"
+
+#: server/web/views/register_accessible.ejs:106
+msgid "Sign Up"
+msgstr "EN_Sign Up"
+
+#: server/web/views/register_accessible.ejs:119
+msgid "Do Not Accept"
+msgstr "EN_Do Not Accept"
+
+#: server/web/views/register_accessible.ejs:120
+msgid "Accept"
+msgstr "EN_Accept"
+
+#: server/web/views/reset_accessible.ejs:14
+msgid "Code address for your account:"
+msgstr "EN_Code address for your account:"
+
+#: server/web/views/reset_accessible.ejs:17
+msgid "Key from email"
+msgstr ""
+
+#: server/web/views/reset_accessible.ejs:20
+msgid "Username/Email:"
+msgstr "EN_Username/Email:"
+
+#: server/web/views/reset_accessible.ejs:27
+msgid "Please ensure your new password is different from your old one"
+msgstr "EN_Please ensure your new password is different from your old one"
+
+#: server/web/views/reset_accessible.ejs:47
+msgid "Update Password"
+msgstr "EN_Update Password"
+
+#: server/web/views/summary.ejs:7
+msgid "Score Summary for this Survey"
+msgstr "EN_Score Summary for this Survey"
+
+#: server/web/views/summary.ejs:8
+#, php-format
+msgid "Survey Id: %s"
+msgstr "EN_Survey Id: %s"
+
+#: server/web/views/summary.ejs:16
+msgid "Scale"
+msgstr "EN_Scale"
+
+#: server/web/views/summary.ejs:17
+msgid "Score (SE)"
+msgstr "EN_Score (SE)"
+
+#: server/web/views/summary.ejs:47
+msgid "Survey Scores Preview"
+msgstr "EN_Survey Scores Preview"
+
+#: server/web/views/summary.ejs:52
+msgid "Close"
+msgstr "EN_Close"
+
+#: server/web/views/summary.ejs:53
+msgid "Download PDF"
+msgstr "EN_Download PDF"
+
+#: server/web/views/summary.ejs:54
+msgid "Download CSV"
+msgstr "EN_Download CSV"
+
+#: server/web/views/surveyuserinfo_accessible.ejs:10
+msgid "Survey Id:"
+msgstr "EN_Survey Id:"
+
+#: server/web/views/surveyuserinfo_accessible.ejs:15
+msgid "Please select one of the options below or press Skip to proceed"
+msgstr "EN_Please select one of the options below or press Skip to proceed"
+
+#: server/web/views/surveyuserinfo_accessible.ejs:20
+msgid ""
+"Before we begin the questionnaire, please answer the following questions"
+msgstr ""
+"EN_Before we begin the questionnaire, please answer the following questions"
+
+#: server/web/views/surveyuserinfo_accessible.ejs:22
+msgid "Please answer all the questions below to proceed"
+msgstr "EN_Please answer all the questions below to proceed"
+
+#: server/web/views/surveyuserinfo_accessible.ejs:34
+msgid "Skip"
+msgstr "EN_Skip"
+
+#: server/web/views/surveyuserinfo_accessible.ejs:38
+#: server/web/views/surveyuserinfo_accessible.ejs:45
+msgid "Next"
+msgstr "EN_Next"
+
+#: server/api/accounts.js:74 server/api/accounts.js:189
+#: server/api/accounts.js:264 server/api/accounts.js:370
+#: server/api/accounts.js:560 server/api/admin-groups.js:77
+#: server/api/admin-groups.js:152 server/api/admin-groups.js:220
+#: server/api/admins.js:79 server/api/admins.js:158 server/api/admins.js:269
+#: server/api/admins.js:378 server/api/admins.js:467
+#: server/api/auth-attempts.js:77 server/api/auth-attempts.js:107
+#: server/api/logout.js:40 server/api/sessions.js:77 server/api/sessions.js:107
+#: server/api/statuses.js:77 server/api/statuses.js:154
+#: server/api/statuses.js:184 server/api/users.js:88 server/api/users.js:258
+#: server/api/users.js:467
+msgid "Document not found."
+msgstr "EN_Document not found."
+
+#: server/api/accounts.js:104 server/api/users.js:118
+msgid "Document not found. That is strange."
+msgstr "EN_Document not found. That is strange."
+
+#: server/api/accounts.js:281 server/api/accounts.js:391
+#: server/api/admins.js:286 server/api/admins.js:399
+msgid "User document not found."
+msgstr "EN_User document not found."
+
+#: server/api/accounts.js:288
+msgid "User is already linked to another account. Unlink first."
+msgstr "EN_User is already linked to another account. Unlink first."
+
+#: server/api/accounts.js:301
+msgid "Account is already linked to another user. Unlink first."
+msgstr "EN_Account is already linked to another user. Unlink first."
+
+#: server/api/admins.js:293
+#, fuzzy
+msgid "User is already linked to another admin. Unlink first."
+msgstr "EN_User is already linked to another account. Unlink first."
+
+#: server/api/admins.js:306
+#, fuzzy
+msgid "Admin is already linked to another user. Unlink first."
+msgstr "EN_Account is already linked to another user. Unlink first."
+
+#: server/api/login.js:60 server/api/login.js:79
+msgid "Maximum number of auth attempts reached. Please try again later."
+msgstr "EN_Maximum number of auth attempts reached. Please try again later."
+
+#: server/api/login.js:117
+msgid "Username and password combination not found or account is inactive."
+msgstr "EN_Username and password combination not found or account is inactive."
+
+#: server/api/login.js:225
+msgid "No such email found with an account"
+msgstr "EN_No such email found with an account"
+
+#: server/api/login.js:309 server/api/login.js:341
+msgid "Invalid email or key."
+msgstr "EN_Invalid email or key."
+
+#: server/api/login.js:321 server/api/signup.js:84 server/api/signup.js:266
+#: server/api/users.js:171
+msgid "Password does not meet complexity rules."
+msgstr "EN_Password does not meet complexity rules."
+
+#: server/api/signup.js:72 server/api/signup.js:254 server/api/users.js:158
+#: server/api/users.js:232 server/api/users.js:298
+msgid "Username already in use."
+msgstr "EN_Username already in use."

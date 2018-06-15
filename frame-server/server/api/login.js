@@ -57,7 +57,7 @@ internals.applyRoutes = function (server, next) {
             }
 
             if (detected) {
-              return reply(Boom.badRequest('Maximum number of auth attempts reached. Please try again later.'));
+              return reply(Boom.badRequest(request.l10n.gettext("Maximum number of auth attempts reached. Please try again later.")));
             }
 
             reply();
@@ -76,7 +76,7 @@ internals.applyRoutes = function (server, next) {
 
             if (detected) {
               BlockedIp.create(ip);
-              return reply(Boom.badRequest('Maximum number of auth attempts reached. Please try again later.'));
+              return reply(Boom.badRequest(request.l10n.gettext("Maximum number of auth attempts reached. Please try again later.")));
             }
 
             reply();
@@ -114,7 +114,7 @@ internals.applyRoutes = function (server, next) {
               return reply(err);
             }
 
-            return reply(Boom.badRequest('Username and password combination not found or account is inactive.'));
+            return reply(Boom.badRequest(request.l10n.gettext("Username and password combination not found or account is inactive.")));
           });
         }
       }, {
@@ -222,7 +222,7 @@ internals.applyRoutes = function (server, next) {
             }
 
             if (!user) {
-              return reply(Boom.badRequest('No such email found with an account'));
+              return reply(Boom.badRequest(request.l10n.gettext("No such email found with an account")));
             }
 
             reply(user);
@@ -306,7 +306,7 @@ internals.applyRoutes = function (server, next) {
             }
 
             if (!user) {
-              return reply(Boom.badRequest('Invalid email or key.'));
+              return reply(Boom.badRequest(request.l10n.gettext("Invalid email or key.")));
             }
 
             reply(user);
@@ -318,7 +318,7 @@ internals.applyRoutes = function (server, next) {
           Joi.validate(request.payload.password, new PasswordComplexity(complexityOptions), (err, value) => {
             console.error(err);
             if (err) {
-              return reply(Boom.badRequest('Password does not meet complexity rules.'));
+              return reply(Boom.badRequest(request.l10n.gettext("Password does not meet complexity rules.")));
             }
 
             reply(true);
@@ -338,7 +338,7 @@ internals.applyRoutes = function (server, next) {
         passwordHash: ['keyMatch', function (results, done) {
 
           if (!results.keyMatch) {
-            return reply(Boom.badRequest('Invalid email or key.'));
+            return reply(Boom.badRequest(request.l10n.gettext("Invalid email or key.")));
           }
 
           User.generatePasswordHash(request.payload.password, done);

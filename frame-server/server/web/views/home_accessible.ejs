@@ -15,7 +15,7 @@
     <section id="page-title">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="center">Welcome to <%= title %></h1>
+          <h1 class="center"><%= gettext("Welcome to %s", title) %></h1>
           <h2 class="center"><%= minorText%></h2>
           <hr/>
         </div>
@@ -43,14 +43,14 @@
         </div>
         <% if (loggedIn) { %>
         <div>
-          <p>Active Studies:</p>
+          <p><%= gettext("Active Studies:") %></p>
           <% for(var i = 0; i < studies.length; i++) { %>
           <tr>
-            <a href="/survey/start/<%=studies[i]%>">Study ID: <%=studies[i]%></a> <br>
+            <a href="/survey/start/<%=studies[i]%>"><%= gettext("Study ID: %s", studies[i]) %></a> <br>
           </tr>
           <% } %>
         </div>
-        <div id="startSurveyBtn" class="btn margin-top20 btn-primary"> <a href="/survey/start"> Start Self-Adminstered Survey</a></div>
+        <div id="startSurveyBtn" class="btn margin-top20 btn-primary"> <a href="/survey/start"><%= gettext("Start Self-Adminstered Survey") %></a></div>
         <% } %>
       </div>
     </section>
@@ -58,7 +58,7 @@
 
 </main>
 
-<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
+<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only"><%= gettext("Scroll To Top") %></span></a>
 <%- include('./partials/footer_accessible'); %>
 <!-- end footer -->
 <script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>

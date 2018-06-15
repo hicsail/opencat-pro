@@ -28,12 +28,14 @@
     "hapi": "15.x.x",
     "hapi-auth-basic": "4.x.x",
     "hapi-auth-cookie": "6.x.x",
+    "hapi-l10n-gettext": "0.0.8",
     "hapi-mongo-models": "6.x.x",
     "hoek": "4.x.x",
     "inert": "4.x.x",
     "jade": "1.x.x",
     "joi": "9.x.x",
     "joi-password-complexity": "1.x.x",
+    "locale": "^0.1.0",
     "lout": "9.x.x",
     "mongo-models": "1.x.x",
     "mongodb": "2.x.x",
@@ -52,6 +54,12 @@
     "promptly": "2.x.x",
     "proxyquire": "1.x.x",
     "chai": "^3.5.0",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "grunt": "^1.0.2",
+    "grunt-cli": "1.2.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-ejslint": "^1.0.0",
+    "lodash": "^4.17.5"
   }
 }

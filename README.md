@@ -162,6 +162,66 @@ Add the following to run every night at midnight:
 
 - The routes combined wih helpmerMethods.js works like a controller layer between the Model and Views. Helpermethods is a general purpose collection of logic and methods that retrieve, process and massage data to and fro between the models and views.
 
+### Localization
+
+There are two areas of localization for the application, the application itself and the survey specific information found within the files in the profile folder. The survey specific information consists of the survey questions, the section descriptions, the demographic questions and the home page text. 
+
+The application makes use of the 'Accept-Language' header in the HTTP request recieved from the browser in determining which language to render the application. In the event that the language requested by the browser is not supported by the application the locale of the server running the application in locating the appropriate translation.
+
+The survey information consists of several JSON files containing this data. Along with other information, the text displayed for the questions, answers and other survey text is located with a field in the JSON object as a string. If only a single language needs to be supported then the fields can be defined using strings as shown below.
+
+```
+  {
+    ...
+    "questionText": "Have you kept pets before?",
+    "responseOptions": [
+      {
+        ...
+        "id": "kept_pets_1",
+        "value" : 1,
+        "displayText": "Yes",
+      },
+      {
+        ...
+        "id": "kept_pets_2",
+        "value" : 2,
+        "displayText": "No",
+      }
+    ]
+  }
+```
+In the case where multiple languages need to be supported these string fields are specfield as objects. The object would contain a field for each language or language/country code that needs to be supported. The NPM Locale module is used in this implementation which makes use of ISO 15897 in defining language and country codes. Languages are specified in lowercase, when a specific country variation is needed, the country is specified in upper case with the two seperated by an underscore. For example, French-Canadian would be specfied as "en_CA".
+
+```
+  {
+    ...
+    "questionText": {
+      "en": "Have you kept pets before?",
+      "es": "¿Has tenido mascotas antes?"
+    },
+    "responseOptions": [
+      {
+        ...
+        "id": "kept_pets_1",
+        "value" : 1,
+        "displayText": {
+          "en": "Yes",
+          "es": "Sí"
+        }
+      },
+      {
+        ...
+        "id": "kept_pets_2",
+        "value" : 2,
+        "displayText": {
+          "en": "No",
+          "es": "No"
+        }
+      }
+    ]
+  }
+```
+
 ### Documentation
 The documentation for various server components can be found inside frame-server/server/docs. We use [documentationjs](https://github.com/documentationjs) to generate documentation. 
 

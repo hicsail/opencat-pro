@@ -1,12 +1,23 @@
 {
   "0": {
-    "title": "Overall Preferences",
-    "text": "The following questions are to gather your overall preferences"
+    "title": {
+      "en": "Overall Preferences",
+      "es": "Preferencias generales"
+    },
+    "text": {
+      "en": "The following questions are to gather your overall preferences",
+      "es": "Las siguientes preguntas son para reunir sus preferencias generales"
+    }
   },
   "1": {
-    "title": "Specific Preferences",
-    "text": "The following questions are to gather your specific preferences"
-
+    "title": {
+      "en": "Specific Preferences",
+      "es": "Preferencias específicas"
+    },
+    "text": {
+      "en": "The following questions are to gather your specific preferences",
+      "es": "Las siguientes preguntas son para reunir sus preferencias específicas"
+    }
   }
 }
 

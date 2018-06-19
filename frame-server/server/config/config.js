@@ -2,10 +2,12 @@
 const initialQuestionList = require('../profile/initialQuestionList.json');
 const descriptionList = require('../profile/sectionDescription.json');
 
+const appConfig = require('../../config');
+
 var Config = {
 
   descriptionList: new Map(),
-  SERVER_URL: "http://localhost:8000", //Change this to be deploy url
+  SERVER_URL: appConfig.get('/appUrl'), // "http://localhost:8000", //Change this to be deploy url
   sectionSkipLowerLimit: 8,
   sectionSkipUpperLimit: 14,
   sectionSkipScoreThreshold: 0.22,
@@ -27,7 +29,8 @@ var Config = {
   },
 
   getAppTitle: function () {
-    return "BYO-CAT";
+    return appConfig.get('/projectName');
+//    return "BYO-CAT";
   },
 
   getProfilePath: function () {
@@ -35,12 +38,9 @@ var Config = {
   },
 
   getAppName: function () {
-    return "BYO-CAT";
-  },
-
-  getAppTitle: function () {
-    return "BYO-CAT";
-  },
+    return appConfig.get('/projectName');
+//    return "BYO-CAT";
+  }
 
 };
 module.exports = Config;

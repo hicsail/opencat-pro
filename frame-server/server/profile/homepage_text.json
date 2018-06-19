@@ -1,24 +1,40 @@
 {
-  "major_text": "BYO-CAT stands for Build Your Own CAT. CAT is a Computer Adaptive test, which is an extremely customisable survey platform having customisable question banks, evaluation metrics and result structures. The Cat version of the BYO-CAT Profile assesses your likes, dislikes and preferences towards cats.",
-  "minor_text": "An adaptive survey platform for CAT lovers",
-  "instructions": [
-    {
-      "text": "Make an account and sign in to get score history."
-    },
-    {
-      "text": "Answer questions appropriate to you. You can choose to skip questions if you wish."
-    },
-    {
-      "text": "Choose based on what suits you most."
-    },
-    {
-      "text": "Remember, all pets are created equal."
-    }
-
-  ]
+  "major_text": {
+    "en": "BYO-CAT stands for Build Your Own CAT. CAT is a Computer Adaptive test, which is an extremely customisable survey platform having customisable question banks, evaluation metrics and result structures. The Cat version of the BYO-CAT Profile assesses your likes, dislikes and preferences towards cats.",
+    "es": "BYO-CAT significa Build Your Own CAT. CAT es una prueba de adaptación informática, que es una plataforma de encuestas extremadamente personalizable con bancos de preguntas personalizables, métricas de evaluación y estructuras de resultados. La versión Cat del perfil BYO-CAT evalúa tus gustos, aversiones y preferencias hacia los gatos."
+  },
+  "minor_text": {
+    "en": "An adaptive survey platform for CAT lovers",
+    "es": "Una plataforma de encuesta adaptativa para los amantes de CAT"
+  },
+  "instructions": {
+    "en": [
+      {
+        "text": "Make an account and sign in to get score history."
+      },
+      {
+        "text": "Answer questions appropriate to you. You can choose to skip questions if you wish."
+      },
+      {
+        "text": "Choose based on what suits you most."
+      },
+      {
+        "text": "Remember, all pets are created equal."
+      }
+    ],
+    "es" :[
+      {
+        "text": "Haga una cuenta e inicie sesión para obtener el historial de puntajes."
+      },
+      {
+        "text": "Responda las preguntas apropiadas para usted. Puede elegir omitir preguntas si lo desea."
+      },
+      {
+        "text": "Elija según lo que más le convenga."
+      },
+      {
+        "text": "Recuerde, todas las mascotas son creadas iguales."
+      }
+    ]
+  }
 }
-
-
-
-
-

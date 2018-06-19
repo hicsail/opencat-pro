@@ -3,6 +3,7 @@
 'use strict';
 
 const Joi = require('joi');
+const locale = require('locale');
 const Config = require('../config/config.js');
 const demographicJSON = require('../profile/demographics.json');
 const helperMethods = require('../helperMethods.js'); //http://stackoverflow.com/questions/5726729/how-to-parse-json-using-node-js
@@ -66,6 +67,8 @@ internals.applyRoutes = function (server, next) {
           title: Config.getAppTitle(),
           configUrl: Config.SERVER_URL,
           questions: demographicJSON,
+          locales: new locale.Locales(request.headers["accept-language"], 'en'),
+          getLocaleResource: helperMethods.getLocaleResource,
           createdSurveyId: createdSurvey._id,
           logoname: "/logo.png",
           favicon: "/logo.png",
@@ -108,9 +111,11 @@ internals.applyRoutes = function (server, next) {
         //default to section id 4 if not found.
         var sectionId = result ? result[0] : Config.initialSection;
         var description = Config.findDescriptionBySection(sectionId);
+        var locales = new locale.Locales(request.headers["accept-language"], 'en');
+
         return reply.view('descriptiontemplate_accessible', {
-          title: description.title,
-          text: description.text,
+          title: helperMethods.getLocaleResource(locales, description.title),
+          text: helperMethods.getLocaleResource(locales, description.text),
           questionId: 0,
           sectionId: sectionId,
           type: "description",
@@ -169,14 +174,18 @@ internals.applyRoutes = function (server, next) {
                   console.log("*******found first question for above sectionID********\n");
                   console.log(question);
 
+                  var locales = new locale.Locales(request.headers["accept-language"], 'en');
+
                   return reply.view('questiontemplate', {
-                    text: question.text,
+                    text: helperMethods.getLocaleResource(locales, question.text),
                     questionId: question.questionID,
                     sectionId: sectionId,
                     surveyId: surveyID,
                     replyOptions: question.response_options,
                     type: "question",
-                    isDescription: false
+                    isDescription: false,
+                    locales: locales,
+                    getLocaleResource: helperMethods.getLocaleResource
                   });
 
                 });
@@ -190,14 +199,18 @@ internals.applyRoutes = function (server, next) {
                   console.log("*******found next! question for above sectionID********\n");
                   console.log(question);
 
+                  var locales = new locale.Locales(request.headers["accept-language"], 'en');
+
                   return reply.view('questiontemplate', {
-                    text: question.text,
+                    text: helperMethods.getLocaleResource(locales, question.text),
                     questionId: question.questionID,
                     sectionId: sectionId,
                     surveyId: surveyID,
                     replyOptions: question.response_options,
                     type: "question",
-                    isDescription: false
+                    isDescription: false,
+                    locales: locales,
+                    getLocaleResource: helperMethods.getLocaleResource
                   });
 
                 });
@@ -247,9 +260,10 @@ internals.applyRoutes = function (server, next) {
                     console.log(" Incrementing actual sectionId, as New section found with this id: " + result);
                     console.log("trying to get description of next section\n");
                     questionNum = 0;
+                    var locales = new locale.Locales(request.headers["accept-language"], 'en');
                     return reply.view('descriptiontemplate_accessible', {
-                      title: Config.findDescriptionBySection(result).title,
-                      text: Config.findDescriptionBySection(result).text,
+                      title: helperMethods.getLocaleResource(locales, Config.findDescriptionBySection(result).title),
+                      text: helperMethods.getLocaleResource(locales, Config.findDescriptionBySection(result).text),
                       questionId: questionNum,
                       sectionId: result,
                       type: "description",
@@ -267,14 +281,18 @@ internals.applyRoutes = function (server, next) {
                   console.log("found next! question for above sectionID\n");
                   console.log(question);
 
+                  var locales = new locale.Locales(request.headers["accept-language"], 'en');
+
                   return reply.view('questiontemplate', {
-                    text: question.text,
+                    text: helperMethods.getLocaleResource(locales, question.text),
                     questionId: question.questionID,
                     sectionId: sectionId,
                     surveyId: surveyID,
                     replyOptions: question.response_options,
                     type: "question",
-                    isDescription: false
+                    isDescription: false,
+                    locales: locales,
+                    getLocaleResource: helperMethods.getLocaleResource
                   });
 
                 });

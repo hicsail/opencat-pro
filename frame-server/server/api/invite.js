@@ -48,7 +48,7 @@ internals.applyRoutes = function (server, next) {
           };
 
           const template = 'signup-invitation';
-          const url = {url: Config.get('emailUrl')};
+          const url = {url: Config.get('appUrl')};
 
           mailer.sendEmail(emailOptions, template, url, done);
         }

@@ -10,33 +10,11 @@ const MongoModels = require('mongo-models');
 const configTemplatePath = Path.resolve(__dirname, 'config.example');
 const configPath = Path.resolve(__dirname, 'config.js');
 
-console.log("Env: " + process.env.NODE_ENV);
-if (process.env.NODE_ENV === 'test') {
-  const options = {encoding: 'utf-8'};
-  const source = Fs.readFileSync(configTemplatePath, options);
-  const configTemplateTest = Handlebars.compile(source);
-  const context = {
-    projectName: 'Frame',
-    rootEmail: 'root@root',
-    rootPassword: 'rootroot',
-    rootFirst: 'root',
-    rootLast: 'root',
-    rootBirthday: '2016-07-22T19:18:18.403Z',
-    rootGender: 'male',
-    systemEmail: 'sys@tem',
-    smtpHost: 'smtp.gmail.com',
-    smtpPort: 465,
-    smtpUsername: 'youremail@gmail.com',
-    smtpPassword: '1231231123',
-    emailUrl: 'Deploy URl Here'
-  };
-  Fs.writeFileSync(configPath, configTemplateTest(context));
-}
-
-//Need to change this file for production! Later, ideally these values should come in using a form
 const options = {encoding: 'utf-8'};
 const source = Fs.readFileSync(configTemplatePath, options);
 const configTemplateTest = Handlebars.compile(source);
+
+//Need to change this file for production! Later, ideally these values should come in using a form
 const context = {
   projectName: 'BYO-CAT',
   rootEmail: 'root@root',
@@ -50,8 +28,25 @@ const context = {
   smtpPort: 465,
   //Change credentials below
   smtpUsername: 'youremail@gmail.com',
-  smtpPassword: '1231231123'
+  smtpPassword: '1231231123',
+  webHostname: 'localhost',
+  webPort: 8000,
+  mongoServer: 'mongo-byocat:27017',
+  mongoTestDatabase: 'frame-test-byocat',
+  mongoDatabase: 'frame-byocat'
 };
+
+console.log("Env: " + process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'test') {
+  context.projectName = 'Frame';
+  context.systemEmail = 'sys@tem';
+}
+
+context.appUrl = require('url').format({
+  protocol: 'http',
+  hostname: context.webHostname,
+  port: context.webPort
+});
 
 Fs.writeFileSync(configPath, configTemplateTest(context));
 
@@ -62,7 +57,7 @@ const User = require('./server/models/user');
 
 Async.auto({
   connect: function (done) {
-    MongoModels.connect('mongodb://mongo-byocat:27017/frame', {}, done);
+    MongoModels.connect('mongodb://' + context.mongoServer + '/' + context.mongoDatabase, {}, done);
   },
   adminGroup: ['connect', function (dbResults, done) {
     Async.auto({
@@ -78,7 +73,7 @@ Async.auto({
       }
 
       done();
-  });
+    });
   }],
   admin: ['connect', function (dbResults, done) {
     const document = {
@@ -97,7 +92,7 @@ Async.auto({
       }
 
       done(err, docs && docs[0]);
-  });
+    });
   }],
   user: ['connect', function (dbResults, done) {
     Async.auto({
@@ -117,11 +112,10 @@ Async.auto({
         timeCreated: new Date()
       };
 
-    User.insertOne(document, (err, docs) => {
-
-      done(err, docs && docs[0]);
-  });
-  });
+      User.insertOne(document, (err, docs) => {
+        done(err, docs && docs[0]);
+      });
+    });
   }],
   adminMembership: ['admin', function (dbResults, done) {
     const id = dbResults.admin._id.toString();
@@ -169,7 +163,6 @@ Async.auto({
   }
 
   console.log("Root user setup complete");
-process.exit(0);
+  process.exit(0);
 })
 ;
-

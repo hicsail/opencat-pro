@@ -14,12 +14,12 @@ const criteria = {
 const config = {
     $meta: 'This file configures the plot device.',
     projectName: '{{projectName}}',
-    emailUrl: '{{emailUrl}}',
+    appUrl: '{{appUrl}}',
     port: {
         web: {
             $filter: 'env',
             test: 9000,
-            $default: 8000
+            $default: {{webPort}}
         }
     },
     authAttempts: {
@@ -36,8 +36,8 @@ const config = {
             uri: {
                 $filter: 'env',
                 production: process.env.MONGODB_URI,
-                test: 'mongodb://mongo-byocat:/frame-test-byocat',
-                $default: 'mongodb://mongo-byocat:/frame-byocat'
+                test: 'mongodb://{{mongoServer}}/{{mongoTestDatabase}}',
+                $default: 'mongodb://{{mongoServer}}/{{mongoDatabase}}'
             }
         },
         autoIndex: true

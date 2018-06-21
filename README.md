@@ -47,7 +47,7 @@ where <container-name> is the docker provided name for your container that can b
  	- Next you'll need [dos2unix](https://sourceforge.net/projects/dos2unix/ "dos2unix"), a program that converts text files with DOS or MAC line breaks to Unix line breaks and vice versa.  
 
 6. We are almost done! Navigate your browser to *localhost:9000* and you should be able to see the BYO-CAT home page. Explore around!
-In case we want to change the server url to something else, change the **SERVER_URL** variable in config.js file under frame-server/server/config.
+In case we want to change the server url to something else, change the **webHostname** and **webPort** variables in setup.js file under frame-server.
 
 ### Enable SSL
 
@@ -138,7 +138,7 @@ Add the following to run every night at midnight:
   
   All these formats can be found in the profile/ folder as well as the config/config folder.
 
-- One time setup options are defined in setup.js. This file is run when you do a docker build. Within setup.sjs, you would want to add your customizations for the following code:
+- One time setup options are defined in setup.js. This file is run when you do a docker build. Within setup.js, you would want to add your customizations for the following code:
     ```
     const context = {
        projectName: 'BYO-CAT',
@@ -153,11 +153,16 @@ Add the following to run every night at midnight:
        smtpPort: 465,
        smtpUsername: 'youremail@gmail.com',
        smtpPassword: 'your password',
-       emailUrl: 'test url here'
+       webHostname: 'localhost',
+       webPort: 8000,
+       mongoServer: 'mongo-byocat:27017',
+       mongoTestDatabase: 'frame-test-byocat',
+       mongoDatabase: 'frame-byocat'
      };
    You must add your own smtpUsername and smtpPassword otherwise the invite functionality throws an error because of invalid email credentials.
 
 - The config/config folder also holds many customizable variables.
+
 - The Algorithm logic and business rules for your CAT can be defined in algorithms.js and businessRules.js under profile/lib. These include custom logic for your CAT.
 
 - The routes combined wih helpmerMethods.js works like a controller layer between the Model and Views. Helpermethods is a general purpose collection of logic and methods that retrieve, process and massage data to and fro between the models and views.

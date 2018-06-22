@@ -57,17 +57,41 @@
 
 <script>
 
+  function injectValue(obj, name, value) {
+    if (obj.hasOwnProperty(name)) {
+      if (obj[name] instanceof Array) {
+        obj[name].push(value);
+      }
+      else {
+        obj[name] = [obj[name], value]; // change to array of current value and new value
+      }
+    }
+    else {
+      obj[name] = value;
+    }
+  }
+
   function storeUserData(laddaInstance, serverUrl, questionsLength) {
 
-    var inputsAnswered = $('input[type="text"]').filter(function () {
-      return !!this.value;
-    }).length;
+    var demographicInfo = {}
 
-    var radiosAnswered = $(':radio:checked').size();
+    $('input[type="text"]').filter(function () {
+      injectValue(demographicInfo, this.name, this.value);
+    });
 
-    var numAnswered = radiosAnswered + inputsAnswered;
-    if (numAnswered < questionsLength) {
+    $('select').filter(function () {
+      injectValue(demographicInfo, this.name, this.value);
+    });
 
+    $(':radio:checked').filter(function() {
+      injectValue(demographicInfo, this.name, this.value);
+    });
+
+    $(':checkbox:checked').filter(function () {
+      injectValue(demographicInfo, this.name, this.value);
+    });
+
+    if (Object.keys(demographicInfo).length < questionsLength) {
       //do not proceed if any of these values null
       $("#answer-error").show();
       $("#answer-error").removeClass('hidden');
@@ -79,23 +103,10 @@
     var cookie = basil.get('cookie');
     var userId = JSON.parse(cookie).session.userId;
 
-    var demographicInfo = {}
-
-
-    for (var i = 0; i < radiosAnswered; i++) {
-      //get values from divs and prepare userdata hash
-      demographicInfo[$(":radio:checked")[i].name] = $(":radio:checked")[i].value;
-    }
-
-    for (var i = 0; i < radiosAnswered; i++) {
-      //get values from divs and prepare userdata hash
-      demographicInfo[$(":radio:checked")[i].name] = $(":radio:checked")[i].value;
-    }
-
+    demographicInfo.surveyId = $("#surveyId")[0].innerText;
 
     console.log("demographics hash is:");
     console.log(demographicInfo);
-    demographicInfo["surveyId"] = $("#surveyId")[0].innerText;
 
     $("#answer-error").hide();
 

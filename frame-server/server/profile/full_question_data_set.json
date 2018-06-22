@@ -1,6 +1,9 @@
 [
   {
-  "text": "Which species of cats do you like?<br>Please specify your choice.",
+  "text": {
+    "en": "Which species of cats do you like?<br>Please specify your choice.",
+    "es": "¿Qué especies de gatos te gustan? <br> Por favor, especifica tu elección."
+  },
   "slope": 2.341,
   "questionID": 1,
   "sectionID": 0,
@@ -13,7 +16,10 @@
       "scales": 0,
       "ques_response_data": "1_0",
       "choice": 4,
-      "text": "American Bobtail",
+      "text": {
+        "en": "American Bobtail",
+        "es": "Bobtail americano"
+      },
       "score": 1
     },
     {
@@ -21,7 +27,10 @@
       "scales": 0,
       "ques_response_data": "1_0",
       "choice": 5,
-      "text": "American Curl",
+      "text": {
+        "en": "American Curl",
+        "es": "Curl americano"
+      },
       "score": 1
     },
     {
@@ -29,7 +38,10 @@
       "scales": 0,
       "ques_response_data": "1_0",
       "choice": 3,
-      "text": "American Shorthair",
+      "text": {
+        "en": "American Shorthair",
+        "es": "Shorthair americano"
+      },
       "score": 2
     },
     {
@@ -37,13 +49,19 @@
       "scales": 0,
       "ques_response_data": "1_0",
       "choice": 2,
-      "text": "Bengal",
+      "text": {
+        "en": "Bengal",
+        "es": "Bengal"
+      },
       "score": 3
     }
   ]
 },
   {
-    "text": "Do you prefer big cats or small cats?",
+    "text": {
+      "en": "Do you prefer big cats or small cats?",
+      "es": "¿Prefieres gatos grandes o pequeños felinos?"
+    },
     "slope": 2.0,
     "questionID": 2,
     "sectionID": 0,
@@ -56,7 +74,10 @@
         "scales": 0,
         "ques_response_data": "2_0",
         "choice": 5,
-        "text": "Big Ones",
+        "text": {
+          "en": "Big Ones",
+          "es": "Grandes"
+        },
         "score": 1
       },
       {
@@ -64,7 +85,10 @@
         "scales": 0,
         "ques_response_data": "2_0",
         "choice": 4,
-        "text": "Small Ones",
+        "text": {
+          "en": "Small Ones",
+          "es": "Pequeños"
+        },
         "score": 2
       },
       {
@@ -72,7 +96,10 @@
         "scales": 0,
         "ques_response_data": "2_0",
         "choice": 5,
-        "text": "Really Big Ones",
+        "text": {
+          "en": "Really Big Ones",
+          "es": "Realmente grandes"
+        },
         "score": 1
       },
       {
@@ -80,14 +107,20 @@
         "scales": 0,
         "ques_response_data": "2_0",
         "choice": 4,
-        "text": "Really Small Ones",
+        "text": {
+          "en": "Really Small Ones",
+          "es": "Realmente pequeños"
+        },
         "score": 2
       }
 
     ]
   },
   {
-    "text": "What eye-color do you want your cat to have?",
+    "text": {
+      "en": "What eye-color do you want your cat to have?",
+      "es": "¿Qué color de ojos quieres que tenga tu gato?"
+    },
     "slope": 4.0,
     "questionID": 1,
     "sectionID": 1,
@@ -100,7 +133,10 @@
         "scales": 1,
         "ques_response_data": "1_1",
         "choice": 4,
-        "text": "Green, like Harry Potter!",
+        "text": {
+          "en": "Green, like Harry Potter!",
+          "es": "Verde, como Harry Potter!"
+        },
         "score": 1
       },
       {
@@ -108,7 +144,10 @@
         "scales": 1,
         "ques_response_data": "1_1",
         "choice": 5,
-        "text": "Black",
+        "text": {
+          "en": "Black",
+          "es": "Negro"
+        },
         "score": 1
       },
       {
@@ -116,7 +155,10 @@
         "scales": 1,
         "ques_response_data": "1_1",
         "choice": 3,
-        "text": "Ice Blue",
+        "text": {
+          "en": "Ice Blue",
+          "es": "Azul hielo"
+        },
         "score": 2
       },
       {
@@ -124,13 +166,19 @@
         "scales": 1,
         "ques_response_data": "1_1",
         "choice": 2,
-        "text": "Yellow",
+        "text": {
+          "en": "Yellow",
+          "es": "Amarillo"
+        },
         "score": 3
       }
     ]
   },
   {
-    "text": "Would you consider keeping dog as a pet in the future?",
+    "text": {
+      "en": "Would you consider keeping dog as a pet in the future?",
+      "es": "¿Considerarías tener perro como mascota en el futuro?"
+    },
     "slope": 0,
     "questionID": 2,
     "sectionID": 1,
@@ -143,7 +191,10 @@
         "scales": 1,
         "ques_response_data": "2_1",
         "choice": 5,
-        "text": "Yes",
+        "text": {
+          "en": "Yes",
+          "es": "Sí"
+        },
         "score": 1
       },
       {
@@ -151,7 +202,10 @@
         "scales": 1,
         "ques_response_data": "2_1",
         "choice": 4,
-        "text": "No",
+        "text": {
+          "en": "No",
+          "es": "No"
+        },
         "score": 2
       },
       {
@@ -159,7 +213,10 @@
         "scales": 1,
         "ques_response_data": "2_1",
         "choice": 3,
-        "text": "Maybe",
+        "text": {
+          "en": "Maybe",
+          "es": "Tal vez"
+        },
         "score": 3
       },
       {
@@ -167,7 +224,10 @@
         "scales": 1,
         "ques_response_data": "2_1",
         "choice": 2,
-        "text": "Never",
+        "text": {
+          "en": "Never",
+          "es": "Nunca"
+        },
         "score": 4
       }
     ]

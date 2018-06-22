@@ -1,6 +1,6 @@
 <% for(var i = 0; i < questions.length; i++) { %>
   <div class="row bottomMargin25">
-    <div class="demographic col-md-6"><%= questions[i].questionText %></div>
+    <div class="demographic col-md-6"><%= getLocaleResource(browserLocales, questions[i].questionText) %></div>
   </div>
 
   <% if (questions[i].type == "input-only") { %>
@@ -24,7 +24,7 @@
                    id="<%= questions[i].responseOptions[j].id %>"
                    value="<%= questions[i].responseOptions[j].value %>" />
             <label for="<%= questions[i].responseOptions[j].id %>"
-                   class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+                   class="padding-right-1"><%= getLocaleResource(browserLocales, questions[i].responseOptions[j].displayText) %></label>
           </div>
         </div>
       <% } %>
@@ -42,7 +42,7 @@
                   id="<%= questions[i].responseOptions[j].id %>"
                   value="<%= questions[i].responseOptions[j].value %>" />
             <label for="<%= questions[i].responseOptions[j].id %>"
-                class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+                class="padding-right-1"><%= getLocaleResource(browserLocales, questions[i].responseOptions[j].displayText) %></label>
           </div>
         </div>
       <% } %>
@@ -63,7 +63,7 @@
         <select name="<%= questions[i].name %>" >
           <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
             <option value="<%= questions[i].responseOptions[j].value %>" >
-                <%= questions[i].responseOptions[j].displayText %>
+                <%= getLocaleResource(browserLocales, questions[i].responseOptions[j].displayText) %>
             </option>
           <% } %>
         </select>
@@ -81,7 +81,7 @@
                   value="<%= questions[i].responseOptions[j].value %>"
                   class="checkbox-<%= questions[i].name %>" >
           <label for="<%= questions[i].name %>-<%= questions[i].responseOptions[j].value %>"
-                  class="padding-right-1"><%= questions[i].responseOptions[j].displayText %></label>
+                  class="padding-right-1"><%= getLocaleResource(browserLocales, questions[i].responseOptions[j].displayText) %></label>
         </div>
       </div>
     <% } %>

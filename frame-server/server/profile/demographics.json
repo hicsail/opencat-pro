@@ -1,49 +1,67 @@
 [
-
   {
     "group": "one",
     "type": "radio-only",
-    "questionText": "Have you kept pets before?",
+    "questionText": {
+      "en": "Have you kept pets before?",
+      "es": "¿Has tenido mascotas antes?"
+    },
     "responseOptions": [
       {
         "name": "pets",
         "id": "kept_pets_1",
         "value" : 1,
-        "displayText": "Yes"
+        "displayText": {
+          "en": "Yes",
+          "es": "Sí"
+        }
       },
       {
         "name": "pets",
         "id": "kept_pets_2",
         "value" : 2,
-        "displayText": "No"
+        "displayText": {
+          "en": "No",
+          "es": "No"
+        }
       }
-
     ]
   },
   {
     "group": "two",
     "type": "radio-other",
-    "questionText": "Do you like cats in general?",
+    "questionText": {
+      "en": "Do you like cats in general?",
+      "es": "¿Te gustan los gatos en general?"
+    },
     "responseOptions": [
       {
         "name": "likeCat",
         "id": "like_cats_1",
         "value" :0,
-        "displayText": "Yes"
+        "displayText": {
+          "en": "Yes",
+          "es": "Sí"
+        }
       },
       {
         "name": "likeCat",
         "id": "like_cats_2",
         "value" : 1,
-        "displayText": "No"
+        "displayText": {
+          "en": "No",
+          "es": "No"
+        }
       },
       {
         "name": "likeCat",
         "id": "like_cats_3",
         "value" : 2,
-        "displayText": "Other"
+        "displayText": {
+          "en": "Other",
+          "es": "Otro"
+        }
       }
-
     ]
   }
 ]

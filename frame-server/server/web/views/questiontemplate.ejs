@@ -11,7 +11,7 @@
           <% for(var i = 0; i < replyOptions.length; i++) { %>
           <input type="radio" name="answer" aria-setsize="2" value= <%= i+1%>
           aria-posinset=i id=<%= i%> data-score=<%= replyOptions[i].score %> />
-          <label for="<%= i %>" ><%= replyOptions[i].text %></label><br>
+          <label for="<%= i %>" ><%= getLocaleResource(browserLocales, replyOptions[i].text) %></label><br>
           <br>
           <% } %>
         </radiogroup>

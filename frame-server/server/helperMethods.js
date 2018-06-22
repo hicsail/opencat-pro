@@ -1,5 +1,7 @@
 'use strict';
 
+const Locale = require('locale');
+
 const Config = require('./config/config.js');
 const Algorithm = require('./profile/lib/algorithm.js');
 const RuleEngine = require('./profile/lib/businessRules.js');
@@ -452,6 +454,46 @@ var helperMethods = {};
         return callback(accepted);
       });
     });
+  };
+
+  /**
+   * Given a Locale object, finds the best matching string from a object
+   * containing a locale to string map. For backwards compatibility a 
+   * string is accepted in place of a map. In this case the string is
+   * simply returned.
+   *  
+   * @param {*} browserLocales A Locale object containing the locales
+   *    supported by the browser. Generally determined from the
+   *    "Accept-Language" header of the HTTP request.
+   * @param {*} source A string, array or javascript object. 
+   * 
+   * @returns A string or array in the desired locale or the default locale. If the
+   *          source parameter is a string a string it is returned regardless
+   *          of the locale specified for backwards compatibility. 
+   */
+  helperMethods.getLocaleResource = function (browserLocales, source) {
+    var result = "";
+
+    if (typeof source === 'string' || source instanceof String) {
+      result = source;
+    }
+    else if (typeof source === 'array' || source instanceof Array) {
+      result = source;
+    }
+    else {
+      // locale available in the 'source' parameter object.
+      var supportedLocales = new Locale.Locales(Object.keys(source));
+      var bestLocale = browserLocales.best(supportedLocales);
+
+      if (bestLocale.defaulted) {
+        result = source[bestLocale.language];
+      }
+      else {
+        result = source[bestLocale.normalized];
+      }
+    }
+
+    return result;
   };
 
 })();

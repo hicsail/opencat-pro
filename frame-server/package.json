@@ -33,6 +33,7 @@
     "pug": "2.x.x",
     "joi": "9.x.x",
     "joi-password-complexity": "1.x.x",
+    "locale": "^0.1.0",
     "lout": "9.x.x",
     "mongo-models": "1.x.x",
     "mongodb": "2.x.x",

@@ -4,7 +4,10 @@
 'use strict';
 const internals = {};
 
+const locale = require('locale');
+
 let Config = require("../config/config.js");
+
 const helperMethods = require('../helperMethods.js'); //http://stackoverflow.com/questions/5726729/how-to-parse-json-using-node-js
 const homeJSON = require(Config.getProfilePath() + "/homepage_text.json");
 const Boom = require('boom');
@@ -54,9 +57,11 @@ internals.applyRoutes = function (server, next) {
     },
     handler: function (request, reply) {
 
-      let majorText = homeJSON["major_text"];
-      let instructions = homeJSON["instructions"];
-      let minorText = homeJSON["minor_text"];
+      var browserLocales = new locale.Locales(request.headers["accept-language"], 'en');
+
+      let majorText = helperMethods.getLocaleResource(browserLocales, homeJSON["major_text"]);
+      let instructions = helperMethods.getLocaleResource(browserLocales, homeJSON["instructions"]);
+      let minorText = helperMethods.getLocaleResource(browserLocales, homeJSON["minor_text"]);
 
       if (request.auth.isAuthenticated) {
         let isAccount = request.auth.credentials.user.roles.account;

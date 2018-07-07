@@ -14,14 +14,14 @@ var businessRules = {};
    * Must be custom defined for each project.
    * @params {Object} server The current server instance.
    * @params {string} userid The desired user ID.
+   * @params {Object} userData The user's demographic data as passed from the browser.
    * @params {function} callback The callback function to pass the profile data to.
    * @returns {Object} The profile data object.
    */
 
-  businessRules.setProfileVariables = function (server, userid, callback) {
+   businessRules.setProfileVariables = function (server, userid, userData, callback) {
     const User = server.plugins['hapi-mongo-models'].User;
     const Account = server.plugins['hapi-mongo-models'].Account;
-    var profileData = {};
 
     //Prepare tags
     User.findByUserId(userid, function (user) {
@@ -32,13 +32,13 @@ var businessRules = {};
         console.log("Account found using account id");
         console.log(account);
 
-        profileData = {
+        var profileData = {
           likeCat: 1
         };
 
+        callback(profileData);
       });
 
-      callback(profileData);
     });
 
   };

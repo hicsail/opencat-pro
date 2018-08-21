@@ -30,30 +30,35 @@
 <!-- end footer -->
 <script>
   $(function () {
-    var basil = new window.Basil();
-    var form = $('#submitButton').bind('click', submitHandler);
+    let basil = new window.Basil();
+    let form = $('#submitButton').bind('click', submitHandler);
 
     function submitHandler(e) {
       e.preventDefault();
 
-      var form = $("#emailID")[0];
+      let form = $("#emailID")[0];
 
       //look at jquery for form handling and change the way value is obtained
-      var email = form.value;
+      let email = form.value;
 
       $.ajax({
         type: 'POST',
         url: '<%= configUrl %>' + "/api/invite",
         data: {
-          email: email
+          email: email,
+          clinicianId: '58d6a573dfa4ad00286ebc11',
+          studyId: '58e6a35a28d8b601366dbd45',
+          serverUrl: '<%= configUrl %>'
         },
         dataType: "text",
         success: function (data) {
+          console.log("success")
+          console.log(data)
           $('#confirmation').html(data);
         },
         error: function (request, status, error) {
-          var reply = request.responseText;
-          var replyText = (JSON.parse(reply));
+          let reply = request.responseText;
+          let replyText = (JSON.parse(reply));
           alert(replyText.message);
         }
       });
@@ -61,9 +66,9 @@
   });
 
 </script>
-<script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
-<script src="/public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
-<script type="text/javascript" src="/public/js/accessible/slick-1.5.7/slick.min.js"></script>
+<script src="public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
+<script src="public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
+<script type="text/javascript" src="public/js/accessible/slick-1.5.7/slick.min.js"></script>
 </body>
 
 </html>

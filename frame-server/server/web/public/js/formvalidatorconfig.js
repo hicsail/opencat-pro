@@ -3,7 +3,8 @@
  * @version 1.6b
  */
 
-if (!FMV) {
+if (!FMV){
+//if (!FMV || FMV === 'undefined') {
   /**
    * @namespace Global namespace for FMV related classes (such as FormValidator) and other relevant properties
    */
@@ -102,8 +103,6 @@ FMV.defaultValidatorRules = {
   gender: ["^male|female$", "Please choose a gender"],
   state51: ["^AK|AL|AR|AZ|CA|CO|CT|CZ|DC|DE|FL|GA|HI|IA|ID|IL|IN|KS|KY|LA|MA|MD|ME|MI|MN|MO|MS|MT|NE|NC|ND|NH|NJ|NM|NY|NV|OH|OK|OR|PA|PR|RI|SC|SD|TN|TX|UT|VA|VI|VT|WA|WI|WV|WY$", "Please choose a gender"],
   statusCode: ["\\d|\\d{2}", "This is not a valid state"],
-  zipCode: ["^\\d{5}$", "Please enter a 5 digit numeric value in the location field."],
-  injuryYear: ["^\\d{4}$", "Please enter a 4 digit numeric value in the this field."],
   date: [function (value) {
     var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
     return (date_regex.test(value));

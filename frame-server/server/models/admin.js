@@ -11,9 +11,7 @@ class Admin extends MongoModels {
     const document = {
       name: name,
       //TODO, needs to be removed when clinicians have their own signup page without all these fields.
-      yearOfInjury: 1910,
       gender: "female",
-      siteNum: "12345",
       comments: '',
       tncAgreement: true,
 
@@ -136,9 +134,7 @@ Admin.schema = Joi.object().keys({
     id: Joi.string().required(),
     name: Joi.string().lowercase().required()
   }),
-  yearOfInjury: Joi.number().integer().min(1900).max(new Date().getFullYear()).required(),
   gender: Joi.string().valid('male', 'female').required(),
-  siteNum: Joi.number().integer().required(),
   comments: Joi.string().allow('').optional(),
   tncAgreement: Joi.boolean().required(),
   groups: Joi.object().description('{ groupId: name, ... }'),

@@ -1,6 +1,85 @@
 'use strict';
 
-function submitHandler(serverUrl) {
+
+function submitHandlerPatient(serverUrl) {
+  let invalids = FMV.validators[0].getInvalids();
+  if (invalids.length === 0) {
+    let  basil = new window.Basil();
+    let  isThroughInvite = window.location.pathname.split('/').pop() !== "register";
+    let  fName = $("#firstName") ? $("#firstName")[0].value : " ";
+    let  lName = $("#lastName") ? $("#lastName")[0].value : " ";
+    let  mName = $("#middleName") ? $("#middleName")[0].value : " ";
+    let  email = $("#email") ? $("#email")[0].value : "";
+    let  password = $("#password") ? $("#password")[0].value : "";
+    let  gender = $("#gender") ? $("#gender")[0].value : "";
+    let  dateOfBirth = $("#dateOfBirth") ? $("#dateOfBirth")[0].value : "";
+    let  phoneNumber = $("#phoneNumber") ? $("#phoneNumber")[0].value : "";
+    let  comments = $("#comments") ? $("#comments")[0].value : "";
+    let tncCheckboxValue = $('#tncCheckbox') ? $('#tncCheckbox').prop('checked') : false;
+    let tncAgreement = tncCheckboxValue ? 1 : 0;
+    let  radiosAnswered = $(':radio:checked').size();
+    let  dynInfo = {};
+    for (var i = 0; i < radiosAnswered; i++) {
+      //get values from divs and prepare userdata hash
+      dynInfo[$(":radio:checked")[i].name] = $(":radio:checked")[i].value;
+    }
+
+    $('.multi-select input:checked').each(function () {
+
+      //check if key exists, ie appending to array for that question
+      if (dynInfo[$(this).attr('name')]) {
+        //append to existing array
+        dynInfo[$(this).attr('name')].push($(this).attr('value'))
+      } else {
+        //create new multi select key
+        dynInfo[$(this).attr('name')] = [$(this).attr('value')];
+      }
+
+    });
+
+    var dataToSend = {
+      "username": email,
+      "password": password,
+      "firstName": fName,
+      "middleName": mName,
+      "lastName": lName,
+      "gender": gender,
+      "comments": comments,
+      "dateOfBirth": dateOfBirth,
+      "phoneNumber": phoneNumber,
+      "dynInfo": JSON.stringify(dynInfo),
+      "isThroughInvite": isThroughInvite,
+      "inviteId": isThroughInvite ? window.location.pathname.split('/').reverse()[1]: " ",
+      "studyId": isThroughInvite ? window.location.pathname.split('/').reverse()[0]: " ",
+      "tncAgreement": tncAgreement
+    };
+
+    console.log("sending ", dataToSend);
+
+    $.ajax({
+      type: 'POST',
+      url: serverUrl + "/api/signup/patient",
+      data: dataToSend,
+      dataType: "json",
+      success: function (data, text) {
+        console.log("cookie data");
+        basil.set('cookie', data);
+        window.location.href = serverUrl;
+      },
+      error: function (request, status, error) {
+        console.log("request was ", request);
+        var reply = request.responseText;
+        console.log("reply is : ", reply);
+        var replyText = (JSON.parse(reply));
+        alert(replyText.message);
+        console.log('failure: ', error);
+        console.log("status: ", status);
+      }
+    });
+  }
+}
+
+function submitHandlerClinician(serverUrl) {
   var invalids = FMV.validators[0].getInvalids();
   if (invalids.length === 0) {
     var basil = new window.Basil();
@@ -9,42 +88,29 @@ function submitHandler(serverUrl) {
     var lName = $("#lastName") ? $("#lastName")[0].value : " ";
     var mName = $("#middleName") ? $("#middleName")[0].value : " ";
     var email = $("#email") ? $("#email")[0].value : "";
-    //TODO remove it comletely in the future.
-    var siteNum = 12345;
-    var password = $("#password") ? $("#password")[0].value : "";
-    var yoI = $("#yearOfInjury") ? parseInt($("#yearOfInjury")[0].value) : 1900; //default
     var gender = $("#gender") ? $("#gender")[0].value : "";
-    var comments = $("#comments") ? $("#comments")[0].value : "";
-    var tncCheckboxValue = $('#tncCheckbox') ? $('#tncCheckbox').prop('checked') : false;
-    var tncAgreement = tncCheckboxValue ? 1 : 0;
-    var isClinician = $('#clinicianCheckbox') ? $('#clinicianCheckbox').prop('checked') : false;
-    var routeURL = isClinician ? "/clinician" : "/patient";
+    var password = $("#password") ? $("#password")[0].value : "";
 
     $.ajax({
       type: 'POST',
-      url: serverUrl + "/api/signup" + routeURL,
+      url: serverUrl + "/api/signup/clinician",
       data: {
         "username": email,
         "firstName": fName,
         "middleName": mName,
         "lastName": lName,
-        "password": password,
         "gender": gender,
-        "yearOfInjury": yoI,
-        "siteNum": siteNum,
-        "comments": comments,
-        "tncAgreement": tncAgreement
+        "password": password
       },
-      dataType: "html",
+      dataType: "json",
       success: function (data, text) {
-        basil.set('cookie', data);
-        window.location.href = serverUrl;
+        console.log('success');
+        alertModal("Success", "Created new clinician account")
       },
       error: function (request, status, error) {
-        var reply = request.responseText
-        var replyText = (JSON.parse(reply))
-        alert(replyText.message)
-        console.log('failure')
+        console.log('failure');
+        var reply = request.responseText;
+        alertModal(reply);
       }
     });
   }
@@ -52,7 +118,8 @@ function submitHandler(serverUrl) {
 
 function logoutUser(serverurl, logouturl) {
   var basil = new window.Basil();
-  var cookie = JSON.parse(basil.get('cookie'));
+  //var cookie = JSON.parse(basil.get('cookie'));
+  var cookie = basil.get('cookie');
 
   $.ajax({
     type: 'DELETE',
@@ -160,6 +227,7 @@ function nextClickHandler(id, serverUrl, questionsLength) {
     if ($("#type").html() === "summary") {
       window.location.href = serverUrl;
     } else {
+      console.log('l is ', l, ' serverURL is ', serverUrl, ' questionsLength ', questionsLength);
       storeUserData(l, serverUrl,questionsLength);
     }
   }
@@ -173,7 +241,7 @@ function getNextQuestion(laddaInstance, skip, serverUrl) {
   var questionId = $("#currentQuestionId")[0].innerText;
   var sectionId = $("#currentSectionId")[0].innerText;
   var surveyId = $("#surveyId")[0].innerText;
-  var userId = JSON.parse(cookie).session.userId;
+  var userId = cookie.session.userId;
 
   //If its a question, include responses data to be sent in the ajax as well.
   //At any given time apart from the initial data storage, the page should always have a flag for isDescription which will allow us to make the correct post call
@@ -328,7 +396,7 @@ function radioValidator(inputs) {
 
 function checkLogoutTimer() {
   var basil = new window.Basil();
-  var cookie = JSON.parse(basil.get('cookie'));
+  var cookie = basil.get('cookie'); //JSON.parse(basil.get('cookie'));
   console.log(cookie);
   var loginTime = new Date(cookie.session.time);
   var delta = Math.floor((new Date() - loginTime)/60000);
@@ -352,7 +420,7 @@ function inactivityTime(configUrl) {
 
     function logout() {
       var basil = new window.Basil();
-      var cookie = JSON.parse(basil.get('cookie'));
+      var cookie = basil.get('cookie'); //JSON.parse(basil.get('cookie'));
       $.ajax({
         type: 'DELETE',
         url: configUrl + "/api/logout",

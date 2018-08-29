@@ -4,7 +4,7 @@
  * @version 1.8b
  */
 
-if (!FMV) {
+if (!FMV || FMV === 'undefined') {
     /**
      * @namespace Global namespace for FMV related classes (such as FormValidator) and other relevant properties
      */

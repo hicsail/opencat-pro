@@ -25,6 +25,7 @@ internals.applyRoutes = function (server, next) {
   const Admin = server.plugins['hapi-mongo-models'].Admin;
   const StudySignup = server.plugins['hapi-mongo-models'].StudySignup;
   const Study = server.plugins['hapi-mongo-models'].Study;
+  const Invite = server.plugins['hapi-mongo-models'].Invite;
 
 
   server.route({
@@ -36,13 +37,9 @@ internals.applyRoutes = function (server, next) {
           username: Joi.string().email().lowercase().required(),
           password: Joi.string().min(10).required(),
           firstName: Joi.string().lowercase().required(),
-          middleName: Joi.string().lowercase().allow('').optional(),
           lastName: Joi.string().lowercase().required(),
-          yearOfInjury: Joi.number().integer().min(1000).max(3000).required(),
-          gender: Joi.string().valid('male', 'female').required(),
-          siteNum: Joi.number().integer().required(),
-          comments: Joi.string().allow('').optional(),
-          tncAgreement: Joi.boolean().required(),
+          gender: Joi.string().lowercase().required(),
+          middleName: Joi.string().lowercase().allow('').optional(),
         }
       },
       auth: {
@@ -75,7 +72,7 @@ internals.applyRoutes = function (server, next) {
             reply(true);
           });
         }
-      },  {
+      }, {
         assign: 'passwordValidation',
         method: function (request, reply) {
           Joi.validate(request.payload.password, new PasswordComplexity(complexityOptions), (err, value) => {
@@ -85,7 +82,8 @@ internals.applyRoutes = function (server, next) {
             }
 
             reply(true);
-          });
+          })
+          ;
         }
       }]
     },
@@ -100,12 +98,11 @@ internals.applyRoutes = function (server, next) {
           const password = request.payload.password;
           const gender = request.payload.gender;
 
-
           User.create(username, password, gender, done);
         },
         admin: ['user', function (results, done) {
           const name = {
-            first: request.payload.firstName ,
+            first: request.payload.firstName,
             middle: request.payload.middleName,
             last: request.payload.lastName
           };
@@ -144,7 +141,6 @@ internals.applyRoutes = function (server, next) {
           User.findByIdAndUpdate(id, update, done);
         }],
         linkAdmin: ['admin', 'user', function (results, done) {
-
           const id = results.admin._id.toString();
           const update = {
             $set: {
@@ -173,23 +169,21 @@ internals.applyRoutes = function (server, next) {
             if (err) {
               console.warn('sending welcome email failed:', err.stack);
             }
-          });
+          })
+          ;
 
           done();
-        }],
-        session: ['linkUser', 'linkAdmin', function (results, done) {
-
-          Session.create(results.user._id.toString(), done);
         }]
       }, (err, results) => {
 
         if (err) {
+          console.log("Error creating clinician");
           return reply(err);
         }
 
+        console.log("Successfully created new clinician!");
+
         const user = results.linkAdmin;
-        const credentials = results.session._id + ':' + results.session.key;
-        const authHeader = 'Basic ' + new Buffer(credentials).toString('base64');
 
         const result = {
           user: {
@@ -198,11 +192,7 @@ internals.applyRoutes = function (server, next) {
             middleName: user.middleName,
             lastName: user.lastName,
           },
-          session: results.session,
-          authHeader: authHeader
         };
-
-        request.cookieAuth.set(result);
         reply(result);
       });
     }
@@ -215,21 +205,26 @@ internals.applyRoutes = function (server, next) {
     config: {
       validate: {
         payload: {
+
           username: Joi.string().email().lowercase().required(),
           password: Joi.string().min(10).required(),
-          firstName: Joi.string().lowercase().required(),
-          middleName: Joi.string().lowercase().allow('').optional(),
-          lastName: Joi.string().lowercase().required(),
-          yearOfInjury: Joi.number().integer().min(1000).max(3000).required(),
-          gender: Joi.string().valid('male', 'female').required(),
-          siteNum: Joi.number().integer().required(),
+          firstName: Joi.string().required(),
+          middleName: Joi.string().allow('').optional(),
+          lastName: Joi.string().required(),
+          gender: Joi.string().valid('male', 'female', 'other').required(),
           comments: Joi.string().allow('').optional(),
+          dateOfBirth: Joi.string().required(),
+          phoneNumber: Joi.string().required(),
+          dynInfo: Joi.string().optional(),
+          isThroughInvite: Joi.boolean(),
+          inviteId: Joi.string(),
+          studyId: Joi.string(),
           tncAgreement: Joi.boolean().required()
         }
       },
       auth: {
         mode: 'try',
-         strategy: 'session'
+        strategy: 'session'
       },
       plugins: {
         'hapi-auth-cookie': {
@@ -239,7 +234,6 @@ internals.applyRoutes = function (server, next) {
       pre: [{
         assign: 'usernameCheck',
         method: function (request, reply) {
-
           const conditions = {
             username: request.payload.username
           };
@@ -257,7 +251,7 @@ internals.applyRoutes = function (server, next) {
             reply(true);
           });
         }
-      },  {
+      }, {
         assign: 'passwordValidation',
         method: function (request, reply) {
           Joi.validate(request.payload.password, new PasswordComplexity(complexityOptions), (err, value) => {
@@ -267,49 +261,71 @@ internals.applyRoutes = function (server, next) {
             }
 
             reply(true);
-          });
+          })
+          ;
         }
       }]
     },
     handler: function (request, reply) {
 
       const mailer = request.server.plugins.mailer;
+      const username = request.payload.username;
+      const password = request.payload.password;
+      const gender = request.payload.gender;
 
       Async.auto({
         user: function (done) {
 
-          const username = request.payload.username;
-          const password = request.payload.password;
-          const gender = request.payload.gender;
-
-          User.create(username, password,gender ,done);
+          User.create(username, password, gender, done);
         },
-        studyDetails: ['user', function(results, done) {
+        studyDetails: ['user', function (results, done) {
 
-          const id = results.user._id.toString();
-
-          StudySignup.findByPatientId(id, done);
+          const studyId = request.payload.studyId;
+          const email = results.user.username.toString();
+          //update the study status for which a signup invite was sent.
+          StudySignup.findByPatientEmailAndStudyId(email, studyId, done);
         }],
-        study: ['studyDetails', function(results, done) {
+        updateInviteIfNeeded: ['studyDetails', function (results, done) {
 
-          if(request.studyDetails != null) {
-            const id = request.studyDetails.studyId.toString();
-            Study.findByStudyId(id, (study, err) => {
+          console.log("Updating invite status");
+          console.log(request.payload.isThroughInvite);
+          console.log(request.payload.inviteId);
+
+          if (request.payload.isThroughInvite) {
+            //Update invite to accepted status
+            console.log("through invite....");
+            //Change to accepted status
+            const id = request.payload.inviteId;
+            const update = {
+              $set: {
+                status: 'Accepted'
+              }
+            };
+
+            Invite.findByIdAndUpdate(id, update, done);
+
+          } else {
+            //else continue on
+            console.log("not through invite....");
+            done();
+          }
+        }],
+        study: ['updateInviteIfNeeded', function (results, done) {
+
+          if (results.studyDetails) {
+            const id = results.studyDetails.studyId.toString();
+            const email = results.user.username.toString();
+
+            Study.findById(id, (err, study) => {
               // if a study found and is active, change accepted = true
-              if(study != null && study.isActive == true) {
-
-                const update = {
-                  $set: {
-                    accepted: true
-                  }
-                };
-
-                const studyDetailsId = request.pre.studySignup._id.toString();
-                StudySignup.findByIdAndUpdate(studyDetailsId, update, done);
-              } else {
+              if (study && study.isActive === true) {
+                StudySignup.setStudyToAccepted(email,id, done);
+              }
+              else {
                 console.log('study is null!');
               }
-            });
+            })
+            ;
           } else {
             console.log('found no study signup details for the given user id');
           }
@@ -317,23 +333,20 @@ internals.applyRoutes = function (server, next) {
         }],
         account: ['user', function (results, done) {
           const name = {
-              first: request.payload.firstName ,
-              middle: request.payload.middleName,
-              last: request.payload.lastName
+            first: request.payload.firstName,
+            middle: request.payload.middleName,
+            last: request.payload.lastName
           };
-          const yearOfInjury = request.payload.yearOfInjury;
-          const sitenum = request.payload.siteNum;
           const comments = request.payload.comments;
+          const dateOfBirth = request.payload.dateOfBirth;
+          const phoneNumber = request.payload.phoneNumber;
+          const dynamicFields = JSON.parse(request.payload.dynInfo);
           const tncAgreement = request.payload.tncAgreement;
-          const lastPasswordChange= new Date();
+          const lastPasswordChange = new Date();
 
-          Account.create(name, yearOfInjury, sitenum, comments, tncAgreement,lastPasswordChange, done);
+          Account.create(name, comments, lastPasswordChange, dateOfBirth, phoneNumber, dynamicFields, tncAgreement, done);
         }],
         linkUser: ['account', function (results, done) {
-          console.log("Done in account is");
-          console.log(done);
-          console.log("Results.account in account is");
-          console.log(results.account);
 
           const id = results.account._id.toString();
           const update = {
@@ -349,7 +362,7 @@ internals.applyRoutes = function (server, next) {
         }],
         linkAccount: ['account', function (results, done) {
           const id = results.user._id.toString();
-          var update = {
+          let update = {
             $set: {
               roles: {
                 account: {
@@ -374,20 +387,22 @@ internals.applyRoutes = function (server, next) {
 
           mailer.sendEmail(emailOptions, template, request.payload, (err) => {
 
-            if (err) {
-              console.warn('sending welcome email failed:', err.stack);
+              if (err) {
+                console.warn('sending welcome email failed:', err.stack);
+              }
             }
-          });
+          )
+          ;
 
           done();
         }],
         session: ['linkUser', 'linkAccount', function (results, done) {
-
           Session.create(results.user._id.toString(), done);
         }]
       }, (err, results) => {
 
         if (err) {
+          console.log(err);
           return reply(err);
         }
 
@@ -396,6 +411,7 @@ internals.applyRoutes = function (server, next) {
 
         const credentials = results.session._id + ':' + results.session.key;
         const authHeader = 'Basic ' + new Buffer(credentials).toString('base64');
+        console.log("sending back user session....");
 
         const result = {
           user: {
@@ -403,9 +419,7 @@ internals.applyRoutes = function (server, next) {
             firstName: account.name.first,
             middleName: account.name.middle,
             lastName: account.name.last,
-            yearOfInjury: account.yearOfInjury,
             gender: account.gender,
-            siteNum: account.siteNum,
             comments: account.comments,
             tncAgreement: account.tncAgreement,
             lastPasswordChange: account.lastPasswordChange
@@ -413,14 +427,12 @@ internals.applyRoutes = function (server, next) {
           session: results.session,
           authHeader: authHeader
         };
-        console.log("result hai");
-        console.log(result);
         request.cookieAuth.set(result);
         reply(result);
-      });
+      })
+      ;
     }
   });
-
 
 
   next();

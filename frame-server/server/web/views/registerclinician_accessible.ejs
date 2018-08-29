@@ -1,0 +1,119 @@
+<%- include('./layout', {title: title}); %>
+<body>
+<header role="banner">
+  <% if (loggedIn) { %>
+  <%- include('./partials/navbarWelcome_accessible', {name: name, configUrl: configUrl, logoname: logoname, isClinician: isClinician}); %>
+  <% } else { %>
+  <%- include('./partials/navbar_accessible', {configUrl: configUrl, logoname:logoname}); %>
+  <% } %>
+
+</header>
+
+<!-- begin Main -->
+<main role="main" aria-label="main section" id="main-content">
+  <div class="container bottomMargin50" role="header and benefits">
+    <section id="page-title">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Please sign up for a new account</h3>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <form class="container bottomMargin50" id="form1" action="#" data-validationgroup>
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-group required">
+          <label for="firstName">First Name <sup>*</sup> </label>
+          <input id="firstName" class="form-control required " maxlength="64"
+                 data-validate="notBlank firstName"
+                 placeholder="First Name" size="20" type="text">
+        </div>
+
+        <div class="form-group required">
+          <label for="lastName">Last Name <sup>*</sup> </label>
+          <input id="lastName" data-validate="notBlank lastName" class="form-control required" maxlength="64"
+                 placeholder="Last Name" size="20" type="text">
+        </div>
+        <div class="form-group required">
+          <label for="gender">Gender<sup>*</sup> </label>
+          <div class="wrapper">
+              <span><select id="gender" data-validate="notBlank gender" class="custom-dropdown">
+                  <option value="null">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select></span>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-xs-12 col-sm-4">
+
+        <div class="form-group ">
+          <label for="middleName">Middle Name (optional)</label>
+          <input id="middleName" class="form-control" maxlength="64"
+                 data-validate="middleName"
+                 placeholder="Middle Name" size="20" type="text">
+        </div>
+
+        <div class="form-group required">
+          <label for="email">Email (username) <sup>*</sup></label>
+          <input id="email" data-validate="notBlank email" class="form-control required" maxlength="80"
+                 placeholder="Email" size="20" type="text">
+        </div>
+
+
+      </div>
+
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="form-group required">
+          <label for="password">Password <sup>*</sup></label>
+          <input id="password" class="form-control required"
+                 data-validate="notBlank validPassword"
+                 type="password"
+                 placeholder="Type Password" size="20">
+          <ul>
+            <li id="passReq1">Lowercase</li>
+            <li id="passReq2">Uppercase</li>
+            <li id="passReq3">Numbers</li>
+            <li id="passReq4">Special Characters</li>
+            <li id="passReq5">Length >= 10</li>
+          </ul>
+        </div>
+
+        <div class="form-group required">
+          <label for="confpass">Confirm Password <sup>*</sup></label>
+          <input id="confpass" class="form-control"
+                 data-validate="notBlank confirmPass"
+                 type="password"
+                 placeholder="Retype password" size="20">
+        </div>
+      </div>
+    </div>
+    <button id="form1Sbm" data-validationtrigger class="btn btn-primary">Sign Up</button>
+  </form>
+</main>
+
+<a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
+<%- include('./partials/footer_accessible'); %>
+<!-- end footer -->
+
+<script>
+  $(document).ready(function(){
+    $("#form1Sbm").click(function(){
+      submitHandlerClinician("<%= configUrl %>");
+    });
+
+    $('#password').blur(checkPasswordRequirements);
+  });
+</script>
+
+<!-- JAVASCRIPT FILES -->
+<!-- FORM VALIDATION -->
+<script src="public/js/formvalidatorconfig.js"></script>
+<script src="public/js/formvalidator.js"></script>
+</body>
+</html>

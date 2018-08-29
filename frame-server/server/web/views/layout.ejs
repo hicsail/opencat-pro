@@ -53,7 +53,7 @@
   <script>
     $(document).ready(function(){
       var basil = new window.Basil();
-      var cookie = JSON.parse(basil.get('cookie'));
+      var cookie = JSON.parse(basil.get('cookie'))
       if (cookie) {
         inactivityTime('<%= configUrl %>');
       }

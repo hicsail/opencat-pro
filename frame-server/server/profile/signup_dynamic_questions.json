@@ -1,0 +1,76 @@
+[
+  {
+    "hidden": "false",
+    "group": "three",
+    "type": "multi-select",
+    "tabindex": 16,
+    "questionText": "What is your race? (check all that apply)",
+    "responseOptions": [
+      {
+        "type": "input",
+        "name": "raceType",
+        "id": "race_type_1",
+        "value": "white",
+        "displayText": "White"
+      },
+      {
+        "type": "input",
+        "name": "raceType",
+        "id": "race_type_2",
+        "value": "african_american",
+        "displayText": "Black or African-American"
+      },
+      {
+        "type": "input",
+        "name": "raceType",
+        "id": "race_type_3",
+        "value": "asian",
+        "displayText": "Asian"
+      },
+      {
+        "type": "input",
+        "name": "raceType",
+        "id": "race_type_4",
+        "value": "american_indian_alaskan native",
+        "displayText": "American Indian or Alaskan Native"
+      },
+      {
+        "type": "input",
+        "name": "raceType",
+        "id": "race_type_5",
+        "value": "native_hawaiian_pacific_islander",
+        "displayText": "Native Hawaiian / Pacific Islander"
+      },
+      {
+        "type": "input",
+        "name": "raceType",
+        "id": "race_type_7",
+        "value": "prefer_not_to_answer",
+        "displayText": "Prefer not to answer"
+      }
+    ]
+  },
+  {
+    "hidden": "false",
+    "group": "eight",
+    "type": "radio-only",
+    "tabindex": 18,
+    "questionText": "Are you Hispanic or Latino/Latina?",
+    "responseOptions": [
+      {
+        "type": "input",
+        "name": "hispanicOrNot",
+        "id": "hispanic_1",
+        "value": "true",
+        "displayText": "Yes"
+      },
+      {
+        "type": "input",
+        "name": "hispanicOrNot",
+        "id": "hispanic_2",
+        "value": "false",
+        "displayText": "No"
+      }
+    ]
+  }
+]

@@ -8,7 +8,6 @@ const options = {
   rootLast: 'root',
   rootBirthday: 'BirthDate',
   rootGender: 'male/female',
-  rootSiteNum: '12345',
   systemEmail: 'sys@tem',
   smtpHost: 'smtp.gmail.com',
   smtpPort: 465,

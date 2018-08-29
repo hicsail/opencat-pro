@@ -7,16 +7,17 @@ const StatusEntry = require('./status-entry');
 
 
 class Account extends MongoModels {
-  static create(name, yearOfInjury, sitenum, comment, tncAgreement, lastPasswordChange, callback) {
+  static create(name, comment, lastPasswordChange, dateOfBirth, phoneNumber, dynamicFields, tncAgreement, callback) {
 
     const document = {
       name: name,
-      yearOfInjury: yearOfInjury,
-      siteNum: sitenum,
       comments: comment,
+      lastPasswordChange: lastPasswordChange,
+      dateOfBirth: dateOfBirth,
+      phoneNumber: phoneNumber,
+      dynamicFields: dynamicFields,
       tncAgreement: tncAgreement,
       timeCreated: new Date(),
-      lastPasswordChange: lastPasswordChange,
       //hash can be updated later when studies are created
       associatedStudyIds : [],
 
@@ -78,8 +79,6 @@ Account.schema = Joi.object().keys({
   firstName: Joi.string().lowercase().required(),
   middleName: Joi.string().lowercase().allow('').optional(),
   lastName: Joi.string().lowercase().required(),
-  yearOfInjury: Joi.number().integer().min(1900).max(new Date().getFullYear()).required(),
-  siteNum: Joi.number().integer().required(),
   comments: Joi.string().allow('').optional(),
   tncAgreement: Joi.boolean().required(),
   associatedStudyIds: Joi.array().items(Joi.string()),

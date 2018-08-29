@@ -121,9 +121,7 @@ internals.applyRoutes = function (server, next) {
       validate: {
         payload: {
           name: Joi.string().required(),
-          yearOfInjury: Joi.number().integer().min(1900).max(new Date().getFullYear()).required(),
           gender: Joi.string().valid('male', 'female').required(),
-          siteNum: Joi.number().integer().required(),
           comments: Joi.string().optional().default(undefined),
           tncAgreement: Joi.boolean().required(),
           lastPasswordChange: Joi.date()
@@ -133,14 +131,12 @@ internals.applyRoutes = function (server, next) {
     handler: function (request, reply) {
 
       const name = request.payload.name;
-      const yearOfInjury = request.payload.yearOfInjury;
       const gender = request.payload.gender;
-      const sitenum = request.payload.siteNum;
       const comments = request.payload.comments;
       const tncAgreement = request.payload.tncAgreement;
       const lastPasswordChange = request.payload.lastPasswordChange;
 
-      Account.create(name, yearOfInjury, gender, sitenum, comments, tncAgreement, (err, account) => {
+      Account.create(name, gender, comments, tncAgreement, (err, account) => {
 
         if (err) {
           return reply(err);
@@ -222,7 +218,7 @@ internals.applyRoutes = function (server, next) {
         }
       };
       const findOptions = {
-        fields: Account.fieldsAdapter('username firstName middleName lastName birthday gender siteNum comments tncAgreement lastPasswordChange roles timeCreated')
+        fields: Account.fieldsAdapter('username firstName middleName lastName birthday gender comments tncAgreement lastPasswordChange roles timeCreated')
       };
 
       Account.findByIdAndUpdate(id, update, findOptions, (err, account) => {

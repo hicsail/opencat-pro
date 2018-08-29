@@ -55,6 +55,42 @@ class StudySignup extends MongoModels {
 
   };
 
+  static findByPatientEmail(patientEmail, callback) {
+
+    const query = {
+      'patientEmail': patientEmail.toString()
+    };
+
+    //Get most latest study for that patient.
+    StudySignup.findOne(query, function (err, docs) {
+      if(err){
+        return callback(err);
+      }
+      callback(null, docs);
+    });
+
+  };
+
+  static findByPatientEmailAndStudyId(patientEmail,studyId, callback) {
+    const query = {
+      'patientEmail': patientEmail.toString(),
+      'studyId' : studyId.toString()
+    };
+
+    StudySignup.findOne(query, function (err, docs) {
+      if(err){
+        return callback(err);
+      }else{
+        console.log(docs);
+
+      }
+      callback(null, docs);
+    });
+
+  };
+
+
+
   static findAcceptedStudies(userId, callback) {
 
     const query = {'_id': userId, 'accepted': true};

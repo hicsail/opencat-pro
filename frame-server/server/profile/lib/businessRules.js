@@ -25,8 +25,9 @@ var businessRules = {};
 
     //Prepare tags
     User.findByUserId(userid, function (user) {
-      console.log(userid);
-      console.log(user.roles.account);
+      console.log('user id is ', userid);
+      console.log('user is', user);
+      console.log('user roles is ', user.roles);
 
       Account.findByAccountId(user.roles.account.id, function (account) {
         console.log("Account found using account id");

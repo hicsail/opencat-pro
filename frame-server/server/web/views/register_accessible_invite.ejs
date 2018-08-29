@@ -41,7 +41,7 @@
         <div class="form-group required">
           <label class="demographic" for="email">Email (username) <sup>*</sup></label>
           <input id="email" data-validate="notBlank email" class="form-control required" maxlength="80"
-                 tabindex="4"
+                 tabindex="4" readonly
                  placeholder="Email" size="20" type="text">
         </div>
         <div class="form-group required">
@@ -58,14 +58,11 @@
                  type="password" tabindex="7"
                  placeholder="Type Password" size="20">
 
-          <div class="row-fluid">
           <span id="passReq1">Lowercase ,</span>
           <span id="passReq2">Uppercase ,</span>
           <span id="passReq3">Numbers ,</span>
           <span id="passReq4">Special Characters ,</span>
           <span id="passReq5">Length >= 10</span>
-          </div>
-
         </div>
 
         <div class="form-group required">
@@ -101,7 +98,7 @@
         </div>
       </div>
     </div>
-   <%- include('./partials/question_renderer_signup', {questions: dynamicQuestions}); %>
+    <%- include('./partials/question_renderer_signup', {questions: dynamicQuestions}); %>
 
     <div>
       <label class="demographic" for="comments">Comments (optional) </label>
@@ -109,83 +106,29 @@
                 tabindex="19"
                 wrap="soft"></textarea>
     </div>
-   <div class="form-group required vertical-center-container">
-        <input id="tncCheckbox" class="form-control required" type="checkbox" disabled="true" data-validate="tncChecked required" data-toggle="tooltip" data-placement="bottom" title="Please read through our Terms and Conditions and accept">
-        <a id="tncModalLink" href="#" data-toggle="modal" data-target="#tncModal">Terms and Conditions</a> <sup>*</sup>
-      </div>
-     <!-- TODO - remove clinician here?
-     <div class="form-group vertical-center-container">
-        <input id="clinicianCheckbox" class="form-control required" type="checkbox">
-        Register as Clinician
-      </div>
-     -->
-      <button id="form1Sbm" data-validationtrigger class="btn btn-primary">Sign Up</button>
+
+    <button id="form1Sbm" data-validationtrigger tabIndex="21" class="btn btn-primary">Sign Up</button>
   </form>
-
-
-    <div class="modal fade" id="tncModal" tabindex="-1" role="dialog" aria-labelledby="Terms and Conditions Modal">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="tncModalLabel">Terms and Conditions</h4>
-           </div>
-          <div class="modal-body">
-          </div>
-           <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Do Not Accept</button>
-              <button type="button" class="btn btn-success disabled">Accept</button>
-           </div>
-         </div>
-       </div>
-    </div>
-
 
 </main>
 
 <a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
 <%- include('./partials/footer_accessible'); %>
 <!-- end footer -->
-<script src="/public/js/tncText.js"></script>
 
 <script>
-  $(document).ready(function(){
-    $("#form1Sbm").click(function(){
-       submitHandlerPatient("<%= configUrl %>");
+  $(document).ready(function () {
+
+    $("#email").val("<%=emailToFill%>");
+    $("#form1Sbm").click(function () {
+      submitHandlerPatient("<%= configUrl %>");
     });
-    var modalBody = $("#tncModal .modal-body");
-    modalBody.text(tncText);
-    modalBody.scroll(function() {
-      if (modalBody.scrollTop() >= ($('#tncModal .modal-body').prop('scrollHeight') - $('#tncModal .modal-body').innerHeight())) {
-        $("#tncModal .btn-success").removeClass('disabled');
-      } else {
-        $("#tncModal .btn-success").addClass('disabled');
-      }
-    });
+
+    var modalBody = $(".modal-body");
     $('#password').blur(checkPasswordRequirements);
-    $("#tncModal .btn-success").click(function(){
-      if (!$("#tncModal .btn-success").hasClass('disabled')) {
-        $('#tncCheckbox').prop('checked', true);
-        $("#tncModal .close").click();
-      }
-    });
-    $("#tncModal .btn-danger").click(function(){
-      $('#tncCheckbox').prop('checked', false);
-    });
-
-    $(window).resize(function(){
-      if (typeof modalBody === 'undefined' || modalBody === 'undefined') return;
-      modalBody.scroll(function() {
-        if (modalBody.scrollTop() >= ($('#tncModal .modal-body').prop('scrollHeight') - $('#tncModal .modal-body').innerHeight())) {
-          $("#tncModal .btn-success").removeClass('disabled');
-        } else {
-          $("#tncModal .btn-success").addClass('disabled');
-        }
-      });
-    });
-
 
     //HACK ALERT, based on requirement to not select multiracial if any race is checked.
+    console.log("doc ready...");
     $(".multi-select-other :checkbox").change(function (e) {
       console.log("Executing race question restriction");
       if ($(this)[0].id != "race_type_6") {

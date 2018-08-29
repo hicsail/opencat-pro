@@ -20,20 +20,23 @@
                     <label for="passReady" class="form_label required">Password</label>
                     <input type="password" name="password" required class="form-control" id="passReady">
                 </div>
-                <button id="submitButton" class="btn btn-primary">Login</button>
+                <button id="submitButton" data-style="slide-left" data-color="blue"
+              class="btn btn-primary next ladda-button"><span class="ladda-label">Login</span></button>
             </form>
         </div>
     </div>
     <div class="form-group center marginTop40">
-        Don't have an account yet? <a href="/register">Please sign up</a>
+        Don't have an account yet? <a href="register">Please sign up</a>
     </div>
     <div class="form-group center marginTop10">
-      Forgot your password? <a href="/forgot">Please click here</a>
+      Forgot your password? <a href="forgot">Please click here</a>
     </div>
 </main>
 
 <a href="#" class="scrollToTop" alt="Scroll To Top"><span class="sr-only">Scroll To Top</span></a>
 <%- include('./partials/footer_accessible'); %>
+<script src="public/js/spin.min.js"></script>
+<script src="public/js/ladda.min.js"></script>
 <script>
     $(function () {
         var basil = new window.Basil();
@@ -41,6 +44,9 @@
 
         function submitHandler(e) {
             e.preventDefault();
+
+            var l = Ladda.create($("#submitButton")[0]);
+            l.start();
 
             var form = $("#emailReady")[0];
             //look at jquery for form handling and change the way value is obtained
@@ -57,25 +63,31 @@
                 dataType: "text",
                 success: function (data) {
                     basil.set('cookie', data);
+                    l.stop();
                     if (JSON.parse(data).changePass) {
-                      alertModal("Your Password Has Expired", "BYO-CAT users are required to change their password every 90 days. You will be emailed a code and redirected to the password reset form.", function() {
+                      alertModal("Your Password Has Expired", "SCI-FI users are required to change their password every 90 days. You will be emailed a code and redirected to the password reset form.", function() {
                         forgotPassword('<%= configUrl %>', usnm);
                       });
                     } else {
-                      window.location.href = '<%= configUrl %>'+ "/survey/start";
+                      if (JSON.parse(data).isClinician) {
+                        window.location.href = '<%= configUrl %>'+ "dashboard";
+                      } else {
+                        window.location.href = '<%= configUrl %>';
+                      }
                     }
                 },
                 error: function (request, status, error) {
                     var reply = request.responseText;
                     var replyText = (JSON.parse(reply));
                     alert(replyText.message);
+                    l.stop();
                 }
             });
         }
     });
 </script>
-<script src="/public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
-<script src="/public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
-<script type="text/javascript" src="/public/js/accessible/slick-1.5.7/slick.min.js"></script>
+<script src="public/js/accessible/globalassets/scripts/assets.responsive.js"></script>
+<script src="public/js/accessible/share/4.0/js/sharewidget-4.0.js"></script>
+<script type="text/javascript" src="public/js/accessible/slick-1.5.7/slick.min.js"></script>
 </body>
 </html>

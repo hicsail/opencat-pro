@@ -18,7 +18,7 @@
 
     $(document).ready(function () {
       var basil = new window.Basil();
-      var cookie = basil.get('cookie');
+      var cookie = JSON.parse(basil.get('cookie'))
 
       var userId = $("#currentUserId")[0].innerHTML;
       var dataToSend = {userID: userId.toString()};

@@ -3,6 +3,11 @@
 /* *               header                * */
 /* *************************************** */
 
+/*main {
+  min-height: calc(100vh - 325px);
+  margin-bottom: 50px;
+}*/
+
 .fullWidth {
   width: 100%;
 }
@@ -1426,6 +1431,15 @@ footer hr {
   margin-left: 4px;
 }
 
+.skip {
+  background: #cccccc !important;
+  padding: 6px 12px !important;
+  font-size: 1em !important;
+  color: #999999;
+  border-radius: 4px !important;
+  border-color: #cccccc !important;
+}
+
 .skip-panel {
   padding-left: 0 !important;
 }
@@ -1455,17 +1469,17 @@ footer hr {
 }
 
 .ladda-button {
-  background: #3366ff !important;
+  background: #3366ff;
   padding: 6px 12px !important;
   font-size: 1em !important;
   border-radius: 4px !important;
-  border-color: #2e6da4 !important;
+  border-color: #2e6da4;
 }
 
 .ladda-button:hover {
-  color: #fff !important;
-  background-color: #286090 !important;
-  border-color: #204d74 !important;
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
 }
 
 #surveyIdContainer {
@@ -1560,8 +1574,21 @@ footer hr {
   margin: 0 !important;
 }
 
-label{
+#studyData {
+  width: fit-content;
+}
+
+label {
   font-weight: normal;
+}
+
+#questionnaire label,
+#Page2_ label {
+  padding-left: 10px;
+}
+
+#questionnaire h4 {
+  text-align: center;
 }
 
 .demographic {

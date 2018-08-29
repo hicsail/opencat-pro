@@ -26,8 +26,6 @@
     <div class="col-md-6 col-md-offset-3">
       <button id="skipButton" data-style="slide-left" data-color="gray"
                 class="btn btn-primary component_center skip pull-left ladda-button"><span class="ladda-label">Skip</span></button>
-    </div>
-    <div class="col-md-6">
       <button id="nextButtonWithSkip" data-style="slide-left" data-color="blue" data-validationtrigger tabindex="21"
                 class="btn btn-primary component_center next ladda-button pull-right"><span class="ladda-label">Next</span></button>
     </div>
@@ -111,8 +109,8 @@
     }
 
     var basil = new window.Basil();
-    var cookie = basil.get('cookie');
-    var userId = cookie.session.userId; <!--//JSON.parse(cookie).session.userId;-->
+    var cookie = JSON.parse(basil.get('cookie'))
+    var userId = cookie.session.userId;
 
     demographicInfo.surveyId = $("#surveyId")[0].innerText;
 
@@ -154,7 +152,7 @@
 
   $("#chartButton").on("click", function () {
     var basil = new window.Basil();
-    var cookie = basil.get('cookie');
+    var cookie = JSON.parse(basil.get('cookie'))
 
     var userId = JSON.parse(cookie).session.userId;
     var dataToSend = {userID: userId};

@@ -118,8 +118,7 @@ function submitHandlerClinician(serverUrl) {
 
 function logoutUser(serverurl, logouturl) {
   var basil = new window.Basil();
-  //var cookie = JSON.parse(basil.get('cookie'));
-  var cookie = basil.get('cookie');
+  var cookie = JSON.parse(basil.get('cookie'))
 
   $.ajax({
     type: 'DELETE',
@@ -235,7 +234,7 @@ function nextClickHandler(id, serverUrl, questionsLength) {
 
 function getNextQuestion(laddaInstance, skip, serverUrl) {
   var basil = new window.Basil();
-  var cookie = basil.get('cookie');
+  var cookie = JSON.parse(basil.get('cookie'))
 
   //TODO implement form validations in survey user info for user data
   var questionId = $("#currentQuestionId")[0].innerText;
@@ -396,7 +395,7 @@ function radioValidator(inputs) {
 
 function checkLogoutTimer() {
   var basil = new window.Basil();
-  var cookie = basil.get('cookie'); //JSON.parse(basil.get('cookie'));
+  var cookie = JSON.parse(basil.get('cookie')) //JSON.parse(basil.get('cookie'))
   console.log(cookie);
   var loginTime = new Date(cookie.session.time);
   var delta = Math.floor((new Date() - loginTime)/60000);
@@ -420,7 +419,7 @@ function inactivityTime(configUrl) {
 
     function logout() {
       var basil = new window.Basil();
-      var cookie = basil.get('cookie'); //JSON.parse(basil.get('cookie'));
+      var cookie = JSON.parse(basil.get('cookie')) //JSON.parse(SON.parse(basil.get('cookie')));
       $.ajax({
         type: 'DELETE',
         url: configUrl + "/api/logout",

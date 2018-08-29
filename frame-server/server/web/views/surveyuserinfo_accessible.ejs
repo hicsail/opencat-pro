@@ -38,7 +38,6 @@
     </div>
   </div>
 
-<!--
   <div id="question-error" class="hidden error container">
     <div class="col-md-6 col-md-offset-3 error"><strong class="pull-right"><sup>*</sup> Please select one of the options above or press Skip to
         proceed</strong></div>
@@ -48,9 +47,7 @@
     <div id="answer-error" class="hidden error row-fluid">
       <div class="span12 error"><strong><sup>*</sup> Questions still unanswered. Please answer all the questions above to proceed.</strong></div>
     </div>
-  </div>-->
-
-
+  </div>
 </main>
 
 
@@ -85,7 +82,9 @@
     var demographicInfo = {}
 
     $('input[type="text"]').filter(function () {
-      injectValue(demographicInfo, this.name, this.value);
+      if(this.value){
+        injectValue(demographicInfo, this.name, this.value);
+      }
     });
 
     $('select').filter(function () {

@@ -1,7 +1,12 @@
 <% for(var i = 0; i < questions.length; i++) { %>
+<<<<<<< HEAD
 <div class="bottomMargin50 question-box" id=<%= questions[i].group %>>
   <div class="row bottomMargin15">
     <div class="demographic col-md-6 col-md-offset-1"><%= getLocaleResource(browserLocales, questions[i].questionText) %></div>
+=======
+  <div class="row bottomMargin25">
+    <div class="demographic col-md-6"><%= getLocaleResource(browserLocales, questions[i].questionText) %></div>
+>>>>>>> 05fc1de9689c5b63897b649c12f3651678fd8a30
   </div>
 
   <% if (questions[i].type == "input-only") { %>
@@ -15,6 +20,7 @@
   <% } %>
 
   <% if (questions[i].type == "radio-only") { %>
+<<<<<<< HEAD
   <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
   <radiogroup>
     <div class="demographic row bottomMargin15">
@@ -40,6 +46,46 @@
                value= <%= questions[i].responseOptions[j].value %> tabindex="<%= questions[i].tabindex %>"/>
         <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
                class="padding-right-1"><%= getLocaleResource(browserLocales, questions[i].questionText) %></label>
+=======
+    <radiogroup>
+      <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+        <div class="demographic row bottomMargin25">
+          <div class="col-md-6">
+            <input type="radio"
+                   group="<%= questions[i].group %>"
+                   name="<%= questions[i].responseOptions[j].name %>"
+                   id="<%= questions[i].responseOptions[j].id %>"
+                   value="<%= questions[i].responseOptions[j].value %>" />
+            <label for="<%= questions[i].responseOptions[j].id %>"
+                   class="padding-right-1"><%= getLocaleResource(browserLocales, questions[i].responseOptions[j].displayText) %></label>
+          </div>
+        </div>
+      <% } %>
+    </radiogroup>
+  <% } %>
+
+  <% if (questions[i].type == "radio-other") { %>
+    <radiogroup>
+      <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+        <div class="demographic row bottomMargin25">
+          <div class="col-md-6">
+            <input type="radio"
+                  group="<%= questions[i].group %>"
+                  name="<%= questions[i].responseOptions[j].name %>"
+                  id="<%= questions[i].responseOptions[j].id %>"
+                  value="<%= questions[i].responseOptions[j].value %>" />
+            <label for="<%= questions[i].responseOptions[j].id %>"
+                class="padding-right-1"><%= getLocaleResource(browserLocales, questions[i].responseOptions[j].displayText) %></label>
+          </div>
+        </div>
+      <% } %>
+    </radiogroup>
+    <div class="demographic row bottomMargin25">
+      <div class="col-md-6">
+        <input type="text"
+               name="<%= 'other_' + questions[i].responseOptions[j-1].name %>"
+               id="other-input" %> />
+>>>>>>> 05fc1de9689c5b63897b649c12f3651678fd8a30
       </div>
     </div>
   </radiogroup>
@@ -54,6 +100,7 @@
 
   <% } %>
 
+<<<<<<< HEAD
   <% if (questions[i].type == "multi-select-other") { %>
   <div class="<%= questions[i].type %> bottomMargin50">
     <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
@@ -64,6 +111,18 @@
                tabindex="<%= questions[i].tabindex %>" value= <%= questions[i].responseOptions[j].value %> />
         <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
                class="padding-right-1"><%= getLocaleResource(browserLocales, questions[i].questionText) %></label>
+=======
+  <% if (questions[i].type == "dropdown-only") { %>
+    <div class="demographic row bottomMargin25">
+      <div class="col-md-6">
+        <select name="<%= questions[i].name %>" >
+          <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+            <option value="<%= questions[i].responseOptions[j].value %>" >
+                <%= getLocaleResource(browserLocales, questions[i].responseOptions[j].displayText) %>
+            </option>
+          <% } %>
+        </select>
+>>>>>>> 05fc1de9689c5b63897b649c12f3651678fd8a30
       </div>
     </div>
     <% } %>
@@ -80,6 +139,7 @@
   <% if (questions[i].type == "multi-select") { %>
   <div class="<%= questions[i].type %> bottomMargin50">
     <% for(var j = 0; j < questions[i].responseOptions.length; j++) { %>
+<<<<<<< HEAD
     <div class="demographic row bottomMargin15">
       <div class="col-md-6 col-md-offset-1">
         <input type="checkbox" group=<%= questions[i].group %>
@@ -87,6 +147,18 @@
                tabindex="<%= questions[i].tabindex %>" value= <%= questions[i].responseOptions[j].value %> />
         <label for=<%= questions[i].responseOptions[j].id %> class="padding-right-1"
                class="padding-right-1"><%= getLocaleResource(browserLocales, questions[i].questionText) %></label>
+=======
+      <div class="demographic row bottomMargin25">
+        <div class="col-md-6">
+          <input type="checkbox"
+                  name="<%= questions[i].name %>[]"
+                  id="<%= questions[i].name %>-<%= questions[i].responseOptions[j].value %>"
+                  value="<%= questions[i].responseOptions[j].value %>"
+                  class="checkbox-<%= questions[i].name %>" >
+          <label for="<%= questions[i].name %>-<%= questions[i].responseOptions[j].value %>"
+                  class="padding-right-1"><%= getLocaleResource(browserLocales, questions[i].responseOptions[j].displayText) %></label>
+        </div>
+>>>>>>> 05fc1de9689c5b63897b649c12f3651678fd8a30
       </div>
     </div>
     <% } %>

@@ -22,8 +22,6 @@ var businessRules = {};
   businessRules.setProfileVariables = function (server, userid, userData, callback) {
     const User = server.plugins['hapi-mongo-models'].User;
     const Account = server.plugins['hapi-mongo-models'].Account;
-    var profileData = {};
-
     //Prepare tags
     User.findByUserId(userid, function (user) {
       console.log('user id is ', userid);

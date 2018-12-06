@@ -20,6 +20,7 @@ Must be custom defined for each project.
 
 -   `server`  
 -   `userid`  
+-   `userData`  
 -   `callback`  
 
 Returns **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The profile data object.

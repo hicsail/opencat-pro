@@ -321,7 +321,7 @@ var helperMethods = {};
     const UserData = server.plugins['hapi-mongo-models'].UserData;
 
     //Custom project-defined rule engine calculation, to be saved as part of user data
-    RuleEngine.setProfileVariables(server, userid,   function (profileData) {
+    RuleEngine.setProfileVariables(server, userid, userData, function (profileData) {
       //Also create the userdata record in background.
 
       console.log("profile data found is:");

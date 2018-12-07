@@ -6,4 +6,4 @@
 | Email:   | {{email}}   |
 | Message: | {{message}} |
 
-The BYO-CAT Team
+The {{projectName}} Team

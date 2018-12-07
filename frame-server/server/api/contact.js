@@ -34,6 +34,9 @@ internals.applyRoutes = function (server, next) {
             };
             const template = 'contact';
 
+            // add project name to the payload so it can be used in the email template
+            request.payload.projectName = Config.get('/projectName');
+
             mailer.sendEmail(emailOptions, template, request.payload, (err, info) => {
 
                 if (err) {

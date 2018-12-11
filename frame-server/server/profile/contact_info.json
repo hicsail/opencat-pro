@@ -1,6 +1,10 @@
 {
+  "omit" : "ommiting any of the field below will disable them from being displayed on the Contact page",
+  "direct_phone": "XXX-XXX-XXXX", 
   "office_phone": "XXX-XXX-XXXX",
-  "email": "Em@il.com"
+  "email": "Em@il.com",
+  "name": "Contact Name",
+  "googleMapUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2948.662352514737!2d-71.106583!3d42.3497216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e379f0c4e57a97%3A0xf082dcc3e210c53c!2sBU+Hariri+Institute+for+Computing!5e0!3m2!1sen!2sus!4v1492773318343"
 }
 
 

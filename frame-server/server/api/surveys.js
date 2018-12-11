@@ -67,8 +67,8 @@ internals.applyRoutes = function (server, next) {
           configUrl: Config.SERVER_URL,
           questions: demographicJSON,
           createdSurveyId: createdSurvey._id,
-          logoname: "/logo.png",
-          favicon: "/logo.png",
+          logoname: Config.getAppLogo(),
+          favicon: Config.getAppIcon(),
           name: isAccount ? request.auth.credentials.user.roles.account.name : request.auth.credentials.user.roles.admin.name
 
         });

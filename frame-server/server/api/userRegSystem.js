@@ -11,7 +11,8 @@ const Boom = require('boom');
 const FeatureToggles = require('../config/feature-toggles.js');
 const contactJSON = require(Config.getProfilePath() + "/contact_info.json");
 const helpJSON = require(Config.getProfilePath() + "/help_text.json");
-let logoName =  "logo.png";
+let logoName =  Config.getAppLogo();
+let iconName =  Config.getAppIcon();
 const dynamicSignupQuestions = require(Config.getProfilePath() + "/signup_dynamic_questions.json");
 const Joi = require('joi');
 
@@ -71,7 +72,7 @@ internals.applyRoutes = function (server, next) {
             configUrl: Config.SERVER_URL,
             loggedIn: true,
             isClinician: true,
-            favicon: logoName,
+            favicon: iconName,
             logoname: logoName,
             studies: {},
             name: request.auth.credentials.user.roles.admin.name
@@ -87,7 +88,7 @@ internals.applyRoutes = function (server, next) {
               instructions: instructions,
               helpTextOn: FeatureToggles.TOGGLE_HELP_TEXT,
               configUrl: Config.SERVER_URL,
-              favicon: logoName,
+              favicon: iconName,
               logoname: logoName,
               loggedIn: true,
               isClinician: false,
@@ -105,7 +106,7 @@ internals.applyRoutes = function (server, next) {
           instructions: instructions,
           helpTextOn: FeatureToggles.TOGGLE_HELP_TEXT,
           configUrl: Config.SERVER_URL,
-          favicon: logoName,
+          favicon: iconName,
           logoname: logoName,
           loggedIn: false,
           isClinician: false,
@@ -131,7 +132,7 @@ internals.applyRoutes = function (server, next) {
           {
             title: 'Create a clinician',
             configUrl: Config.SERVER_URL,
-            favicon: logoName,
+            favicon: iconName,
             logoname: logoName,
             loggedIn: true,
             isClinician: true,
@@ -209,7 +210,7 @@ internals.applyRoutes = function (server, next) {
       return reply.view('login_accessible', {
         title: Config.getAppTitle(),
         configUrl: Config.SERVER_URL,
-        favicon: logoName,
+        favicon: iconName,
         logoname: logoName
       });
     }
@@ -230,7 +231,7 @@ internals.applyRoutes = function (server, next) {
         title: Config.getAppTitle(),
         dynamicQuestions: dynamicSignupQuestions,
         configUrl: Config.SERVER_URL,
-        favicon: logoName,
+        favicon: iconName,
         logoname: logoName
       });
     }
@@ -242,7 +243,7 @@ internals.applyRoutes = function (server, next) {
     handler: function (request, reply) {
       return reply.view('forgot_accessible', {
         title: Config.getAppTitle(),
-        favicon: logoName,
+        favicon: iconName,
         configUrl: Config.SERVER_URL,
         logoname: logoName
       });
@@ -259,59 +260,42 @@ internals.applyRoutes = function (server, next) {
       }
     },
     handler: function (request, reply) {
+      let context = {
+        title: Config.getAppTitle(),
+        officePhone: contactJSON["office_phone"],
+        directPhone: contactJSON["direct_phone"],
+        contactName: contactJSON["name"] ? contactJSON["name"] : "",
+        email: contactJSON["email"],
+        favicon: iconName,
+        logoname: logoName,
+        configUrl: Config.SERVER_URL,
+        googleMapUrl: contactJSON["googleMapUrl"],
 
-      let officePhone = contactJSON["office_phone"];
-      let directPhone = contactJSON["direct_phone"];
-      let email = contactJSON["email"];
-      let name = contactJSON["email"] ? contactJSON["email"] : "";
+        // the following will be overwritten depending on the state
+        loggedIn: false,
+        isClinician: false,
+        name: ''
+      };
+
       if (request.auth.isAuthenticated) {
+        context.loggedIn = true;
+
         let isAccount = request.auth.credentials.user.roles.account ? true : false;
         if (!isAccount) {
-          return reply.view('contact_accessible', {
-            title: Config.getAppTitle(),
-            officePhone: officePhone,
-            directPhone: directPhone,
-            email: email,
-            favicon: logoName,
-            configUrl: Config.SERVER_URL,
-            logoname: Config.getProfileLogo(),
-            loggedIn: true,
-            isClinician: true,
-            contactName: name,
-            name: request.auth.credentials.user.roles.admin.name,
-
-          });
-
+          context.isClinician = true;
+          context.name = request.auth.credentials.user.roles.admin.name;
         } else {
-          return reply.view('contact_accessible', {
-            title: Config.getAppTitle(),
-            officePhone: officePhone,
-            directPhone: directPhone,
-            email: email,
-            favicon: logoName,
-            configUrl: Config.SERVER_URL,
-            logoname: Config.getProfileLogo(),
-            loggedIn: true,
-            isClinician: false,
-            contactName: name,
-            name: request.auth.credentials.user.roles.account.name,
-          });
+          context.isClinician = false;
+          context.name = request.auth.credentials.user.roles.account.name;
         }
       }
       else {
-        return reply.view('contact_accessible', {
-          title: Config.getAppTitle(),
-          officePhone: officePhone,
-          directPhone: directPhone,
-          email: email,
-          favicon: logoName,
-          configUrl: Config.SERVER_URL,
-          loggedIn: false,
-          logoname: Config.getProfileLogo(),
-          isClinician: false,
-          name: ''
-        });
+        context.loggedIn = false;
+        context.isClinician = false;
+        context.name = '';
       }
+
+      return reply.view('contact_accessible', context);
     }
   });
 
@@ -321,9 +305,9 @@ internals.applyRoutes = function (server, next) {
     handler: function (request, reply) {
       return reply.view('reset_accessible', {
         title: Config.getAppTitle(),
-        favicon: logoName,
+        favicon: iconName,
         configUrl: Config.SERVER_URL,
-        logoname: Config.getProfileLogo()
+        logoname: logoName
       });
     }
   });
@@ -342,8 +326,8 @@ internals.applyRoutes = function (server, next) {
 
       return reply.view('userSurveyDetails_temp', {
         title: Config.getAppTitle(),
-        favicon: logoName,
-        logoname: Config.getProfileLogo(),
+        favicon: iconName,
+        logoname: logoName,
         configUrl: Config.SERVER_URL,
         meanScore: Config.meanScoreValue,
         loggedIn: request.auth.isAuthenticated,
@@ -389,9 +373,9 @@ internals.applyRoutes = function (server, next) {
         configUrl: Config.SERVER_URL,
         name: isAccount ? request.auth.credentials.user.roles.account.name : request.auth.credentials.user.roles.admin.name,
         isClinician: true,
-        logoname: Config.getProfileLogo(),
+        logoname: logoName,
         loggedIn: true,
-        favicon: logoName,
+        favicon: iconName,
         username: request.auth.credentials.user.username
       });
     }
@@ -434,11 +418,11 @@ internals.applyRoutes = function (server, next) {
           configUrl: Config.SERVER_URL,
           name: isAccount ? request.auth.credentials.user.roles.account.name : request.auth.credentials.user.roles.admin.name,
           isClinician: true,
-          favicon: logoName,
+          favicon: iconName,
           username: request.auth.credentials.user.username,
           studies: result,
           id: request.auth.credentials.user._id,
-          logoname: Config.getProfileLogo()
+          logoname: logoName
         });
       });
     }

@@ -17,6 +17,8 @@ const configTemplateTest = Handlebars.compile(source);
 //Need to change this file for production! Later, ideally these values should come in using a form or an env file
 const context = {
   projectName: 'BYO-CAT',
+  appLogoPath: 'logo.png', // relative to the server/web/public/images/ folder
+  appIconPath: 'favicon.ico', // relative to the server/web/public/images/ folder
   rootEmail: 'root@root',
   rootPassword: 'rootroot',
   rootFirst: 'root',

@@ -16,7 +16,13 @@
             <div class="contact">
               <ul class="list-no-style">
 
-                <% if(locals.name) { %>
+              <% if(locals.contactName) { %>
+              <li class="address">
+                <%-contactName%>
+              </li>
+              <% } %>
+
+              <% if(locals.name) { %>
                 <li class="address">
                   <%-name%>
                 </li>
@@ -56,8 +62,11 @@
       </div>
     </section>
   </div>
-  <div class="container navContainer google-maps">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2948.662352514737!2d-71.106583!3d42.3497216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e379f0c4e57a97%3A0xf082dcc3e210c53c!2sBU+Hariri+Institute+for+Computing!5e0!3m2!1sen!2sus!4v1492773318343" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>  </div>
+  <% if(locals.googleMapUrl) { %>
+    <div class="container navContainer google-maps">
+      <iframe src="<%=locals.googleMapUrl%>" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+  <% } %>
 
 </main>
 

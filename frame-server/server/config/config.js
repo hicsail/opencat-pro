@@ -38,6 +38,14 @@ var Config = {
 
   getAppName: function () {
     return appConfig.get('/projectName');
+  },
+
+  getAppLogo: function () {
+    return appConfig.get('/appLogoPath');
+  },
+
+  getAppIcon: function () {
+    return appConfig.get('/appIconPath');
   }
 
 };

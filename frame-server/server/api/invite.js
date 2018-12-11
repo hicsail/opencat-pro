@@ -214,16 +214,15 @@ internals.applyRoutes = function (server, next) {
           dynamicQuestions: dynamicSignupQuestions,
           configUrl: Config.SERVER_URL,
           emailToFill: invite.email,
-          favicon: Config.getAppName() + "/logo.png",
-          logoname: Config.getProfileLogo()
+          favicon: Config.getAppIcon(),
+          logoname: Config.getAppLogo()
         });
       }else{
         return reply.view('invite_expired', {
           title: Config.getAppTitle(),
           configUrl: Config.SERVER_URL,
-          favicon: Config.getAppName() + "/logo.png",
-          logoname: Config.getProfileLogo()
-
+          favicon: Config.getAppIcon(),
+          logoname: Config.getAppLogo()
         });
       }
     });

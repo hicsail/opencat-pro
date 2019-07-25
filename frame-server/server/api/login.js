@@ -262,7 +262,8 @@ internals.applyRoutes = function (server, next) {
           };
           const template = 'forgot-password';
           const context = {
-            key: results.keyHash.key
+            key: results.keyHash.key,
+            projectName: Config.get('/projectName')
           };
 
           mailer.sendEmail(emailOptions, template, context, done);

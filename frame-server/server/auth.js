@@ -15,7 +15,7 @@ internals.applyStrategy = function (server, next) {
 
   server.auth.strategy('session', 'cookie', {
     password: Config.get('/cookieSecret'),
-    cookie: 'sid-BYO-CAT',
+    cookie: 'sid-' + Config.get('/projectName').replace(' ', '-'),
     isSecure: false,
     validateFunc: function (request, data, callback) {
 

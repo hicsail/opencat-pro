@@ -65,7 +65,7 @@
                     basil.set('cookie', data);
                     l.stop();
                     if (JSON.parse(data).changePass) {
-                      alertModal("Your Password Has Expired", "SCI-FI users are required to change their password every 90 days. You will be emailed a code and redirected to the password reset form.", function() {
+                      alertModal("Your Password Has Expired", "Users are required to change their password every 90 days. You will be emailed a code and redirected to the password reset form.", function() {
                         forgotPassword('<%= configUrl %>', usnm);
                       });
                     } else {

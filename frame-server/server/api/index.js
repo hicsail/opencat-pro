@@ -1,5 +1,7 @@
 'use strict';
 
+const Config = require('../config/config');
+
 exports.register = function (server, options, next) {
 
     server.route({
@@ -7,10 +9,9 @@ exports.register = function (server, options, next) {
         path: '/',
         handler: function (request, reply) {
 
-            reply({ message: 'Welcome to BYO-CAT!' });
+            reply({ message: 'Welcome to ' + Config.getAppTitle() + '!' });
         }
     });
-
 
     next();
 };

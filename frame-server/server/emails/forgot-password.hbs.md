@@ -6,4 +6,4 @@ need this key to do it.
 __Key:__
 {{key}}
 
-The BYO-CAT Team
+The {{projectName}} Team

@@ -7,4 +7,4 @@ Here are your login credentials:
 | ---------:|:------------ |
 | Username: | {{username}} |
 
-The BYO-CAT Team
+The {{projectName}} Team
